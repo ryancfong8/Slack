@@ -2,7 +2,7 @@ class CreateChannels < ActiveRecord::Migration[5.1]
   def change
     create_table :channels do |t|
       t.string :title
-      t.string :type
+      t.string :channel_type
 
       t.timestamps
     end

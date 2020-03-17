@@ -24,11 +24,11 @@ class Api::ChannelsController < ApplicationController
 
   def index
     @channels = Channel.all
-    @channels = @channels.select { |channel| has_member?(channel, params[:id].to_i) }
+    @channels = @channels.select { |channel| has_member?(channel, params[:id].to_i) && channel[:channel_type] == params[:channel_type] }
   end
 
   def has_member?(channel, id)
-    channel.members.any? { |member| member.id === id }
+    channel.members.any? { |member| member.id == id }
   end
 
   def destroy
@@ -38,6 +38,6 @@ class Api::ChannelsController < ApplicationController
   private
 
   def channel_params
-    params.require(:channel).permit(:title, :type)
+    params.require(:channel).permit(:title, :channel_type)
   end
 end

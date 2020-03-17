@@ -7,8 +7,8 @@ export const Sidebar = props => {
   return (
     <div>
       <AccountContainer />
-      {/* <ChannelListContainer />
-      <DirectListContainer /> */}
+      <ChannelListContainer />
+      <DirectListContainer />
     </div>
   );
 };

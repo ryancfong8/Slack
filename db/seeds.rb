@@ -21,7 +21,8 @@ User.create!([
 
 Channel.create!([
   {title: "general", channel_type: "channel"},
-  {title: "random", channel_type: "channel"}
+  {title: "random", channel_type: "channel"},
+  {title: "Ryan 2", channel_type: "direct"}
 ])
 
 Membership.create!([
@@ -40,5 +41,13 @@ Membership.create!([
     {
         user_id: 2,
         channel_id: 2
+    },
+    {
+        user_id: 1,
+        channel_id: 3
+    },
+    {
+        user_id: 2,
+        channel_id: 3
     }
 ])

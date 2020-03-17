@@ -13,6 +13,6 @@ class Api::MembershipsController < ApplicationController
   end
 
   def membership_params
-    params.require(:membership).permit(:user_id, :channel_id)
+    params.require(:membership).permit(:user, :channel)
   end
 end

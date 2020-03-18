@@ -1,0 +1,28 @@
+.sidebar {
+  padding: 1rem;
+  background-color: #3f0e40;
+  color: #fff;
+  height: 100%;
+  a {
+    color: #fff;
+  }
+  a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+  width: 220px;
+
+  .account {
+    margin-bottom: 1rem;
+    .username {
+      color: #9b829b;
+    }
+  }
+
+  .channel-list {
+    margin-bottom: 1rem;
+    .heading {
+      color: #bdacbe;
+    }
+  }
+}

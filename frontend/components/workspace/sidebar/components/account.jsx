@@ -5,13 +5,14 @@ export const Account = props => {
   const [showDropdown, toggleDropdown] = useState(false);
   return (
     <div
+      className="account"
       onClick={e => {
         e.preventDefault();
         toggleDropdown(!showDropdown);
       }}
     >
-      <h1>CleanChat</h1>
-      <div>{props.currentUser.username}</div>
+      <h5 className="mb-0">Slack</h5>
+      <div className="username">{props.currentUser.username}</div>
       {showDropdown && (
         <div>
           <h3>{props.currentUser.username}</h3>

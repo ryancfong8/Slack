@@ -22,11 +22,13 @@ class ChannelList extends React.Component {
     console.log('USER ID', currentUserId);
     console.log('CHANNELS === ', channels);
     return (
-      <div>
-        <h4>{channelType === 'channel' ? 'CHANNELS' : 'DIRECT MESSAGES'}</h4>
+      <div className="channel-list">
+        <div className="heading">{channelType === 'channel' ? 'Channels' : 'Direct Messages'}</div>
         {channels.map((channel, index) => (
           <div key={index}>
-            <a href="#">{channel && channel.title}</a>
+            <a href="#">
+              {channel && channel.title ? (channelType === 'channel' ? `# ${channel.title}` : channel.title) : ''}
+            </a>
           </div>
         ))}
       </div>

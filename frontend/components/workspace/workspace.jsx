@@ -6,7 +6,7 @@ class Workspace extends React.Component {
   render() {
     const { logout } = this.props;
     return (
-      <div>
+      <div className="main-content-container">
         {/* <h1>Welcome to your workspace</h1>
         <button className="header-button" onClick={logout}>
           Log Out

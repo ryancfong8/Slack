@@ -5,7 +5,7 @@ import DirectListContainer from './components/direct_list_container';
 
 export const Sidebar = props => {
   return (
-    <div>
+    <div className="sidebar">
       <AccountContainer />
       <ChannelListContainer />
       <DirectListContainer />

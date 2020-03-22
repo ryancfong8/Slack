@@ -7,7 +7,7 @@ import MessageReducer from './message_reducer';
 const rootReducer = combineReducers({
   session: SessionsReducer,
   channels: ChannelsReducer,
-  message: MessageReducer
+  messages: MessageReducer
 });
 
 export default rootReducer;

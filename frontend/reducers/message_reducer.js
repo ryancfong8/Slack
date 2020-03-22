@@ -1,13 +1,13 @@
 import { RECEIVE__MESSAGES, RECEIVE__MESSAGE } from '../actions/message_actions.js';
-import merge from 'lodash/merge';
+// import merge from 'lodash/merge';
 
-const MessageReducer = (oldState = { messages: [] }, action) => {
+const MessageReducer = (oldState = [], action) => {
   Object.freeze(oldState);
   switch (action.type) {
     case RECEIVE__MESSAGES:
-      return merge({}, oldState, { messages: action.messages});
+      return action.messages;
     case RECEIVE__MESSAGE:
-      return merge({}, oldState, { messages: messages.concat([action.message]) });
+      return messages.concat([action.message]);
     default:
       return oldState;
   }

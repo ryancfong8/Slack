@@ -3,9 +3,6 @@ import * as ChannelAPIUtil from '../util/channel_api_util.js';
 export const RECEIVE__CHANNELS = 'GET__CHANNELS';
 export const RECEIVE__DIRECT_CHANNELS = 'RECEIVE__DIRECT_CHANNELS';
 export const RECEIVE__CHANNEL = 'RECEIVE__CHANNEL';
-export const CREATE__CHANNEL = 'CREATE__CHANNEL';
-export const UPDATE__CHANNEL = 'UPDATE__CHANNEL';
-export const DELETE__CHANNEL = 'DELETE__CHANNELS';
 
 const receiveChannels = channels => ({
   type: RECEIVE__CHANNELS,
@@ -34,4 +31,8 @@ export const getDirectChannels = id => dispatch => {
 
 export const createChannel = channel => dispatch => {
   return ChannelAPIUtil.createChannel(channel).then(channel => dispatch(receiveChannel(channel)));
+};
+
+export const getCurrentChannel = id => dispatch => {
+  return ChannelAPIUtil.getCurrentChannel(id).then(channel => dispatch(receiveChannel(channel)));
 };

@@ -4,11 +4,12 @@ import ChannelListContainer from './components/channel_list_container';
 import DirectListContainer from './components/direct_list_container';
 
 export const Sidebar = props => {
+  const { currentChannel } = props;
   return (
     <div className="sidebar">
       <AccountContainer />
-      <ChannelListContainer />
-      <DirectListContainer />
+      <ChannelListContainer currentChannel={currentChannel} />
+      <DirectListContainer currentChannel={currentChannel} />
     </div>
   );
 };

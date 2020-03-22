@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ChannelList from './channel_list';
-import { createChannel, getChannels } from '../../../../actions/channel_actions';
+import { createChannel, getChannels, getCurrentChannel } from '../../../../actions/channel_actions';
 
 const mapStateToProps = state => {
   return {
@@ -13,7 +13,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   createChannel: () => dispatch(createChannel),
-  getChannels: (channelType, id) => dispatch(getChannels(channelType, id))
+  getChannels: (channelType, id) => dispatch(getChannels(channelType, id)),
+  getCurrentChannel: (id) => dispatch(getCurrentChannel(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChannelList);

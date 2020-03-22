@@ -9,7 +9,7 @@
     "babel-preset-react": "^6.24.1",
     "jquery": "^3.4.1",
     "lodash": "^4.17.11",
-    "react": "^16.6.0",
+    "react": "^16.8.0",
     "react-dom": "^16.5.1",
     "react-modal": "^3.10.1",
     "react-redux": "^5.0.7",

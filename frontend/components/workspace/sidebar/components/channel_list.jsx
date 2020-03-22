@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class ChannelList extends React.Component {
   constructor(props) {
@@ -18,19 +19,23 @@ class ChannelList extends React.Component {
   }
 
   render() {
-    const { channels, channelType, currentUserId } = this.props;
-    console.log('USER ID', currentUserId);
-    console.log('CHANNELS === ', channels);
+    const { channels, channelType, currentChannel } = this.props;
     return (
       <div className="channel-list">
         <div className="heading">{channelType === 'channel' ? 'Channels' : 'Direct Messages'}</div>
-        {channels.map((channel, index) => (
-          <div key={index}>
-            <a href="#">
-              {channel && channel.title ? (channelType === 'channel' ? `# ${channel.title}` : channel.title) : ''}
-            </a>
-          </div>
-        ))}
+        {channels.map((channel, index) => {
+          if (channel) {
+            return (
+              <Link to={`/messages/${channel.id}`} key={index}>
+                <div
+                  className={`channel-list-link ${currentChannel && channel.id === currentChannel.id ? 'active' : ''}`}
+                >
+                  {channel && channel.title ? (channelType === 'channel' ? `# ${channel.title}` : channel.title) : ''}
+                </div>
+              </Link>
+            );
+          }
+        })}
       </div>
     );
   }

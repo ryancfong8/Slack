@@ -18,6 +18,7 @@
 @import './api/sessions.scss';
 @import './api/users.scss';
 @import './api/sidebar.scss';
+@import './api/messages.scss';
 
 html {
   height: 100%;
@@ -30,8 +31,11 @@ main {
 body {
   height: 100%;
   font-family: 'Lato', sans-serif;
+  font-size: 15px;
 }
 
 .main-content-container {
   height: 100%;
+  display: flex;
+  flex-direction: row;
 }

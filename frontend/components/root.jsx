@@ -11,10 +11,8 @@ const Root = ({ store }) => {
       <HashRouter>
         <Switch>
           <MainRoute exact={true} path="/" component={App} />
+          <AuthRoute path="/messages/:channelId" component={WorkspaceContainer} />
           <AuthRoute path="/messages" component={WorkspaceContainer} />
-          {/* <Route path="/messages/:channelId" component={Client} onEnter={this._redirectIfLoggedOut}>
-          <Route path="details" component={Client} />
-        </Route> */}
         </Switch>
       </HashRouter>
     </Provider>

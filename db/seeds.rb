@@ -54,37 +54,37 @@ Membership.create!([
 
 Message.create!([
     {
-        body: "User 1 Channel 1",
+        body: "<p>User 1 Channel 1</p>",
         channel_id: 1,
         user_id: 1
     },
     {
-        body: "User 1 Channel 1",
+        body: "<p>User 1 Channel 1</p>",
         channel_id: 1,
         user_id: 1
     },
     {
-        body: "User 1 Channel 2",
+        body: "<p>User 1 Channel 2</p>",
         channel_id: 2,
         user_id: 1
     },
     {
-        body: "User 1 Channel 2",
+        body: "<p>User 1 Channel 2</p>",
         channel_id: 2,
         user_id: 1
     },
     {
-        body: "User 2 Channel 1",
+        body: "<p>User 2 Channel 1</p>",
         channel_id: 1,
         user_id: 2
     },
     {
-        body: "User 2 Channel 1",
+        body: "<p>User 2 Channel 1</p>",
         channel_id: 1,
         user_id: 2
     },
     {
-        body: "User 1 Channel 1",
+        body: "<p>User 1 Channel 1</p>",
         channel_id: 1,
         user_id: 1
     }

@@ -12,11 +12,11 @@ class MessagesListComponent extends React.Component {
       <div className="messages-list-component">
         {showUserInfo && (
           <div className="d-flex flex-row align-items-end mb-1">
-            <span className="font-weight-bold mr-2">{message.user.username}</span>
+            <span className="mr-2 username">{message.user.username}</span>
             <div className="time">{moment(message.created_at).format('LT')}</div>
           </div>
         )}
-        <div>{message.body}</div>
+        <div dangerouslySetInnerHTML={{ __html: message.body }} />
       </div>
     );
   }

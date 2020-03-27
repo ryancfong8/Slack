@@ -1,7 +1,7 @@
 import React from 'react';
 import MessagesPageHeader from './messages_page_header';
 import MessagesList from './messages_list';
-// import MessagesInputContainer from './messages_input_container';
+import MessagesInput from './messages_input';
 
 class MessagesPage extends React.Component {
   constructor(props) {
@@ -26,13 +26,13 @@ class MessagesPage extends React.Component {
   }
 
   render() {
-    const { currentChannel, messages } = this.props;
+    const { currentChannel, messages, createMessage, currentUser } = this.props;
     if (!currentChannel.id) return <div className="messages-page">Select a Channel</div>;
     return (
       <div className="messages-page">
         <MessagesPageHeader channel={currentChannel} />
         <MessagesList messages={messages} />
-        {/* <MessagesInputContainer /> */}
+        <MessagesInput createMessage={createMessage} currentChannel={currentChannel} currentUser={currentUser} />
       </div>
     );
   }

@@ -11,7 +11,7 @@ export const Account = props => {
         toggleDropdown(!showDropdown);
       }}
     >
-      <h5 className="mb-0">Slack</h5>
+      <h5 className="mb-0 app-name">Slack</h5>
       <div className="username">{props.currentUser.username}</div>
       {showDropdown && (
         <div className="account-dropdown">
@@ -19,8 +19,8 @@ export const Account = props => {
             <h3>{props.currentUser.username}</h3>
             <div>{props.currentUser.email}</div>
           </div>
-            <a className="header-button dropdown-item" href="#" onClick={logout}>
-              Log Out
+          <a className="header-button dropdown-item" href="#" onClick={logout}>
+            Log Out
           </a>
         </div>
       )}

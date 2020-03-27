@@ -7,7 +7,7 @@ const MessageReducer = (oldState = [], action) => {
     case RECEIVE__MESSAGES:
       return action.messages;
     case RECEIVE__MESSAGE:
-      return messages.concat([action.message]);
+      return oldState.concat([action.message]);
     default:
       return oldState;
   }

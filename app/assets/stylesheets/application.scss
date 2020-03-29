@@ -20,6 +20,7 @@
 @import './api/users.scss';
 @import './api/sidebar.scss';
 @import './api/messages.scss';
+@import './api/forms.scss';
 
 html {
   height: 100%;
@@ -43,4 +44,8 @@ body {
 
 .dropdown-toggle::after {
   content: none;
+}
+
+.modal-header {
+  font-weight: 700;
 }

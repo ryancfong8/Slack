@@ -42,12 +42,19 @@ class ChannelList extends React.Component {
   };
 
   render() {
-    const { channels, channelType, currentChannel } = this.props;
+    const { channels, channelType, currentChannel, createChannel, currentUserId, history } = this.props;
     const { showForm } = this.state;
     let currentForm;
     switch (showForm) {
       case CHANNEL__NEW:
-        currentForm = <ChannelForm onClose={this.closeModal} />;
+        currentForm = (
+          <ChannelForm
+            onClose={this.closeModal}
+            createChannel={createChannel}
+            currentUserId={currentUserId}
+            history={history}
+          />
+        );
         break;
       // case CHANNEL__DIRECT:
       //   currentForm = <DirectChannelForm />;

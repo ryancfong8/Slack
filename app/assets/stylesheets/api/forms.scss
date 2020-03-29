@@ -1,0 +1,41 @@
+input {
+  padding: 4px 12px;
+  border-radius: 5px;
+}
+
+.channel-list {
+  .modal-header {
+    border-bottom: none;
+    padding: 1.75rem;
+  }
+  .modal-body {
+    padding: 0 1.75rem 1.75rem 1.75rem;
+  }
+  .modal-footer {
+    padding: 1.75rem;
+  }
+  .create-channel-header {
+    font-weight: 900;
+    margin-bottom: 0;
+  }
+}
+
+.create-channel-form {
+  color: #333333;
+  input {
+    font-size: 18px;
+    border: 1px solid #666666;
+  }
+  label {
+    margin-top: 0.5rem;
+    font-weight: 700;
+  }
+  .optional {
+    font-weight: 400;
+    color: #999999;
+  }
+  .subtitle {
+    font-size: 13px;
+    padding-top: 4px;
+  }
+}

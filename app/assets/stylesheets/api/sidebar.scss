@@ -61,5 +61,22 @@
         background: #1064a2;
       }
     }
+    .dropdown-menu {
+      background-color: #f8f8f8;
+      .dropdown-item {
+        color: #333333;
+      }
+      .dropdown-item:hover {
+        background: #1064a2;
+        color: #ffffff;
+      }
+    }
+    .add-button:hover {
+      cursor: pointer;
+      color: #cccccc;
+    }
+  }
+  #Modal {
+    color: #333333;
   }
 }

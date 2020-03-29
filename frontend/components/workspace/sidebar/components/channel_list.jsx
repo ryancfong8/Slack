@@ -1,9 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ChannelForm from './channel_form';
+// import DirectChannelForm from './direct_channel_form';
+// import BrowseChannelForm from './browse_channel_form';
+
+const CHANNEL__NEW = 'CHANNEL__NEW';
+const CHANNEL__DIRECT = 'CHANNEL__DIRECT';
+const CHANNEL__BROWSE = 'CHANNEL__BROWSE';
 
 class ChannelList extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      showForm: ''
+    };
   }
 
   componentDidMount() {
@@ -18,11 +29,55 @@ class ChannelList extends React.Component {
     }
   }
 
+  setModal = modalType => {
+    this.setState({
+      showForm: modalType
+    });
+  };
+
+  closeModal = () => {
+    this.setState({
+      showForm: ''
+    });
+  };
+
   render() {
     const { channels, channelType, currentChannel } = this.props;
+    const { showForm } = this.state;
+    let currentForm;
+    switch (showForm) {
+      case CHANNEL__NEW:
+        currentForm = <ChannelForm onClose={this.closeModal} />;
+        break;
+      // case CHANNEL__DIRECT:
+      //   currentForm = <DirectChannelForm />;
+      //   break;
+      // case CHANNEL__BROWSE:
+      //   currentForm = <BrowseChannelForm />;
+      //   break;
+      default:
+        currentForm = null;
+        break;
+    }
     return (
       <div className="channel-list">
-        <div className="heading">{channelType === 'channel' ? 'Channels' : 'Direct Messages'}</div>
+        <div className="heading d-flex flex-row justify-content-between">
+          <span>{channelType === 'channel' ? 'Channels' : 'Direct Messages'}</span>
+          {channelType === 'channel' ? (
+            <AddChannelButton channelType={channelType} setModal={this.setModal} />
+          ) : (
+            <div>
+              <i
+                className="fa fa-plus-circle add-button"
+                aria-hidden="true"
+                onClick={e => {
+                  e.preventDefault();
+                  this.setModal(CHANNEL__DIRECT);
+                }}
+              ></i>
+            </div>
+          )}
+        </div>
         {channels.map((channel, index) => {
           if (channel) {
             return (
@@ -36,9 +91,41 @@ class ChannelList extends React.Component {
             );
           }
         })}
+        {showForm && currentForm}
       </div>
     );
   }
 }
+
+const AddChannelButton = props => {
+  const { setModal } = props;
+  return (
+    <div className="dropdown">
+      <i className="fa fa-plus-circle add-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+      <div className="dropdown-menu">
+        <a
+          className="dropdown-item"
+          href="#"
+          onClick={e => {
+            e.preventDefault();
+            setModal(CHANNEL__BROWSE);
+          }}
+        >
+          Browse Channels
+        </a>
+        <a
+          className="dropdown-item"
+          href="#"
+          onClick={e => {
+            e.preventDefault();
+            setModal(CHANNEL__NEW);
+          }}
+        >
+          Create Channel
+        </a>
+      </div>
+    </div>
+  );
+};
 
 export default ChannelList;

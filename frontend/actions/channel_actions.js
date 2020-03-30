@@ -27,7 +27,7 @@ const receiveNewChannel = channel => ({
 
 export const getChannels = id => dispatch => {
   return ChannelAPIUtil.getChannels('channel', id).then(channels => {
-    dispatch(receiveChannels(channels));
+    return dispatch(receiveChannels(channels));
   });
 };
 

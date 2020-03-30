@@ -11,18 +11,20 @@ User.create!([
         username: "Ryan",
         password_digest: "$2a$12$Q5Q30.gGzNkcDraISTK1yeWOAXB6oFiGuJtRF8ftmjvlueOCWo3aq",
         session_token: "ZDvw2CoYEI-tN9r4lfkVhw",
+        email: ""
     },
     {   
         username: "Ryan 2",
         password_digest: "$2a$12$.IpSzsxTyEETq.RtKU2qbOFu2kEqf8fs/BlBpTou1ZbTcb.A1PYUu",
-        session_token: "DPQsLEU4LpOHt5vyG2YlPg"
+        session_token: "DPQsLEU4LpOHt5vyG2YlPg",
+        email: ""
     }
 ])
 
 Channel.create!([
-  {title: "general", channel_type: "channel"},
-  {title: "random", channel_type: "channel"},
-  {title: "Ryan 2", channel_type: "direct"}
+  {name: "general", channel_type: "channel", "description": "This is a general channel", channel_private: false},
+  {name: "random", channel_type: "channel", "description": "This is a random channel", channel_private: false} ,
+  {name: "Ryan 2", channel_type: "direct", "description": "", channel_private: true}
 ])
 
 Membership.create!([
@@ -56,36 +58,43 @@ Message.create!([
     {
         body: "<p>User 1 Channel 1</p>",
         channel_id: 1,
-        user_id: 1
+        user_id: 1,
+        message_type: "message"
     },
     {
         body: "<p>User 1 Channel 1</p>",
         channel_id: 1,
-        user_id: 1
+        user_id: 1,
+        message_type: "message"
     },
     {
         body: "<p>User 1 Channel 2</p>",
         channel_id: 2,
-        user_id: 1
+        user_id: 1,
+        message_type: "message"
     },
     {
         body: "<p>User 1 Channel 2</p>",
         channel_id: 2,
-        user_id: 1
+        user_id: 1,
+        message_type: "message"
     },
     {
         body: "<p>User 2 Channel 1</p>",
         channel_id: 1,
-        user_id: 2
+        user_id: 2,
+        message_type: "message"
     },
     {
         body: "<p>User 2 Channel 1</p>",
         channel_id: 1,
-        user_id: 2
+        user_id: 2,
+        message_type: "message"
     },
     {
         body: "<p>User 1 Channel 1</p>",
         channel_id: 1,
-        user_id: 1
+        user_id: 1,
+        message_type: "message"
     }
 ])

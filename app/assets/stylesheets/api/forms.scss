@@ -22,9 +22,23 @@ input {
 
 .create-channel-form {
   color: #333333;
+  .channel-input-container {
+    position: relative;
+  }
   input {
+    padding: 4px 12px;
     font-size: 18px;
     border: 1px solid #666666;
+    width: 100%;
+  }
+  .channel-name-input {
+    padding: 4px 40px;
+  }
+  .input-icon {
+    position: absolute;
+    left: 16px;
+    top: 12px;
+    color: #666666;
   }
   label {
     margin-top: 0.5rem;
@@ -34,8 +48,42 @@ input {
     font-weight: 400;
     color: #999999;
   }
-  .subtitle {
-    font-size: 13px;
-    padding-top: 4px;
+}
+.subtitle {
+  font-size: 13px;
+  padding-top: 4px;
+  color: #999999;
+}
+.results-list {
+  height: 100%;
+  overflow: auto;
+}
+
+.channel-browse-input {
+  border: 1px solid #999999;
+  padding: 8px 12px;
+}
+
+.channel-browse-item {
+  padding: 1rem;
+  border-top: 1px solid #dddddd;
+  .list-item-name {
+    font-weight: 700;
+  }
+}
+
+.channel-browse-item:hover {
+  background-color: #f8f8f8;
+  cursor: pointer;
+}
+
+.channel-browse-modal {
+  .modal-dialog {
+    overflow-y: initial !important;
+  }
+  .modal-body {
+    height: 500px;
+    display: flex;
+    flex-direction: column;
   }
 }

@@ -1,5 +1,5 @@
 class Channel < ApplicationRecord
-  validates :title, presence: true
+  validates :name, presence: true
   has_many :memberships
   has_many :members,
     through: :memberships,

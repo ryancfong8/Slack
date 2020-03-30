@@ -6,21 +6,28 @@ import {
 } from '../actions/channel_actions.js';
 import merge from 'lodash/merge';
 
+function channelSortFunc(a, b) {
+  if (a.name < b.name) return -1;
+  if (a.name > b.name) return 1;
+  return 0;
+}
+
 const ChannelsReducer = (oldState = { channels: [], direct_channels: [], currentChannel: {} }, action) => {
   Object.freeze(oldState);
+  let newChannels;
   switch (action.type) {
     case RECEIVE__CHANNELS:
-      return merge({}, oldState, { channels: action.channels });
+      newChannels = Object.values(action.channels);
+      newChannels.sort(channelSortFunc);
+      return merge({}, oldState, { channels: newChannels });
     case RECEIVE__DIRECT_CHANNELS:
-      return merge({}, oldState, { direct_channels: action.direct_channels });
+      newChannels = Object.values(action.direct_channels);
+      newChannels.sort(channelSortFunc);
+      return merge({}, oldState, { direct_channels: newChannels });
     case RECEIVE__NEW_CHANNEL:
-      const newChannels = oldState.channels.concat([action.channel]);
-      newChannels.sort((a, b) => {
-        if (a.title < b.title) return -1;
-        if (a.title > b.title) return 1;
-        return 0;
-      });
-      return merge({}, oldState, { channels: newChannels, currentChannel: action.channel });
+      newChannels = oldState.channels.concat([action.channel]);
+      newChannels.sort(channelSortFunc);
+      return { channels: newChannels, direct_channels: oldState.direct_channels, currentChannel: action.channel };
     case RECEIVE__CHANNEL:
       return merge({}, oldState, { currentChannel: action.channel });
     default:

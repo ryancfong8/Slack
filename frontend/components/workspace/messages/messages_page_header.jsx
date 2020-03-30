@@ -9,7 +9,7 @@ class MessagesPageHeader extends React.Component {
     const { channel } = this.props;
     return (
       <div className="messages-page-header">
-        <h6 className="title">{channel.channel_type === 'channel' ? `#${channel.title}` : channel.title}</h6>
+        <h6 className="name">{channel.channel_type === 'channel' ? `#${channel.name}` : channel.name}</h6>
         <div className="members d-flex flex-row align-items-center">
           <i id="user-icon" className="fa fa-user-o mr-1" aria-hidden="true"></i>
           {channel.members.length}

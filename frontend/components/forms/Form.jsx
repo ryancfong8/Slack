@@ -32,9 +32,11 @@ export default function AppForm(props) {
     }
   }
 
+  const childrenWithProps = React.Children.map(props.children, child => React.cloneElement(child, { form: formRef }));
+
   return (
     <Form onSubmit={handleSubmit} initialData={initialData} ref={formRef} className={className}>
-      {props.children}
+      {childrenWithProps}
     </Form>
   );
 }

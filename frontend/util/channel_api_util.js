@@ -34,3 +34,13 @@ export const deleteChannel = id =>
     url: `api/channels/${id}`,
     data: { id }
   });
+
+export const searchChannels = query =>
+  $.ajax({
+    method: 'GET',
+    url: 'api/channels',
+    data: {
+      channel_type: 'channel',
+      query
+    }
+  });

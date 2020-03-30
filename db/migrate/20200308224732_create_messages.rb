@@ -4,6 +4,7 @@ class CreateMessages < ActiveRecord::Migration[5.1]
       t.string :body
       t.integer :channel_id
       t.integer :user_id
+      t.string :message_type
 
       t.timestamps
     end

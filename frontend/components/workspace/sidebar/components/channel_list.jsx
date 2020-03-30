@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ChannelForm from './channel_form';
 // import DirectChannelForm from './direct_channel_form';
-// import BrowseChannelForm from './browse_channel_form';
+import BrowseChannelForm from './channel_browse';
 
 const CHANNEL__NEW = 'CHANNEL__NEW';
 const CHANNEL__DIRECT = 'CHANNEL__DIRECT';
@@ -59,9 +59,9 @@ class ChannelList extends React.Component {
       // case CHANNEL__DIRECT:
       //   currentForm = <DirectChannelForm />;
       //   break;
-      // case CHANNEL__BROWSE:
-      //   currentForm = <BrowseChannelForm />;
-      //   break;
+      case CHANNEL__BROWSE:
+        currentForm = <BrowseChannelForm onClose={this.closeModal} history={history} />;
+        break;
       default:
         currentForm = null;
         break;
@@ -92,7 +92,22 @@ class ChannelList extends React.Component {
                 <div
                   className={`channel-list-link ${currentChannel && channel.id === currentChannel.id ? 'active' : ''}`}
                 >
-                  {channel && channel.title ? (channelType === 'channel' ? `# ${channel.title}` : channel.title) : ''}
+                  {channel && channel.name ? (
+                    channelType === 'channel' ? (
+                      <div className="d-flex flex-row align-items-center">
+                        {channel.channel_private ? (
+                          <i className="fas fa-lock mr-1"></i>
+                        ) : (
+                          <i className="fas fa-hashtag mr-1"></i>
+                        )}
+                        {channel.name}
+                      </div>
+                    ) : (
+                      channel.name
+                    )
+                  ) : (
+                    ''
+                  )}
                 </div>
               </Link>
             );

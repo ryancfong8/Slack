@@ -11,7 +11,7 @@ const Modal = ({ className, onClose, footer, body, header, modalSize = 'modal-lg
   );
 
   return (
-    <div className={className || ''}>
+    <div className={`w-100 ${className || ''}`}>
       <div className="modal-backdrop fade show" />
       <div className="modal fade show d-block" id="Modal" role="dialog" tabIndex="-1">
         <div className={`modal-dialog ${modalSize}`}>

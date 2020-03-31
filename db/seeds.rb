@@ -8,15 +8,45 @@
 
 User.create!([
     {
+        name: "Ryan Fong",
         username: "Ryan",
         password_digest: "$2a$12$Q5Q30.gGzNkcDraISTK1yeWOAXB6oFiGuJtRF8ftmjvlueOCWo3aq",
-        session_token: "ZDvw2CoYEI-tN9r4lfkVhw",
+        session_token: "WU5T-Xw4A0VUvz4auajHuw",
         email: ""
     },
     {   
-        username: "Ryan 2",
-        password_digest: "$2a$12$.IpSzsxTyEETq.RtKU2qbOFu2kEqf8fs/BlBpTou1ZbTcb.A1PYUu",
-        session_token: "DPQsLEU4LpOHt5vyG2YlPg",
+        name: "Peter Parker",
+        username: "Spiderman",
+        password_digest: "$2a$12$ttqXF1CPnfLEndlBrCtsbeIpWhpphqeWufIjRz7HbGTOs0lCuJXF.",
+        session_token: "OsChOMisJr3xxm7ruVybhA",
+        email: ""
+    },
+    {
+        name: "Steve Rogers",
+        username: "Captain America",
+        password_digest: "$2a$12$NTNWay1Yzcue1Q9RYI47GOoQaTaZneVJFjQTWpS94s24u6Eq2cXOm",
+        session_token: "gVlgjKwfYDDIVf6k0WKuyA",
+        email: ""
+    },
+    {   
+        name: "Tony Stark",
+        username: "Iron Man",
+        password_digest: "$2a$12$N34G5Ju2nAKQgwtzootivOgS6ghrjon4v.97PrwWWgwhcYp1QSTrO",
+        session_token: "z9lr3SkNyfUAvl9qKhg0fQ",
+        email: ""
+    },
+    {
+        name: "Bruce Banner",
+        username: "Hulk",
+        password_digest: "$2a$12$5U1IjAHqbMBeYgHNM94RuewKf8DuUlEhCxvwngiP5CeWTYOFZTire",
+        session_token: "rSn0SCCP3dboY4rJInOQvw",
+        email: ""
+    },
+    {   
+        name: "Thor Odinson",
+        username: "Thor",
+        password_digest: "$2a$12$sguDWiuqcDIsaWyvl./97u5W1b2T5J/ShDFbvKMiX8DrQ6bVP/xqK",
+        session_token: "oY_PxivgQ2oY-ysFGX9RjQ",
         email: ""
     }
 ])

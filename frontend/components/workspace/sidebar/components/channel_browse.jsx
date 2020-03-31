@@ -40,7 +40,7 @@ export default function ChannelBrowse(props) {
       header={<h3 className="create-channel-header">Find a channel</h3>}
       body={renderBody}
       onClose={onClose}
-      modalSize="modal-lg"
+      modalSize="modal-md modal-dialog-centered"
       className="channel-browse-modal"
     />
   );

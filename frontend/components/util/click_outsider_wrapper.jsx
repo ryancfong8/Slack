@@ -47,5 +47,9 @@ export default function ClickOutsideWrapper(props) {
     };
   }, [wrapperRef]);
 
-  return <div ref={wrapperRef}>{props.children}</div>;
+  return (
+    <div ref={wrapperRef} className="w-100">
+      {props.children}
+    </div>
+  );
 }

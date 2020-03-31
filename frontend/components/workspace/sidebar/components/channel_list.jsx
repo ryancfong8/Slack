@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ChannelForm from './channel_form';
-// import DirectChannelForm from './direct_channel_form';
+import DirectChannelForm from './channel_direct';
 import BrowseChannelForm from './channel_browse';
 
 const CHANNEL__NEW = 'CHANNEL__NEW';
@@ -18,7 +18,7 @@ class ChannelList extends React.Component {
   }
 
   componentDidMount() {
-    const { getChannels, channelType, currentUserId } = this.props;
+    const { getChannels, currentUserId } = this.props;
     getChannels(currentUserId);
   }
 
@@ -56,9 +56,16 @@ class ChannelList extends React.Component {
           />
         );
         break;
-      // case CHANNEL__DIRECT:
-      //   currentForm = <DirectChannelForm />;
-      //   break;
+      case CHANNEL__DIRECT:
+        currentForm = (
+          <DirectChannelForm
+            onClose={this.closeModal}
+            createChannel={createChannel}
+            currentUserId={currentUserId}
+            history={history}
+          />
+        );
+        break;
       case CHANNEL__BROWSE:
         currentForm = <BrowseChannelForm onClose={this.closeModal} history={history} />;
         break;

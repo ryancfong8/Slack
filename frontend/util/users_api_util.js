@@ -3,3 +3,12 @@ export const getUsers = () =>
     method: 'GET',
     url: 'api/users'
   });
+
+export const searchUsers = query =>
+  $.ajax({
+    method: 'GET',
+    url: 'api/users',
+    data: {
+      query
+    }
+  });

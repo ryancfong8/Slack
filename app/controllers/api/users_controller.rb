@@ -10,13 +10,8 @@ class Api::UsersController < ApplicationController
   end
 
   def index 
-    @users = User.all
-    if params[:query]
-      @@users = User.where.not(id: current_user.id)
-      @users = @users.where('username ILIKE ? OR name ILIKE ?', "%#{params[:query]}%", "%#{params[:query]}")
-      return @users
-    end
-    @users
+    @users = User.find_by_query(params[:query], params[:excluded_ids])
+    render :index
   end
 
   private

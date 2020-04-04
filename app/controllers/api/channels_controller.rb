@@ -3,6 +3,14 @@ class Api::ChannelsController < ApplicationController
     @channel = Channel.new(channel_params)
     if @channel.save
       Membership.create(user_id: current_user.id, channel_id: @channel.id)
+      puts "PARAMS MEMBER IDS"
+      puts params[:member_ids]
+      if params[:member_ids]
+        puts "FOUND PARAMS MEMBER IDS"
+        params[:member_ids].each do |member_id|
+          Membership.create(user_id: member_id, channel_id: @channel.id)
+        end
+      end
       render :show
     else
       render json: @channel.errors.full_messages, status: 422
@@ -23,8 +31,7 @@ class Api::ChannelsController < ApplicationController
   end
 
   def index
-    @channels = Channel.find_by_query(params[:query], params[:is_member], params[:channel_type], params[:excluded_ids], params[:excluded_member_ids])
-    render :index
+    @channels = Channel.find_by_query(params[:query], params[:is_member], params[:channel_type], params[:member_ids], params[:excluded_ids], params[:excluded_member_ids])
   end
 
   def has_member?(channel, id)

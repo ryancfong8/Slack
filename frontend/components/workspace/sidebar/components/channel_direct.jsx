@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Modal from '../../../util/modal';
-import { usePrevious } from '../../../util/utils';
+import { usePrevious, arraysEqual } from '../../../util/utils';
 import { searchUsers } from '../../../../util/users_api_util';
+import { searchChannels } from '../../../../util/channel_api_util';
 
 export default function ChannelDirect(props) {
   const inputRef = useRef(null);
@@ -11,7 +12,7 @@ export default function ChannelDirect(props) {
   const prevSelected = usePrevious(selected) || [];
   useEffect(() => {
     async function fetchData() {
-      const results = await searchUsers(search, selected);
+      const results = await searchUsers({ search, excluded_ids: selected.map(user => user.id) });
       setResults(Object.values(results));
       // focus input if user was selected
       if (prevSelected.length !== selected.length) {
@@ -26,7 +27,36 @@ export default function ChannelDirect(props) {
     setSearch(e.target.value);
   };
 
-  const { onClose, history, currentUserId } = props;
+  const { onClose, history, currentUserId, createChannel } = props;
+
+  const onClick = async e => {
+    e.preventDefault();
+    const member_ids = selected.map(user => user.id).filter(user => user.id !== currentUserId);
+    // check if existing direct message exists
+    const existingChannels = await searchChannels({ channel_type: 'direct' });
+    const existingChannel = Object.values(existingChannels).find(channel => {
+      return arraysEqual(
+        channel.members.map(member => member.id),
+        member_ids.concat([currentUserId])
+      );
+    });
+    if (existingChannel) {
+      history.push(`/messages/${existingChannel.id}`);
+      onClose();
+      return;
+    }
+    const channel = {
+      channel_type: 'direct',
+      channel_private: true,
+      name: '',
+      description: ''
+    };
+    createChannel(channel, member_ids).then(res => {
+      history.push(`/messages/${res.channel.id}`);
+      onClose();
+    });
+  };
+
   const renderBody = (
     <>
       <div className="d-flex flex-row w-100 mb-3">
@@ -50,6 +80,7 @@ export default function ChannelDirect(props) {
             selected && selected.length === 0 ? ' disabled' : ''
           }`}
           disabled={selected && selected.length === 0}
+          onClick={onClick}
         >
           <span className="font-weight-bold">Go</span>
         </button>

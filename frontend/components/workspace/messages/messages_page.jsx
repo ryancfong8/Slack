@@ -30,7 +30,7 @@ class MessagesPage extends React.Component {
     if (!currentChannel.id) return <div className="messages-page">Select a Channel</div>;
     return (
       <div className="messages-page">
-        <MessagesPageHeader channel={currentChannel} />
+        <MessagesPageHeader channel={currentChannel} currentUser={currentUser} />
         <MessagesList messages={messages} />
         <MessagesInput createMessage={createMessage} currentChannel={currentChannel} currentUser={currentUser} />
       </div>

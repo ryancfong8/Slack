@@ -4,11 +4,9 @@ export const getUsers = () =>
     url: 'api/users'
   });
 
-export const searchUsers = query =>
+export const searchUsers = data =>
   $.ajax({
     method: 'GET',
     url: 'api/users',
-    data: {
-      query
-    }
+    data
   });

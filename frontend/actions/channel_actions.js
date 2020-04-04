@@ -25,18 +25,28 @@ const receiveNewChannel = channel => ({
   channel
 });
 
-export const getChannels = id => dispatch => {
-  return ChannelAPIUtil.getChannels('channel', id).then(channels => {
+export const getChannels = () => dispatch => {
+  const data = {
+    channel_type: 'channel',
+    is_member: true,
+    channel_private: true
+  };
+  return ChannelAPIUtil.searchChannels(data).then(channels => {
     return dispatch(receiveChannels(channels));
   });
 };
 
 export const getDirectChannels = id => dispatch => {
-  return ChannelAPIUtil.getChannels('direct', id).then(channels => dispatch(receiveDirectChannels(channels)));
+  const data = {
+    channel_type: 'direct',
+    is_member: true,
+    channel_private: true
+  };
+  return ChannelAPIUtil.searchChannels(data).then(channels => dispatch(receiveDirectChannels(channels)));
 };
 
-export const createChannel = channel => dispatch => {
-  return ChannelAPIUtil.createChannel(channel).then(channel => dispatch(receiveNewChannel(channel)));
+export const createChannel = (channel, member_ids) => dispatch => {
+  return ChannelAPIUtil.createChannel(channel, member_ids).then(channel => dispatch(receiveNewChannel(channel)));
 };
 
 export const getCurrentChannel = id => dispatch => {

@@ -1,24 +1,14 @@
-export const getChannels = (type, id) =>
-  $.ajax({
-    method: 'GET',
-    url: 'api/channels',
-    data: {
-      channel_type: type || 'channel',
-      id
-    }
-  });
-
 export const getCurrentChannel = id =>
   $.ajax({
     method: 'GET',
     url: `api/channels/${id}`
   });
 
-export const createChannel = channel =>
+export const createChannel = (channel, member_ids) =>
   $.ajax({
     method: 'POST',
     url: 'api/channels',
-    data: { channel }
+    data: { channel, member_ids }
   });
 
 export const updateChannel = channel =>
@@ -35,12 +25,9 @@ export const deleteChannel = id =>
     data: { id }
   });
 
-export const searchChannels = query =>
+export const searchChannels = data =>
   $.ajax({
     method: 'GET',
     url: 'api/channels',
-    data: {
-      channel_type: 'channel',
-      query
-    }
+    data
   });

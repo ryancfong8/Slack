@@ -8,7 +8,7 @@ export default function ChannelBrowse(props) {
 
   useEffect(() => {
     async function fetchData() {
-      const results = await searchChannels(search);
+      const results = await searchChannels({ query: search, is_member: false });
       setResults(Object.values(results));
     }
     fetchData();

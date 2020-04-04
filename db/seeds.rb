@@ -54,7 +54,7 @@ User.create!([
 Channel.create!([
   {name: "general", channel_type: "channel", "description": "This is a general channel", channel_private: false},
   {name: "random", channel_type: "channel", "description": "This is a random channel", channel_private: false} ,
-  {name: "Ryan 2", channel_type: "direct", "description": "", channel_private: true}
+  {name: "", channel_type: "direct", "description": "", channel_private: true}
 ])
 
 Membership.create!([

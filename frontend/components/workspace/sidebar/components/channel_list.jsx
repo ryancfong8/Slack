@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ChannelForm from './channel_form';
 import DirectChannelForm from './channel_direct';
 import BrowseChannelForm from './channel_browse';
+import { getChannelName } from '../../../util/utils';
 
 const CHANNEL__NEW = 'CHANNEL__NEW';
 const CHANNEL__DIRECT = 'CHANNEL__DIRECT';
@@ -18,14 +19,14 @@ class ChannelList extends React.Component {
   }
 
   componentDidMount() {
-    const { getChannels, currentUserId } = this.props;
-    getChannels(currentUserId);
+    const { getChannels } = this.props;
+    getChannels();
   }
 
   componentDidUpdate(prevProps) {
     const { getChannels, channelType, currentUserId } = this.props;
     if (channelType !== prevProps.channelType || currentUserId !== prevProps.currentUserId) {
-      getChannels(currentUserId);
+      getChannels();
     }
   }
 
@@ -73,6 +74,11 @@ class ChannelList extends React.Component {
         currentForm = null;
         break;
     }
+    console.log('channels === ', channels);
+    console.log(
+      'channels filterd === ',
+      channels.filter(channel => channel.members.filter(member => member.id === currentUserId).length > 0)
+    );
     return (
       <div className="channel-list">
         <div className="heading d-flex flex-row justify-content-between">
@@ -92,34 +98,16 @@ class ChannelList extends React.Component {
             </div>
           )}
         </div>
-        {channels.map((channel, index) => {
-          if (channel) {
-            return (
-              <Link to={`/messages/${channel.id}`} key={index}>
-                <div
-                  className={`channel-list-link ${currentChannel && channel.id === currentChannel.id ? 'active' : ''}`}
-                >
-                  {channel && channel.name ? (
-                    channelType === 'channel' ? (
-                      <div className="d-flex flex-row align-items-center">
-                        {channel.channel_private ? (
-                          <i className="fas fa-lock mr-1"></i>
-                        ) : (
-                          <i className="fas fa-hashtag mr-1"></i>
-                        )}
-                        {channel.name}
-                      </div>
-                    ) : (
-                      channel.name
-                    )
-                  ) : (
-                    ''
-                  )}
-                </div>
-              </Link>
-            );
-          }
-        })}
+        {channels
+          .filter(channel => channel.members.filter(member => member.id === currentUserId).length > 0)
+          .map((channel, index) => (
+            <ChannelListItem
+              channel={channel}
+              currentUserId={currentUserId}
+              key={channel.id}
+              currentChannel={currentChannel}
+            />
+          ))}
         {showForm && currentForm}
       </div>
     );
@@ -154,6 +142,24 @@ const AddChannelButton = props => {
         </a>
       </div>
     </div>
+  );
+};
+
+const ChannelListItem = props => {
+  const { channel, currentUserId, currentChannel } = props;
+  if (!channel) return null;
+  const icon = channel.channel_private ? <i className="fas fa-lock mr-1"></i> : <i className="fas fa-hashtag mr-1"></i>;
+  let channelName = getChannelName(channel, currentUserId);
+  return (
+    <Link to={`/messages/${channel.id}`}>
+      <div
+        className={`channel-list-link d-flex flex-row align-items-center ${
+          currentChannel && channel.id === currentChannel.id ? 'active' : ''
+        }`}
+      >
+        {channel.channel_type === 'channel' ? icon : '•'} {channelName}
+      </div>
+    </Link>
   );
 };
 

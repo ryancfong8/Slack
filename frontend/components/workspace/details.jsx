@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { getChannelName } from '../util/utils';
+import AddMembers from './add_members';
 
 export const Details = props => {
-  const { channel, currentUserId, match, history } = props;
+  const { channel, currentUserId, match, history, updateChannel } = props;
   if (!channel || !channel.members) return <h1>Loading...</h1>;
   const modifier = match.params.modifier;
   const [openAddMembers, setOpenAddMembers] = useState(false);
@@ -15,7 +16,7 @@ export const Details = props => {
         <div className="d-flex flex-column">
           <h6>Details</h6>
           <span className="subtitle">
-            {channel.channel_type === 'channel' ? icon : '•'}
+            {channel.channel_type === 'channel' ? icon : '• '}
             {getChannelName(channel, currentUserId)}
           </span>
         </div>
@@ -88,6 +89,15 @@ export const Details = props => {
           </>
         )}
       </div>
+      {openAddMembers && (
+        <AddMembers
+          setOpenAddMembers={setOpenAddMembers}
+          channel={channel}
+          currentUserId={currentUserId}
+          history={history}
+          updateChannel={updateChannel}
+        />
+      )}
     </div>
   );
 };

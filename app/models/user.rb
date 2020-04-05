@@ -39,6 +39,6 @@ class User < ApplicationRecord
 
   # takes a query string and an array of excluded_ids
   def self.find_by_query(query = "", excluded_ids)
-    User.where('username ILIKE ? OR name ILIKE ?', "%#{query}%", "%#{query}").where.not(id: excluded_ids)
+    User.where('username ILIKE ? OR name ILIKE ?', "%#{query}%", "%#{query}%").where.not(id: excluded_ids)
   end 
 end

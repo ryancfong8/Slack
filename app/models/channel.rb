@@ -17,7 +17,7 @@ class Channel < ApplicationRecord
   # excluded_ids : Array[Number], 
   # excluded_member_ids: Array[Number]
   def self.find_by_query(query = "", is_member = true, channel_type = "", member_ids = [], excluded_ids = [], excluded_member_ids =[ ])
-    @channels = Channel.includes(:members).where('channels.name ILIKE ? OR channels.name ILIKE ?', "%#{query}%", "%#{query}")
+    @channels = Channel.includes(:members).where('channels.name ILIKE ? OR channels.name ILIKE ?', "%#{query}%", "%#{query}%")
       .where(channel_type: channel_type)
       .where.not(id: excluded_ids)
       .where.not("users.id": excluded_member_ids)

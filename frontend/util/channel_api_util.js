@@ -11,11 +11,11 @@ export const createChannel = (channel, member_ids) =>
     data: { channel, member_ids }
   });
 
-export const updateChannel = channel =>
+export const updateChannel = (channel, member_ids) =>
   $.ajax({
     method: 'PATCH',
     url: `api/channels/${channel.id}`,
-    data: { channel }
+    data: { channel, member_ids }
   });
 
 export const deleteChannel = id =>

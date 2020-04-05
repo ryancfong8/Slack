@@ -4,6 +4,7 @@ export const RECEIVE__CHANNELS = 'GET__CHANNELS';
 export const RECEIVE__DIRECT_CHANNELS = 'RECEIVE__DIRECT_CHANNELS';
 export const RECEIVE__CHANNEL = 'RECEIVE__CHANNEL';
 export const RECEIVE__NEW_CHANNEL = 'RECEIVE__NEW_CHANNEL';
+export const RECEIVE__UPDATED_CHANNEL = 'RECEIVE__UPDATED_CHANNEL';
 
 const receiveChannels = channels => ({
   type: RECEIVE__CHANNELS,
@@ -22,6 +23,11 @@ const receiveChannel = channel => ({
 
 const receiveNewChannel = channel => ({
   type: RECEIVE__NEW_CHANNEL,
+  channel
+});
+
+const receiveUpdatedChannel = channel => ({
+  type: RECEIVE__UPDATED_CHANNEL,
   channel
 });
 
@@ -51,4 +57,8 @@ export const createChannel = (channel, member_ids) => dispatch => {
 
 export const getCurrentChannel = id => dispatch => {
   return ChannelAPIUtil.getCurrentChannel(id).then(channel => dispatch(receiveChannel(channel)));
+};
+
+export const updateChannel = (channel, member_ids) => dispatch => {
+  return ChannelAPIUtil.updateChannel(channel, member_ids).then(channel => dispatch(receiveUpdatedChannel(channel)));
 };

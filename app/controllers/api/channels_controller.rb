@@ -3,10 +3,7 @@ class Api::ChannelsController < ApplicationController
     @channel = Channel.new(channel_params)
     if @channel.save
       Membership.create(user_id: current_user.id, channel_id: @channel.id)
-      puts "PARAMS MEMBER IDS"
-      puts params[:member_ids]
       if params[:member_ids]
-        puts "FOUND PARAMS MEMBER IDS"
         params[:member_ids].each do |member_id|
           Membership.create(user_id: member_id, channel_id: @channel.id)
         end
@@ -19,7 +16,12 @@ class Api::ChannelsController < ApplicationController
 
   def update
     @channel = Channel.find(params[:id])
-    if @channel.update(channel_params)
+    if params[:member_ids]
+      params[:member_ids].each do |member_id|
+        Membership.create(user_id: member_id, channel_id: @channel.id)
+      end
+      render :show
+    elsif @channel.update(channel_params)
       render :show
     else
       render json: @channel.errors.full_messages, status: 422

@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { logout, signup, login } from '../../actions/sessions_actions';
 import Workspace from './workspace';
+import { updateChannel } from '../../actions/channel_actions';
 
 const mapStateToProps = ({ session, channels }) => ({
   currentUser: session.currentUser,
@@ -8,7 +9,8 @@ const mapStateToProps = ({ session, channels }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logout())
+  logout: () => dispatch(logout()),
+  updateChannel: (channel, member_ids) => dispatch(updateChannel(channel, member_ids))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Workspace);

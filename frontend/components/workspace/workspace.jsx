@@ -7,7 +7,7 @@ import { AuthRoute } from '../../util/route_util.jsx';
 
 class Workspace extends React.Component {
   render() {
-    const { currentChannel, match, history, currentUser } = this.props;
+    const { currentChannel, match, history, currentUser, updateChannel } = this.props;
     return (
       <div className="main-content-container">
         {/* <h1>Welcome to your workspace</h1>
@@ -20,7 +20,14 @@ class Workspace extends React.Component {
           <Route
             exact={true}
             path="/messages/:channelId/details/:modifier?"
-            render={props => <Details {...props} channel={currentChannel} currentUserId={currentUser.id} />}
+            render={props => (
+              <Details
+                {...props}
+                channel={currentChannel}
+                currentUserId={currentUser.id}
+                updateChannel={updateChannel}
+              />
+            )}
           />
         </Switch>
       </div>

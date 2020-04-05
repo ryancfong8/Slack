@@ -1,18 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Modal from '../../../util/modal';
-import { usePrevious, arraysEqual } from '../../../util/utils';
-import { searchUsers } from '../../../../util/users_api_util';
-import { searchChannels } from '../../../../util/channel_api_util';
+import Modal from '../util/modal';
+import { usePrevious, getChannelName } from '../util/utils';
+import { searchUsers } from '../../util/users_api_util';
 
-export default function ChannelDirect(props) {
+export default function AddMembers(props) {
+  const { channel, setOpenAddMembers, history, currentUserId, updateChannel } = props;
+  const onClose = e => {
+    if (e) e.preventDefault();
+    setOpenAddMembers(false);
+  };
   const inputRef = useRef(null);
   const [search, setSearch] = useState('');
   const [results, setResults] = useState([]);
   const [selected, setSelected] = useState([]);
   const prevSelected = usePrevious(selected) || [];
+
   useEffect(() => {
     async function fetchData() {
-      const results = await searchUsers({ query: search, excluded_ids: selected.map(user => user.id) });
+      const results = await searchUsers({
+        query: search,
+        excluded_ids: selected.map(user => user.id).concat(channel.members.map(member => member.id))
+      });
       setResults(Object.values(results));
       // focus input if user was selected
       if (prevSelected.length !== selected.length) {
@@ -27,33 +35,11 @@ export default function ChannelDirect(props) {
     setSearch(e.target.value);
   };
 
-  const { onClose, history, currentUserId, createChannel, channels } = props;
-
-  const onClick = async e => {
+  const onClick = e => {
     e.preventDefault();
     const member_ids = selected.map(user => user.id).filter(user => user.id !== currentUserId);
     // check if existing direct message exists
-    const existingChannel = channels.find(channel => {
-      return arraysEqual(
-        channel.members.map(member => member.id),
-        member_ids.concat([currentUserId])
-      );
-    });
-    if (existingChannel) {
-      history.push(`/messages/${existingChannel.id}`);
-      onClose();
-      return;
-    }
-    const channel = {
-      channel_type: 'direct',
-      channel_private: true,
-      name: '',
-      description: ''
-    };
-    createChannel(channel, member_ids).then(res => {
-      history.push(`/messages/${res.channel.id}`);
-      onClose();
-    });
+    updateChannel(channel, member_ids).then(res => onClose());
   };
 
   const renderBody = (
@@ -69,7 +55,7 @@ export default function ChannelDirect(props) {
             ref={inputRef}
             className="channel-direct-input w-100"
             onChange={onChange}
-            placeholder={selected.length ? '' : 'Find or start a conversation'}
+            placeholder={selected.length ? '' : 'Search for user'}
             value={search}
           />
         </div>
@@ -101,7 +87,23 @@ export default function ChannelDirect(props) {
   );
   return (
     <Modal
-      header={<h3 className="create-channel-header">Direct Messages</h3>}
+      header={
+        <div>
+          <h3 className="create-channel-header">Add People</h3>
+          <span className="gray">
+            {channel.channel_type === 'channel' ? (
+              channel.channel_private ? (
+                <i className="fas fa-lock mr-1"></i>
+              ) : (
+                <i className="fas fa-hashtag mr-1"></i>
+              )
+            ) : (
+              '• '
+            )}
+            {getChannelName(channel)}
+          </span>
+        </div>
+      }
       body={renderBody}
       onClose={onClose}
       modalSize="modal-md modal-dialog-centered"

@@ -26,11 +26,11 @@ class MessagesPage extends React.Component {
   }
 
   render() {
-    const { currentChannel, messages, createMessage, currentUser } = this.props;
+    const { currentChannel, messages, createMessage, currentUser, history } = this.props;
     if (!currentChannel.id) return <div className="messages-page">Select a Channel</div>;
     return (
       <div className="messages-page">
-        <MessagesPageHeader channel={currentChannel} currentUser={currentUser} />
+        <MessagesPageHeader channel={currentChannel} currentUser={currentUser} history={history} />
         <MessagesList messages={messages} />
         <MessagesInput createMessage={createMessage} currentChannel={currentChannel} currentUser={currentUser} />
       </div>

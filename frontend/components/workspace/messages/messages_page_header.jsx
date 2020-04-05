@@ -2,7 +2,7 @@ import React from 'react';
 import { getChannelName } from '../../util/utils';
 
 const MessagesPageHeader = props => {
-  const { channel, currentUser } = props;
+  const { channel, currentUser, history } = props;
   const channelName = getChannelName(channel, currentUser.id);
   const icon =
     channel.channel_type === 'direct' ? (
@@ -19,8 +19,16 @@ const MessagesPageHeader = props => {
         {channelName}
       </h6>
       <div className="members d-flex flex-row align-items-center">
-        <i id="user-icon" className="fa fa-user-o mr-1" aria-hidden="true"></i>
-        {channel.members.length}
+        <div
+          className="user-icon"
+          onClick={e => {
+            e.preventDefault();
+            history.push(`/messages/${channel.id}/details/members`);
+          }}
+        >
+          <i className="fa fa-user-o mr-1" aria-hidden="true"></i>
+          {channel.members.length}
+        </div>
       </div>
     </div>
   );

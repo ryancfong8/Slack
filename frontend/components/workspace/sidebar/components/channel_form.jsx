@@ -18,11 +18,17 @@ class ChannelForm extends React.Component {
   onSubmit = e => {
     e.preventDefault();
     const { onClose } = this.props;
-    const { createChannel, history } = this.props;
+    const { createChannel, history, channels } = this.props;
     const { name } = this.state;
     // translate func
     // lowercase name and remove special characters
     const newName = name.replace(/[^1-9a-zA-Z-]/g, '-').toLowerCase();
+    const existingChannel = channels.find(channel => channel.name === newName);
+    if (existingChannel) {
+      history.push(`/messages/${existingChannel.id}`);
+      onClose();
+      return;
+    }
     const newChannel = merge({}, this.state, { name: newName });
     createChannel(newChannel).then(res => {
       history.push(`/messages/${res.channel.id}`);

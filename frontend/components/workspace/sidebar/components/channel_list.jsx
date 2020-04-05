@@ -54,6 +54,7 @@ class ChannelList extends React.Component {
             createChannel={createChannel}
             currentUserId={currentUserId}
             history={history}
+            channels={channels}
           />
         );
         break;
@@ -64,6 +65,7 @@ class ChannelList extends React.Component {
             createChannel={createChannel}
             currentUserId={currentUserId}
             history={history}
+            channels={channels}
           />
         );
         break;
@@ -74,11 +76,6 @@ class ChannelList extends React.Component {
         currentForm = null;
         break;
     }
-    console.log('channels === ', channels);
-    console.log(
-      'channels filterd === ',
-      channels.filter(channel => channel.members.filter(member => member.id === currentUserId).length > 0)
-    );
     return (
       <div className="channel-list">
         <div className="heading d-flex flex-row justify-content-between">

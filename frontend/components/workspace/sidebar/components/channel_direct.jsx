@@ -27,14 +27,13 @@ export default function ChannelDirect(props) {
     setSearch(e.target.value);
   };
 
-  const { onClose, history, currentUserId, createChannel } = props;
+  const { onClose, history, currentUserId, createChannel, channels } = props;
 
   const onClick = async e => {
     e.preventDefault();
     const member_ids = selected.map(user => user.id).filter(user => user.id !== currentUserId);
     // check if existing direct message exists
-    const existingChannels = await searchChannels({ channel_type: 'direct' });
-    const existingChannel = Object.values(existingChannels).find(channel => {
+    const existingChannel = channels.find(channel => {
       return arraysEqual(
         channel.members.map(member => member.id),
         member_ids.concat([currentUserId])

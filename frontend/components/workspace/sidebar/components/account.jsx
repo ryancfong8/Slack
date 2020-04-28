@@ -1,29 +1,40 @@
 import React, { useState } from 'react';
+import ClickOutsideWrapper from '../../../util/click_outsider_wrapper';
 
-export const Account = props => {
-  const { logout } = props;
+export const Account = (props) => {
+  const { logout, currentUser } = props;
   const [showDropdown, toggleDropdown] = useState(false);
   return (
-    <div
-      className="account"
-      onClick={e => {
+    <ClickOutsideWrapper
+      onClickOutside={(e) => {
         e.preventDefault();
-        toggleDropdown(!showDropdown);
+        toggleDropdown(false);
       }}
     >
-      <h5 className="mb-0 app-name">Slack</h5>
-      <div className="username">{props.currentUser.username}</div>
-      {showDropdown && (
-        <div className="account-dropdown">
-          <div className="p-3">
-            <h3>{props.currentUser.username}</h3>
-            <div>{props.currentUser.email}</div>
+      <div
+        className="account"
+        onClick={(e) => {
+          e.preventDefault();
+          toggleDropdown(!showDropdown);
+        }}
+      >
+        <h5 className="mb-0 app-name">ChatHero</h5>
+        <div className="username">{currentUser.username}</div>
+        {showDropdown && (
+          <div className="account-dropdown">
+            <div className="p-3">
+              <div className="d-flex flex-row align-items-center">
+                <img className="account-avatar" src={currentUser.avatar_url} />
+                <h3>{currentUser.username}</h3>
+              </div>
+              <div>{currentUser.email}</div>
+            </div>
+            <a className="header-button dropdown-item" href="#" onClick={logout}>
+              Log Out
+            </a>
           </div>
-          <a className="header-button dropdown-item" href="#" onClick={logout}>
-            Log Out
-          </a>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </ClickOutsideWrapper>
   );
 };

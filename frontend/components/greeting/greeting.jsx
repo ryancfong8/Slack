@@ -27,7 +27,7 @@ class Greeting extends React.Component {
       <div className="header">
         <div className="icons">
           <Link className="logo" to="/">
-            Slack
+            ChatHero
           </Link>
           {/* <a href="https://github.com/ryancfong8/Pleytime">
             <img

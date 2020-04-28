@@ -12,42 +12,48 @@ User.create!([
         username: "Ryan",
         password_digest: "$2a$12$Q5Q30.gGzNkcDraISTK1yeWOAXB6oFiGuJtRF8ftmjvlueOCWo3aq",
         session_token: "WU5T-Xw4A0VUvz4auajHuw",
-        email: ""
+        email: "",
+        avatar_url: "https://res.cloudinary.com/ryancfong8/image/upload/v1586471303/PTP264-061_sq6as2.jpg"
     },
     {   
         name: "Peter Parker",
         username: "Spiderman",
         password_digest: "$2a$12$ttqXF1CPnfLEndlBrCtsbeIpWhpphqeWufIjRz7HbGTOs0lCuJXF.",
         session_token: "OsChOMisJr3xxm7ruVybhA",
-        email: ""
+        email: "",
+        avatar_url: "https://res.cloudinary.com/ryancfong8/image/upload/v1586471156/spiderman_sqzhqx.jpg"
     },
     {
         name: "Steve Rogers",
         username: "Captain America",
         password_digest: "$2a$12$NTNWay1Yzcue1Q9RYI47GOoQaTaZneVJFjQTWpS94s24u6Eq2cXOm",
         session_token: "gVlgjKwfYDDIVf6k0WKuyA",
-        email: ""
+        email: "",
+        avatar_url: "https://res.cloudinary.com/ryancfong8/image/upload/v1586471154/captain_america_fmnqme.jpg"
     },
     {   
         name: "Tony Stark",
         username: "Iron Man",
         password_digest: "$2a$12$N34G5Ju2nAKQgwtzootivOgS6ghrjon4v.97PrwWWgwhcYp1QSTrO",
         session_token: "z9lr3SkNyfUAvl9qKhg0fQ",
-        email: ""
+        email: "",
+        avatar_url: "https://res.cloudinary.com/ryancfong8/image/upload/v1586471152/iron_man_wny0g1.jpg"
     },
     {
         name: "Bruce Banner",
         username: "Hulk",
         password_digest: "$2a$12$5U1IjAHqbMBeYgHNM94RuewKf8DuUlEhCxvwngiP5CeWTYOFZTire",
         session_token: "rSn0SCCP3dboY4rJInOQvw",
-        email: ""
+        email: "",
+        avatar_url: "https://res.cloudinary.com/ryancfong8/image/upload/v1586471150/hulk_vnfb9d.jpg"
     },
     {   
         name: "Thor Odinson",
         username: "Thor",
         password_digest: "$2a$12$sguDWiuqcDIsaWyvl./97u5W1b2T5J/ShDFbvKMiX8DrQ6bVP/xqK",
         session_token: "oY_PxivgQ2oY-ysFGX9RjQ",
-        email: ""
+        email: "",
+        avatar_url: "https://res.cloudinary.com/ryancfong8/image/upload/v1586471148/thor_eurbdq.jpg"
     }
 ])
 

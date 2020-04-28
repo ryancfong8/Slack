@@ -1,12 +1,12 @@
 import React from 'react';
 import { getChannelName } from '../../util/utils';
 
-const MessagesPageHeader = props => {
+const MessagesPageHeader = (props) => {
   const { channel, currentUser, history } = props;
   const channelName = getChannelName(channel, currentUser.id);
   const icon =
     channel.channel_type === 'direct' ? (
-      '• '
+      <span className="green mr-1">•</span>
     ) : channel.channel_private ? (
       <i className="fas fa-lock mr-1"></i>
     ) : (
@@ -21,7 +21,7 @@ const MessagesPageHeader = props => {
       <div className="members d-flex flex-row align-items-center">
         <div
           className="user-icon"
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault();
             history.push(`/messages/${channel.id}/details/members`);
           }}

@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20200308224732) do
     t.string "session_token", null: false
     t.string "email"
     t.string "name"
+    t.string "avatar_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["session_token"], name: "index_users_on_session_token", unique: true

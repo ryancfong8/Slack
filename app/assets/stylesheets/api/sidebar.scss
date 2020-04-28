@@ -21,6 +21,14 @@
     .username {
       color: #9b829b;
     }
+    .account-avatar {
+      height: 1.75rem;
+      width: 1.75rem;
+      margin-right: 0.5rem;
+      border-radius: 3px;
+      object-fit: contain;
+      margin-bottom: 0.5rem;
+    }
     .account-dropdown {
       position: absolute;
       top: 100%;
@@ -29,6 +37,8 @@
       width: 300px;
       border: 1px solid #999999;
       border-radius: 0.25rem;
+      z-index: 10;
+      cursor: default;
     }
     .header-button {
       color: #333333;
@@ -36,9 +46,10 @@
       margin-bottom: 1rem;
     }
     .header-button:hover {
-      color: #333333;
+      color: #ffffff;
       text-decoration: none;
-      background-color: #999999;
+      background-color: #1064a2;
+      cursor: pointer;
     }
   }
 
@@ -90,6 +101,7 @@
   border-left: 1px solid #d9d9d9;
   h6 {
     margin-bottom: 0;
+    font-weight: 900 !important;
   }
   .title {
     height: 60px;
@@ -137,5 +149,12 @@
   }
   .title-tab:hover {
     cursor: pointer;
+  }
+  .member-avatar {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+    border-radius: 3px;
+    object-fit: contain;
   }
 }

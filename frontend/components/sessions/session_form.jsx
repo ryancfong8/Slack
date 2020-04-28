@@ -10,7 +10,7 @@ class SessionForm extends React.Component {
       username: '',
       password: '',
       modalOpen: false,
-      modalType: 'Log In'
+      modalType: 'Log In',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.openModal = this.openModal.bind(this);
@@ -29,9 +29,9 @@ class SessionForm extends React.Component {
   }
 
   update(field) {
-    return e =>
+    return (e) =>
       this.setState({
-        [field]: e.currentTarget.value
+        [field]: e.currentTarget.value,
       });
   }
 
@@ -59,7 +59,7 @@ class SessionForm extends React.Component {
       username: '',
       password: '',
       modalOpen: true,
-      modalType
+      modalType,
     });
     this.props.clearErrors();
   }
@@ -122,7 +122,7 @@ class SessionForm extends React.Component {
           overlayClassName="Modal-Overlay"
         >
           <form className="form">
-            <text className="modal-title">Welcome to Slack!</text>
+            <text className="modal-title">Welcome to ChatHero!</text>
             <text className="directions">Enter Your Username and Password</text>
             {this.renderErrors()}
             <label className="label">

@@ -8,7 +8,7 @@ const receiveMessages = messages => ({
   messages
 });
 
-const receiveMessage = message => ({
+export const receiveMessage = message => ({
   type: RECEIVE__MESSAGE,
   message
 });
@@ -18,5 +18,5 @@ export const getMessages = channelId => dispatch => {
 };
 
 export const createMessage = message => dispatch => {
-  return MessageAPIUtil.createMessage(message).then(message => dispatch(receiveMessage(message)));
+  return MessageAPIUtil.createMessage(message);
 };

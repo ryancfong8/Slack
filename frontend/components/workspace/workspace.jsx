@@ -14,7 +14,7 @@ class Workspace extends React.Component {
         <button className="header-button" onClick={logout}>
           Log Out
         </button> */}
-        <Sidebar currentChannel={currentChannel} history={history} />
+        <Sidebar currentChannel={currentChannel} history={history} match={match} />
         <MessagesContainer currentChannel={currentChannel} match={match} history={history} />
         <Switch>
           <Route

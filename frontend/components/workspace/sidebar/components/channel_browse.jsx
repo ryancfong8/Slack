@@ -14,7 +14,7 @@ export default function ChannelBrowse(props) {
     fetchData();
   }, [search]);
 
-  const onChange = e => {
+  const onChange = (e) => {
     setSearch(e.target.value);
   };
 
@@ -28,7 +28,7 @@ export default function ChannelBrowse(props) {
         placeholder="Search for channel name or description"
       />
       <div className="results-list">
-        {results.map(result => (
+        {results.map((result) => (
           <ChannelListResultItem channel={result} key={result.id} onClose={onClose} history={history} />
         ))}
       </div>
@@ -46,12 +46,12 @@ export default function ChannelBrowse(props) {
   );
 }
 
-const ChannelListResultItem = props => {
+const ChannelListResultItem = (props) => {
   const { channel, history, onClose } = props;
   return (
     <div
       className="d-flex flex-column channel-browse-item"
-      onClick={e => {
+      onClick={(e) => {
         e.preventDefault();
         history.push(`/messages/${channel.id}`);
         onClose();
@@ -62,7 +62,8 @@ const ChannelListResultItem = props => {
         <span className="mr-2">
           {channel.members.length} member{channel.members.length !== 1 ? 's' : ''}
         </span>
-        •<span className="ml-2">{channel.description}</span>
+        <span className="green mr-1">•</span>
+        <span className="ml-2">{channel.description}</span>
       </div>
     </div>
   );

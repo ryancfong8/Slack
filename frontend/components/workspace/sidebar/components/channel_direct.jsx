@@ -12,7 +12,7 @@ export default function ChannelDirect(props) {
   const prevSelected = usePrevious(selected) || [];
   useEffect(() => {
     async function fetchData() {
-      const results = await searchUsers({ query: search, excluded_ids: selected.map(user => user.id) });
+      const results = await searchUsers({ query: search, excluded_ids: selected.map((user) => user.id) });
       setResults(Object.values(results));
       // focus input if user was selected
       if (prevSelected.length !== selected.length) {
@@ -23,19 +23,19 @@ export default function ChannelDirect(props) {
     fetchData();
   }, [search, selected]);
 
-  const onChange = e => {
+  const onChange = (e) => {
     setSearch(e.target.value);
   };
 
   const { onClose, history, currentUserId, createChannel, channels } = props;
 
-  const onClick = async e => {
+  const onClick = async (e) => {
     e.preventDefault();
-    const member_ids = selected.map(user => user.id).filter(user => user.id !== currentUserId);
+    const member_ids = selected.map((user) => user.id).filter((user) => user.id !== currentUserId);
     // check if existing direct message exists
-    const existingChannel = channels.find(channel => {
+    const existingChannel = channels.find((channel) => {
       return arraysEqual(
-        channel.members.map(member => member.id),
+        channel.members.map((member) => member.id),
         member_ids.concat([currentUserId])
       );
     });
@@ -48,9 +48,9 @@ export default function ChannelDirect(props) {
       channel_type: 'direct',
       channel_private: true,
       name: '',
-      description: ''
+      description: '',
     };
-    createChannel(channel, member_ids).then(res => {
+    createChannel(channel, member_ids).then((res) => {
       history.push(`/messages/${res.channel.id}`);
       onClose();
     });
@@ -62,7 +62,7 @@ export default function ChannelDirect(props) {
         <div className="multi-select-input">
           {selected &&
             selected.length > 0 &&
-            selected.map(user => (
+            selected.map((user) => (
               <UserSelectedItem key={user.id} user={user} selected={selected} setSelected={setSelected} />
             ))}
           <input
@@ -85,7 +85,7 @@ export default function ChannelDirect(props) {
         </button>
       </div>
       <div className="results-list">
-        {results.map(result => (
+        {results.map((result) => (
           <UsersListResultItem
             user={result}
             key={result.id}
@@ -110,12 +110,12 @@ export default function ChannelDirect(props) {
   );
 }
 
-const UsersListResultItem = props => {
+const UsersListResultItem = (props) => {
   const { user, currentUserId, selected, setSelected } = props;
   return (
     <div
       className="d-flex flex-row channel-browse-item"
-      onClick={e => {
+      onClick={(e) => {
         e.preventDefault();
         setSelected(selected.concat([user]));
       }}
@@ -123,21 +123,22 @@ const UsersListResultItem = props => {
       <h6 className="list-item-name mb-0 mr-2">
         {user.username} {user.id === currentUserId && <span className="subtitle">(you)</span>}
       </h6>
-      •<span className="ml-2">{user.name}</span>
+      <span className="green mr-1">•</span>
+      <span className="ml-2">{user.name}</span>
     </div>
   );
 };
 
-const UserSelectedItem = props => {
+const UserSelectedItem = (props) => {
   const { user, selected, setSelected } = props;
   return (
     <div className="selected-item d-flex flex-row justify-content-between align-items-center">
       <span className="username mr-3">{user.username}</span>
       <div
         className="delete-selected"
-        onClick={e => {
+        onClick={(e) => {
           e.preventDefault();
-          setSelected(selected.filter(u => u.id !== user.id));
+          setSelected(selected.filter((u) => u.id !== user.id));
         }}
       >
         <i className="fa fa-times" aria-hidden="true"></i>

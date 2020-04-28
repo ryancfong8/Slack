@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getChannelName } from '../util/utils';
 import AddMembers from './add_members';
 
-export const Details = props => {
+export const Details = (props) => {
   const { channel, currentUserId, match, history, updateChannel } = props;
   if (!channel || !channel.members) return <h1>Loading...</h1>;
   const modifier = match.params.modifier;
@@ -16,13 +16,13 @@ export const Details = props => {
         <div className="d-flex flex-column">
           <h6>Details</h6>
           <span className="subtitle">
-            {channel.channel_type === 'channel' ? icon : '• '}
+            {channel.channel_type === 'channel' ? icon : <span className="green mr-1">•</span>}
             {getChannelName(channel, currentUserId)}
           </span>
         </div>
         <div
           className="close"
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault();
             history.push(`/messages/${channel.id}`);
           }}
@@ -34,7 +34,7 @@ export const Details = props => {
         <div className="d-flex flex-column align-items-center">
           <div
             className="add-user-btn"
-            onClick={e => {
+            onClick={(e) => {
               e.preventDefault();
               setOpenAddMembers(true);
             }}
@@ -47,7 +47,7 @@ export const Details = props => {
       <div className="tab">
         <div
           className="title-tab d-flex flex-row justify-content-between align-items-center p-3"
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault();
             const mod = modifier === 'about' ? '' : 'about';
             history.push(`/messages/${channel.id}/details/${mod}`);
@@ -60,12 +60,14 @@ export const Details = props => {
             <i className="fas fa-angle-right fa-lg"></i>
           )}
         </div>
-        {modifier === 'about' && <div className="p-3">{channel.description}</div>}
+        {modifier === 'about' && (
+          <div className="pr-3 pl-3">{channel.description || <span className="subtitle">No Description</span>}</div>
+        )}
       </div>
       <div className="tab">
         <div
           className="title-tab d-flex flex-row justify-content-between align-items-center p-3"
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault();
             const mod = modifier === 'members' ? '' : 'members';
             history.push(`/messages/${channel.id}/details/${mod}`);
@@ -83,7 +85,7 @@ export const Details = props => {
         </div>
         {modifier === 'members' && (
           <>
-            {channel.members.map(member => (
+            {channel.members.map((member) => (
               <UserItem user={member} currentUserId={currentUserId} key={member.id} />
             ))}
           </>
@@ -102,14 +104,16 @@ export const Details = props => {
   );
 };
 
-const UserItem = props => {
+const UserItem = (props) => {
   const { user, currentUserId } = props;
   return (
-    <div className="d-flex flex-row channel-browse-item">
+    <div className="d-flex flex-row align-items-center channel-browse-item">
+      <img className="member-avatar" src={user.avatar_url} />
       <h6 className="list-item-name mb-0 mr-2">
         {user.username} {user.id === currentUserId && <span className="subtitle">(you)</span>}
       </h6>
-      •<span className="ml-2">{user.name}</span>
+      <span className="green">•</span>
+      <span className="ml-2">{user.name}</span>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import MessagesListComponent from './messages_list_component';
+import moment from 'moment';
 
 class MessagesList extends React.Component {
   constructor(props) {
@@ -36,6 +37,14 @@ class MessagesList extends React.Component {
     return (
       <div className="messages-list">
         {messages.map((message, index) => {
+          if (message && message.message_type === 'time') {
+            return (
+              <div key={index} className={`date ${index === 0 && 'first-date'}`}>
+                <div className="date-txt">{moment(message.created_at).format('dddd MMMM Do')}</div>
+                {/* <hr /> */}
+              </div>
+            );
+          }
           if (message) {
             const prevMessage = messages[index - 1];
             const showUserInfo = prevMessage && prevMessage.user_id === message.user_id ? false : true;
@@ -45,7 +54,7 @@ class MessagesList extends React.Component {
         <div
           id="invisible-div"
           style={{ float: 'left', clear: 'both' }}
-          ref={el => {
+          ref={(el) => {
             this.messagesEnd = el;
           }}
         />

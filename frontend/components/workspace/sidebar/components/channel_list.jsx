@@ -14,7 +14,7 @@ class ChannelList extends React.Component {
     super(props);
 
     this.state = {
-      showForm: ''
+      showForm: '',
     };
   }
 
@@ -24,21 +24,81 @@ class ChannelList extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { getChannels, channelType, currentUserId } = this.props;
-    if (channelType !== prevProps.channelType || currentUserId !== prevProps.currentUserId) {
-      getChannels();
+    const { getChannels, channelType, currentUserId, channels, currentChannel, match } = this.props;
+    // if (channels.length !== prevProps.channels.length || prevProps.match.params.channelId !== match.params.channelId) {
+    if (channels.length !== prevProps.channels.length) {
+      // getChannels().then(() => this.setSockets());
+      this.setSockets();
     }
   }
 
-  setModal = modalType => {
+  componentWillUnmount() {
+    window.App.cable.subscriptions.subscriptions.forEach((sub) => this.removeSocket(sub));
+  }
+
+  addSocket = (channelName) => {
+    const { currentChannel, receiveMessage, match } = this.props;
+    window.App.cable.subscriptions.create(
+      {
+        channel: 'MessagesChannel',
+        channel_name: channelName,
+      },
+      {
+        connected: () => {},
+        disconnected: () => {},
+        received: (data) => {
+          console.log('RECEIVED MESSAGE', data.message);
+          console.log('CURRENT CHANNEL', currentChannel);
+          console.log('MATCH PARAMS CHANNEL ID', match.params.channelId);
+          this.receiveMessage(data);
+        },
+      }
+    );
+  };
+
+  removeSocket = (channel) => {
+    window.App.cable.subscriptions.remove(channel);
+  };
+
+  setSockets = () => {
+    const { channels, channelType } = this.props;
+    if (channels.length > 0) {
+      window.App.cable.subscriptions.subscriptions.forEach((sub) => {
+        // only remove subs that are channels from props
+        if (channelType === 'direct') {
+          if (sub.identifier.includes(channelType)) {
+            this.removeSocket(sub);
+          }
+        } else {
+          if (!sub.identifier.includes('direct')) {
+            this.removeSocket(sub);
+          }
+        }
+      });
+      channels.forEach((channel) => {
+        this.addSocket(`${channel.channel_type}_${channel.id}`);
+      });
+    }
+  };
+
+  receiveMessage = (data) => {
+    const { currentChannel, receiveMessage, match } = this.props;
+    if (data.message.channel_id == match.params.channelId) {
+      receiveMessage(data.message);
+    } else {
+      // this.sendAlert(data);
+    }
+  };
+
+  setModal = (modalType) => {
     this.setState({
-      showForm: modalType
+      showForm: modalType,
     });
   };
 
   closeModal = () => {
     this.setState({
-      showForm: ''
+      showForm: '',
     });
   };
 
@@ -87,7 +147,7 @@ class ChannelList extends React.Component {
               <i
                 className="fa fa-plus-circle add-button"
                 aria-hidden="true"
-                onClick={e => {
+                onClick={(e) => {
                   e.preventDefault();
                   this.setModal(CHANNEL__DIRECT);
                 }}
@@ -96,7 +156,7 @@ class ChannelList extends React.Component {
           )}
         </div>
         {channels
-          .filter(channel => channel.members.filter(member => member.id === currentUserId).length > 0)
+          .filter((channel) => channel.members.filter((member) => member.id === currentUserId).length > 0)
           .map((channel, index) => (
             <ChannelListItem
               channel={channel}
@@ -111,7 +171,7 @@ class ChannelList extends React.Component {
   }
 }
 
-const AddChannelButton = props => {
+const AddChannelButton = (props) => {
   const { setModal } = props;
   return (
     <div className="dropdown">
@@ -120,7 +180,7 @@ const AddChannelButton = props => {
         <a
           className="dropdown-item"
           href="#"
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault();
             setModal(CHANNEL__BROWSE);
           }}
@@ -130,7 +190,7 @@ const AddChannelButton = props => {
         <a
           className="dropdown-item"
           href="#"
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault();
             setModal(CHANNEL__NEW);
           }}
@@ -142,7 +202,7 @@ const AddChannelButton = props => {
   );
 };
 
-const ChannelListItem = props => {
+const ChannelListItem = (props) => {
   const { channel, currentUserId, currentChannel } = props;
   if (!channel) return null;
   const icon = channel.channel_private ? <i className="fas fa-lock mr-1"></i> : <i className="fas fa-hashtag mr-1"></i>;
@@ -154,7 +214,14 @@ const ChannelListItem = props => {
           currentChannel && channel.id === currentChannel.id ? 'active' : ''
         }`}
       >
-        {channel.channel_type === 'channel' ? icon : '•'} {channelName}
+        {channel.channel_type === 'channel' ? (
+          icon
+        ) : (
+          <>
+            <span className="green mr-1">•</span>
+          </>
+        )}
+        {channelName}
       </div>
     </Link>
   );

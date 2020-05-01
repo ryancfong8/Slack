@@ -47,9 +47,6 @@ class ChannelList extends React.Component {
         connected: () => {},
         disconnected: () => {},
         received: (data) => {
-          console.log('RECEIVED MESSAGE', data.message);
-          console.log('CURRENT CHANNEL', currentChannel);
-          console.log('MATCH PARAMS CHANNEL ID', match.params.channelId);
           this.receiveMessage(data);
         },
       }

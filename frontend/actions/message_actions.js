@@ -2,21 +2,41 @@ import * as MessageAPIUtil from '../util/messages_api_util';
 
 export const RECEIVE__MESSAGES = 'RECEIVE__MESSAGES';
 export const RECEIVE__MESSAGE = 'RECEIVE__MESSAGE';
+export const RECEIVE__UPDATED_MESSAGE = 'RECEIVE__UPDATED_MESSAGE';
+export const RECEIVE__DELETED_MESSAGE = 'RECEIVE__DELETED_MESSAGE';
 
-const receiveMessages = messages => ({
+const receiveMessages = (messages) => ({
   type: RECEIVE__MESSAGES,
-  messages
+  messages,
 });
 
-export const receiveMessage = message => ({
+export const receiveMessage = (message) => ({
   type: RECEIVE__MESSAGE,
-  message
+  message,
 });
 
-export const getMessages = channelId => dispatch => {
-  return MessageAPIUtil.getMessages(channelId).then(messages => dispatch(receiveMessages(Object.values(messages))));
+export const receiveUpdatedMessage = (message) => ({
+  type: RECEIVE__UPDATED_MESSAGE,
+  message,
+});
+
+export const receiveDeletedMessage = (message) => ({
+  type: RECEIVE__DELETED_MESSAGE,
+  message,
+});
+
+export const getMessages = (channelId) => (dispatch) => {
+  return MessageAPIUtil.getMessages(channelId).then((messages) => dispatch(receiveMessages(Object.values(messages))));
 };
 
-export const createMessage = message => dispatch => {
+export const createMessage = (message) => (dispatch) => {
   return MessageAPIUtil.createMessage(message);
+};
+
+export const updateMessage = (message) => (dispatch) => {
+  return MessageAPIUtil.updateMessage(message);
+};
+
+export const deleteMessage = (message) => (dispatch) => {
+  return MessageAPIUtil.deleteMessage(message).then(() => dispatch(receiveDeletedMessage(message)));
 };

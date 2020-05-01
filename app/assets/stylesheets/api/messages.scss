@@ -30,6 +30,22 @@
   }
 
   .messages-list-component {
+    position: relative;
+    .message-buttons {
+      position: absolute;
+      right: 2rem;
+      top: -0.75rem;
+      opacity: 1;
+      .btn {
+        border: 1px solid #999999;
+        color: #999999;
+        background-color: #fff;
+      }
+      .btn:hover {
+        color: #3c7db1;
+        background-color: #f0f0f0;
+      }
+    }
     p {
       margin-bottom: 0rem;
     }
@@ -52,9 +68,35 @@
       font-size: 12px;
       color: #6d6d6d;
     }
+    .cancel-btn,
+    .submit-btn {
+      height: 32px;
+      width: 100px;
+      line-height: 0;
+      font-size: 14px;
+    }
+    .cancel-btn {
+      background-color: #ffffff;
+      color: #666666;
+      border: 1px solid #999999;
+    }
+    .cancel-btn:hover {
+      background-color: #f0f0f0;
+    }
+    .editor-wrapper {
+      background-color: #ffffff;
+    }
   }
   .messages-list-component:hover {
+    &.edit:hover {
+      background-color: #fdf9ec;
+    }
     background-color: #efefef;
+  }
+  .messages-list-component {
+    &.edit {
+      background-color: #fdf9ec;
+    }
   }
 
   .messages-input-outer {

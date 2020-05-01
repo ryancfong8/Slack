@@ -1,13 +1,33 @@
-import { RECEIVE__MESSAGES, RECEIVE__MESSAGE } from '../actions/message_actions.js';
+import {
+  RECEIVE__MESSAGES,
+  RECEIVE__MESSAGE,
+  RECEIVE__UPDATED_MESSAGE,
+  RECEIVE__DELETED_MESSAGE,
+} from '../actions/message_actions.js';
 // import merge from 'lodash/merge';
 
 const MessageReducer = (oldState = [], action) => {
   Object.freeze(oldState);
+  let newState = [...oldState];
+  let idx;
   switch (action.type) {
     case RECEIVE__MESSAGES:
       return addDates(action.messages);
     case RECEIVE__MESSAGE:
+      const updatedMessageIdx = newState.map((message) => message.id).indexOf(action.message.id);
+      if (updatedMessageIdx !== -1) {
+        newState.splice(updatedMessageIdx, 1, action.message);
+        return newState;
+      }
       return addOneDate(oldState.concat([action.message]));
+    case RECEIVE__UPDATED_MESSAGE:
+      idx = newState.findIndex((message) => message.id === action.message.id);
+      newState.splice(idx, 1, action.message);
+      return newState;
+    case RECEIVE__DELETED_MESSAGE:
+      idx = newState.findIndex((message) => message.id === action.message.id);
+      newState.splice(idx, 1);
+      return newState;
     default:
       return oldState;
   }

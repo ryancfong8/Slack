@@ -33,13 +33,13 @@ class MessagesList extends React.Component {
   }
 
   render() {
-    const { messages } = this.props;
+    const { messages, createMessage, currentChannel, currentUser, updateMessage, deleteMessage } = this.props;
     return (
       <div className="messages-list">
         {messages.map((message, index) => {
           if (message && message.message_type === 'time') {
             return (
-              <div key={index} className={`date ${index === 0 && 'first-date'}`}>
+              <div key={message.created_at} className={`date ${index === 0 && 'first-date'}`}>
                 <div className="date-txt">{moment(message.created_at).format('dddd MMMM Do')}</div>
                 {/* <hr /> */}
               </div>
@@ -48,7 +48,18 @@ class MessagesList extends React.Component {
           if (message) {
             const prevMessage = messages[index - 1];
             const showUserInfo = prevMessage && prevMessage.user_id === message.user_id ? false : true;
-            return <MessagesListComponent message={message} key={message.id} showUserInfo={showUserInfo} />;
+            return (
+              <MessagesListComponent
+                message={message}
+                key={message.id}
+                showUserInfo={showUserInfo}
+                createMessage={createMessage}
+                updateMessage={updateMessage}
+                deleteMessage={deleteMessage}
+                currentChannel={currentChannel}
+                currentUser={currentUser}
+              />
+            );
           }
         })}
         <div

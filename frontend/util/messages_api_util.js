@@ -4,26 +4,26 @@ export const getMessages = (channel_id) =>
     url: 'api/messages',
     data: {
       channel_id,
-    }
+    },
   });
 
-export const createMessage = message =>
+export const createMessage = (message) =>
   $.ajax({
     method: 'POST',
     url: 'api/messages',
-    data: { message }
+    data: { message },
   });
 
-export const updateMessage = message =>
+export const updateMessage = (message) =>
   $.ajax({
     method: 'PATCH',
-    url: `api/message/${message.id}`,
-    data: { message }
+    url: `api/messages/${message.id}`,
+    data: { message },
   });
 
-export const deleteMessage = id =>
+export const deleteMessage = (message) =>
   $.ajax({
     method: 'DELETE',
-    url: `api/messages/${id}`,
-    data: { id }
+    url: `api/messages/${message.id}`,
+    data: { id: message.id },
   });

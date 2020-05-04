@@ -16,7 +16,8 @@
 @import 'bootstrap';
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap');
 @import './react-draft-wysiwyg.scss';
-@import './react-toggle.css';
+@import './react-toggle.scss';
+@import './emoji-mart.scss';
 @import './api/sessions.scss';
 @import './api/users.scss';
 @import './api/sidebar.scss';
@@ -52,7 +53,7 @@ body {
 }
 
 .green {
-  color: #2cac75
+  color: #2cac75;
 }
 
 .flex-1 {

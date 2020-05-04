@@ -6,6 +6,10 @@ class MessagesList extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      messagesListHeight: 0,
+    };
+
     this.scrollToElement = this.scrollToElement.bind(this);
   }
 
@@ -21,21 +25,37 @@ class MessagesList extends React.Component {
 
   componentDidMount() {
     this.scrollToElement();
+    const height = document.getElementById('MessagesList').clientHeight;
+    this.setState({ messagesListHeight: height });
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     // const messagesTotal = (this.props.messages && this.props.messages.length) || 0;
     // if (messagesTotal && messagesTotal > this.state.messagesTotal) {
     //   this.scrollToElement();
     // }
     // this.state.messagesTotal = messagesTotal;
     this.scrollToElement();
+    const height = document.getElementById('MessagesList').clientHeight;
+    if (prevState.messagesListHeight !== height) {
+      this.setState({ messagesListHeight: height });
+    }
   }
 
   render() {
-    const { messages, createMessage, currentChannel, currentUser, updateMessage, deleteMessage } = this.props;
+    const {
+      messages,
+      createMessage,
+      currentChannel,
+      currentUser,
+      updateMessage,
+      deleteMessage,
+      createReaction,
+      deleteReaction,
+    } = this.props;
+    const { messagesListHeight } = this.state;
     return (
-      <div className="messages-list">
+      <div className="messages-list" id="MessagesList">
         {messages.map((message, index) => {
           if (message && message.message_type === 'time') {
             return (
@@ -58,6 +78,9 @@ class MessagesList extends React.Component {
                 deleteMessage={deleteMessage}
                 currentChannel={currentChannel}
                 currentUser={currentUser}
+                messagesListHeight={messagesListHeight}
+                createReaction={createReaction}
+                deleteReaction={deleteReaction}
               />
             );
           }

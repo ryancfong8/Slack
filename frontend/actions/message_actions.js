@@ -1,4 +1,5 @@
 import * as MessageAPIUtil from '../util/messages_api_util';
+import * as ReactionAPIUtil from '../util/reaction_api_util';
 
 export const RECEIVE__MESSAGES = 'RECEIVE__MESSAGES';
 export const RECEIVE__MESSAGE = 'RECEIVE__MESSAGE';
@@ -39,4 +40,12 @@ export const updateMessage = (message) => (dispatch) => {
 
 export const deleteMessage = (message) => (dispatch) => {
   return MessageAPIUtil.deleteMessage(message).then(() => dispatch(receiveDeletedMessage(message)));
+};
+
+export const createReaction = (reaction) => (dispatch) => {
+  return ReactionAPIUtil.createReaction(reaction).then((message) => dispatch(receiveUpdatedMessage(message)));
+};
+
+export const deleteReaction = (reaction) => (dispatch) => {
+  return ReactionAPIUtil.deleteReaction(reaction).then((message) => dispatch(receiveUpdatedMessage(message)));
 };

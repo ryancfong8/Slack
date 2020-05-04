@@ -45,6 +45,17 @@
         color: #3c7db1;
         background-color: #f0f0f0;
       }
+      .emoji-mart-container {
+        position: absolute;
+        &.render-top {
+          bottom: 100%;
+        }
+        &.render-bottom {
+          top: 100%;
+        }
+        right: 0;
+        z-index: 100;
+      }
     }
     p {
       margin-bottom: 0rem;
@@ -85,6 +96,16 @@
     }
     .editor-wrapper {
       background-color: #ffffff;
+    }
+    .reaction {
+      padding: 3px;
+      border-radius: 10px;
+      border: 1px solid #666666;
+      background-color: #fafafa;
+      font-size: 12px;
+      &.user-reaction {
+        background-color: #ebf6fb;
+      }
     }
   }
   .messages-list-component:hover {

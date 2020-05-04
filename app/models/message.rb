@@ -11,27 +11,27 @@ class Message < ApplicationRecord
 #     end
 #   end
 
-#   def uniq_reactions
-#     images = []
-#     uniques = []
-#     reactions.each do |reaction|
-#       uniques.push(reaction) unless images.include?(reaction.image)
-#       images.push(reaction.image)
-#     end
-#     uniques
-#   end
+  def uniq_reactions
+    emojis = []
+    uniques = []
+    reactions.each do |reaction|
+      uniques.push(reaction) unless emojis.include?(reaction.emoji)
+      emojis.push(reaction.emoji)
+    end
+    uniques
+  end
 
-#   def has_reacted?(reaction, user)
-#     #current user has reacted with this reaction
-#     user_reactions_on_message = user.reactions.where(message_id: self.id)
-#     user_reactions_on_message.map { |reaction| reaction.image }.include?(reaction.image)
-#   end
+  def has_reacted?(reaction, user)
+    # current user has already reacted with this reaction
+    user_reactions_on_message = user.reactions.where(message_id: self.id)
+    user_reactions_on_message.map { |reaction| reaction.emoji }.include?(reaction.emoji)
+  end
 
-#   def likes(reaction)
-#     reactions.where(image: reaction.image).count
-#   end
+  def likes(reaction)
+    reactions.where(emoji: reaction.emoji).count
+  end
 
-#   has_many :reactions
+  has_many :reactions
 
   belongs_to :user
   belongs_to :channel

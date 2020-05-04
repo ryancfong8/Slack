@@ -3,6 +3,7 @@ import { EditorState, convertToRaw, getDefaultKeyBinding, ContentState } from 'd
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
+import { getChannelName } from '../../util/utils';
 
 const MESSAGE__CREATE = 'Message.create';
 const MESSAGE__UPDATE = 'Message.update';
@@ -108,7 +109,7 @@ class MessagesEditor extends Component {
 
   render() {
     const { editorState } = this.state;
-    const { message, setShowEdit } = this.props;
+    const { message, setShowEdit, currentChannel, currentUser } = this.props;
     return (
       <div>
         <Editor
@@ -120,6 +121,7 @@ class MessagesEditor extends Component {
           keyBindingFn={this.keyBindingFn}
           handleKeyCommand={this.handleKeyCommand}
           toolbar={toolbarOptions}
+          placeholder={`Message ${getChannelName(currentChannel, currentUser.id)}`}
         />
         {message && (
           <div className="d-flex flex-row mt-2 mb-2">

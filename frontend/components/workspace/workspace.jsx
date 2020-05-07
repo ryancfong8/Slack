@@ -1,13 +1,23 @@
 import React from 'react';
 import { Sidebar } from './sidebar/sidebar';
 import MessagesContainer from './messages/messages_container';
-import { Details } from './details';
+import { Details } from './right_sidebar/details';
 import { Switch, Route } from 'react-router-dom';
-import { AuthRoute } from '../../util/route_util.jsx';
+import UserPage from './right_sidebar/user_page';
 
 class Workspace extends React.Component {
   render() {
-    const { currentChannel, match, history, currentUser, updateChannel } = this.props;
+    const {
+      currentChannel,
+      match,
+      history,
+      currentUser,
+      updateUser,
+      updateChannel,
+      selectedUser,
+      getUser,
+      getMessages,
+    } = this.props;
     return (
       <div className="main-content-container">
         {/* <h1>Welcome to your workspace</h1>
@@ -20,12 +30,27 @@ class Workspace extends React.Component {
           <Route
             exact={true}
             path="/messages/:channelId/details/:modifier?"
-            render={props => (
+            render={(props) => (
               <Details
                 {...props}
                 channel={currentChannel}
                 currentUserId={currentUser.id}
                 updateChannel={updateChannel}
+              />
+            )}
+          />
+          <Route
+            exact={true}
+            path="/messages/:channelId/users/:userId"
+            render={(props) => (
+              <UserPage
+                {...props}
+                currentChannel={currentChannel}
+                currentUser={currentUser}
+                updateUser={updateUser}
+                selectedUser={selectedUser}
+                getUser={getUser}
+                getMessages={getMessages}
               />
             )}
           />

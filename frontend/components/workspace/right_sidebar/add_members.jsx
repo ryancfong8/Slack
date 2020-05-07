@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Modal from '../util/modal';
-import { usePrevious, getChannelName } from '../util/utils';
-import { searchUsers } from '../../util/users_api_util';
+import Modal from '../../util/modal';
+import { usePrevious, getChannelName } from '../../util/utils';
+import { searchUsers } from '../../../util/users_api_util';
 
 export default function AddMembers(props) {
   const { channel, setOpenAddMembers, history, currentUserId, updateChannel } = props;

@@ -1,12 +1,27 @@
 export const getUsers = () =>
   $.ajax({
     method: 'GET',
-    url: 'api/users'
+    url: 'api/users',
   });
 
-export const searchUsers = data =>
+export const getUser = (id) =>
+  $.ajax({
+    method: 'GET',
+    url: `api/users/${id}`,
+  });
+
+export const searchUsers = (data) =>
   $.ajax({
     method: 'GET',
     url: 'api/users',
-    data
+    data,
+  });
+
+export const updateUser = (user) =>
+  $.ajax({
+    method: 'PATCH',
+    url: `api/users/${user.id}`,
+    data: {
+      user,
+    },
   });

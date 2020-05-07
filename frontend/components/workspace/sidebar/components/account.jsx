@@ -7,8 +7,9 @@ export const Account = (props) => {
   return (
     <ClickOutsideWrapper
       onClickOutside={(e) => {
-        e.preventDefault();
-        toggleDropdown(false);
+        if (showDropdown) {
+          toggleDropdown(false);
+        }
       }}
     >
       <div

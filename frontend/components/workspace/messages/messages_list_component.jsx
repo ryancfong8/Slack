@@ -3,6 +3,7 @@ import moment from 'moment';
 import MessagesEditor from './messages_editor';
 import MessageButtons from './message_buttons';
 import { Emoji } from 'emoji-mart';
+import { Link } from 'react-router-dom';
 
 const MessagesListComponent = (props) => {
   const [showEdit, setShowEdit] = useState(false);
@@ -35,17 +36,17 @@ const MessagesListComponent = (props) => {
           setShowHoverButtons(false);
         }}
       >
-        {/* {showHoverButtons && !showEdit && ( */}
-        <MessageButtons
-          setShowEdit={setShowEdit}
-          message={message}
-          deleteMessage={deleteMessage}
-          currentUser={currentUser}
-          messagesListHeight={messagesListHeight}
-          createReaction={createReaction}
-          deleteReaction={deleteReaction}
-        />
-        {/* )} */}
+        {showHoverButtons && !showEdit && (
+          <MessageButtons
+            setShowEdit={setShowEdit}
+            message={message}
+            deleteMessage={deleteMessage}
+            currentUser={currentUser}
+            messagesListHeight={messagesListHeight}
+            createReaction={createReaction}
+            deleteReaction={deleteReaction}
+          />
+        )}
         {showEdit ? (
           <MessagesEditor
             createMessage={createMessage}
@@ -85,21 +86,23 @@ const MessagesListComponent = (props) => {
         setShowHoverButtons(false);
       }}
     >
-      {/* {showHoverButtons && !showEdit && ( */}
-      <MessageButtons
-        setShowEdit={setShowEdit}
-        message={message}
-        deleteMessage={deleteMessage}
-        currentUser={currentUser}
-        messagesListHeight={messagesListHeight}
-        createReaction={createReaction}
-        deleteReaction={deleteReaction}
-      />
-      {/* )} */}
+      {showHoverButtons && !showEdit && (
+        <MessageButtons
+          setShowEdit={setShowEdit}
+          message={message}
+          deleteMessage={deleteMessage}
+          currentUser={currentUser}
+          messagesListHeight={messagesListHeight}
+          createReaction={createReaction}
+          deleteReaction={deleteReaction}
+        />
+      )}
       <img className="message-avatar" src={message.user.avatar_url} />
       <div className="d-flex flex-column flex-1">
         <div className="d-flex flex-row align-items-end mb-1">
-          <span className="mr-2 username">{message.user.username}</span>
+          <Link className="mr-2 username" to={`/messages/${currentChannel.id}/users/${message.user.id}`}>
+            {message.user.username}
+          </Link>
           <div className="time">{moment(message.created_at).format('LT')}</div>
         </div>
         {showEdit ? (

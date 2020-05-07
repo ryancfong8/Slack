@@ -1,3 +1,69 @@
 // Place all the styles related to the api/users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user-page {
+  .user-info {
+    padding: 1rem;
+    border-bottom: 1px solid #d9d9d9;
+    &.username {
+      font-weight: 900 !important;
+    }
+  }
+  .selected-user-avatar {
+    height: 353px;
+    width: 392px;
+    object-fit: contain;
+  }
+  .buttons {
+    padding: 1rem 1rem 0 1rem;
+  }
+  .btn {
+    height: 35px;
+    width: 150px;
+    line-height: 0;
+  }
+  .message-btn,
+  .cancel-btn {
+    border: 1px solid #cccccc;
+    background-color: #fff;
+    color: #000;
+  }
+  .message-btn:hover,
+  .cancel-btn:hover {
+    background-color: #fafafa;
+  }
+  .user-form-header {
+    font-weight: 900;
+    font-size: 20px;
+  }
+  .user-form {
+    .btn {
+      height: 35px;
+      width: initial;
+    }
+    .user-form-field {
+      margin-bottom: 1.5rem;
+    }
+    .user-form-avatar {
+      height: 190px;
+      width: 190px;
+      object-fit: contain;
+      border-radius: 5px;
+    }
+    input {
+      padding: 4px 12px;
+      font-size: 18px;
+      border: 1px solid #666666;
+      width: 100%;
+    }
+    label {
+      margin-top: 0.5rem;
+      font-weight: 700;
+      font-size: 15px;
+    }
+    .hidden-input {
+      display: none;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getChannelName } from '../util/utils';
-import AddMembers from './add_members';
+import { getChannelName } from '../../util/utils';
+import AddMembers from '../right_sidebar/add_members';
 
 export const Details = (props) => {
   const { channel, currentUserId, match, history, updateChannel } = props;

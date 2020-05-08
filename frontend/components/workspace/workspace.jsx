@@ -17,6 +17,7 @@ class Workspace extends React.Component {
       selectedUser,
       getUser,
       getMessages,
+      location,
     } = this.props;
     return (
       <div className="main-content-container">
@@ -25,7 +26,7 @@ class Workspace extends React.Component {
           Log Out
         </button> */}
         <Sidebar currentChannel={currentChannel} history={history} match={match} />
-        <MessagesContainer currentChannel={currentChannel} match={match} history={history} />
+        <MessagesContainer currentChannel={currentChannel} match={match} history={history} location={location} />
         <Switch>
           <Route
             exact={true}

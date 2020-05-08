@@ -142,6 +142,17 @@
     left: inherit;
     bottom: 150%;
   }
+  .detail-button {
+    color: #666666;
+    padding: 0.5rem;
+    border-radius: 5px;
+  }
+  .detail-button:hover {
+    background-color: #fafafa;
+    cursor: pointer;
+    text-decoration: none;
+    color: #333333;
+  }
 }
 
 .date {

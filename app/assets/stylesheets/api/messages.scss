@@ -153,6 +153,33 @@
     text-decoration: none;
     color: #333333;
   }
+  .search-input-button {
+    padding: 4px 8px;
+    border: 1px solid #999999;
+    border-radius: 5px;
+    width: 200px;
+    color: #999999;
+    text-align: left;
+  }
+  .search-input-button:hover {
+    cursor: pointer;
+    border: 1px solid #666666;
+    color: #666666;
+  }
+  .search-input {
+    border: none;
+  }
+  .clear {
+    color: #999999;
+  }
+  .clear:hover {
+    text-decoration: none;
+  }
+  .modal-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 }
 
 .date {

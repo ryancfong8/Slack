@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getChannelName } from '../../util/utils';
 import { Link } from 'react-router-dom';
+import MessagesSearch from './messages_search';
 
 const MessagesPageHeader = (props) => {
   const { channel, currentUser, history, location } = props;
@@ -14,6 +15,9 @@ const MessagesPageHeader = (props) => {
       <i className="fas fa-hashtag mr-1"></i>
     );
   const [showDetail, setShowDetail] = useState(location.pathname.indexOf('details') >= 0);
+  useEffect(() => {
+    setShowDetail(location.pathname.indexOf('details') >= 0);
+  }, [location.pathname]);
   const detailLink = `/messages/${channel.id}${!showDetail ? '/details' : ''}`;
   return (
     <div className="messages-page-header d-flex flex-row justify-content-between align-items-center">
@@ -36,12 +40,8 @@ const MessagesPageHeader = (props) => {
         </div>
       </div>
       <div className="d-flex flex-row align-items-center">
-        <input className="search-input mr-3" placeholder="Search Messages" />
-        <Link
-          className="detail-button d-flex flex-row align-items-center"
-          to={detailLink}
-          onClick={() => setShowDetail(!showDetail)}
-        >
+        <MessagesSearch currentUser={currentUser} currentChannel={channel} />
+        <Link className="detail-button d-flex flex-row align-items-center" to={detailLink}>
           <i className="fas fa-info-circle mr-1"></i>
           {!showDetail && <span>Details</span>}
         </Link>

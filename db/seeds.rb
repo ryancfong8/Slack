@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Message.__elasticsearch__.create_index!(force: true)
+
 User.create!([
     {
         name: "Ryan Fong",
@@ -87,7 +89,40 @@ Membership.create!([
     {
         user_id: 2,
         channel_id: 3
-    }
+    },
+    {
+        user_id: 3,
+        channel_id: 1
+    },
+    {
+        user_id: 4,
+        channel_id: 1
+    },
+    {
+        user_id: 5,
+        channel_id: 1
+    },
+    {
+        user_id: 6,
+        channel_id: 1
+    },
+    {
+        user_id: 3,
+        channel_id: 2
+    },
+    {
+        user_id: 4,
+        channel_id: 2
+    },
+    {
+        user_id: 5,
+        channel_id: 2
+    },
+    {
+        user_id: 6,
+        channel_id: 2
+    },
+
 ])
 
 Message.create!([
@@ -130,6 +165,12 @@ Message.create!([
     {
         body: "<p>User 1 Channel 1</p>",
         channel_id: 1,
+        user_id: 1,
+        message_type: "message"
+    },
+    {
+        body: "<p>New Message</p>",
+        channel_id: 3,
         user_id: 1,
         message_type: "message"
     }

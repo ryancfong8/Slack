@@ -27,3 +27,12 @@ export const deleteMessage = (message) =>
     url: `api/messages/${message.id}`,
     data: { id: message.id },
   });
+
+export const searchMessages = (query) =>
+  $.ajax({
+    method: 'GET',
+    url: 'api/messages',
+    data: {
+      query,
+    },
+  });

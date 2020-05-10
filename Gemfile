@@ -31,6 +31,11 @@ gem 'jquery-rails'
 gem 'bootstrap', '~> 4.0.0'
 gem 'redis', '~> 3.0'
 gem 'cloudinary'
+gem 'sanitize'
+gem 'elasticsearch-model', git: 'git://github.com/elastic/elasticsearch-rails.git', branch: '5.x'
+gem 'elasticsearch-rails', git: 'git://github.com/elastic/elasticsearch-rails.git', branch: '5.x'
+gem 'elasticsearch-dsl'
+gem 'awesome_print'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

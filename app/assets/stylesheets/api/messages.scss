@@ -180,6 +180,21 @@
     flex-direction: row;
     align-items: center;
   }
+
+  .search-query-dropdown {
+    .search-button {
+      border: none;
+      padding: 8px 0;
+    }
+    .search-button:hover {
+      background: #1064a2;
+      color: #fff;
+      cursor: pointer;
+    }
+    .search-query {
+      font-weight: 700;
+    }
+  }
 }
 
 .date {

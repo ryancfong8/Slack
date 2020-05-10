@@ -36,4 +36,19 @@ class Message < ApplicationRecord
   belongs_to :user
   belongs_to :channel
 
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
+  def as_indexed_json(options={})
+    body_hash = {
+      "body" => Sanitize.fragment(self.body).strip,
+      "channel_members" => self.channel.members.map{|member| member.id}
+    }
+    self.as_json(
+      include: {
+        user: { only: :username},
+        channel: { only: :name }
+      }
+    ).merge(body_hash)
+  end
 end

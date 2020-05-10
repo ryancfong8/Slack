@@ -23,7 +23,30 @@ class Api::MessagesController < ApplicationController
   end
 
   def index
-    @messages = Message.where(channel_id: params[:channel_id])
+    if params[:query]
+      require 'elasticsearch/dsl'
+      def message_authorize
+        { :channel_members => current_user.id }
+      end
+      query = Elasticsearch::DSL::Search.search do
+        query do
+          bool do 
+            must do 
+              match :body do
+                query params[:query]
+             end
+            end
+            filter do
+              term message_authorize
+            end
+          end
+        end
+      end
+
+      @messages = Message.search(query).results
+    else
+      @messages = Message.where(channel_id: params[:channel_id])
+    end
   end
 
   private

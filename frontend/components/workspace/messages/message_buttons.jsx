@@ -4,15 +4,7 @@ import Modal from '../../util/modal';
 import ClickOutsideWrapper from '../../util/click_outsider_wrapper';
 
 const MessageButtons = (props) => {
-  const {
-    setShowEdit,
-    message,
-    deleteMessage,
-    currentUser,
-    createReaction,
-    deleteReaction,
-    messagesListHeight,
-  } = props;
+  const { setShowEdit, message, deleteMessage, currentUser, handleEmoji, messagesListHeight } = props;
 
   const [openEmojiMenu, setOpenEmojiMenu] = useState(false);
   const buttonsRef = useRef(null);
@@ -62,17 +54,8 @@ const MessageButtons = (props) => {
     // }
   }
 
-  const onEmojiSelect = async function (emoji) {
-    const reaction = {
-      emoji: emoji.colons,
-      message_id: message.id,
-    };
-    const existingReaction = message.reactions.find((r) => r.emoji === emoji.native && r.has_reacted);
-    if (existingReaction) {
-      await deleteReaction(Object.assign({}, reaction, { id: existingReaction.id }));
-    } else {
-      await createReaction(reaction);
-    }
+  const onEmojiSelect = function (emoji) {
+    handleEmoji(emoji, message);
     setOpenEmojiMenu(false);
   };
 

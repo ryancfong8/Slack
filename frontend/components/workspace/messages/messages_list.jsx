@@ -39,8 +39,8 @@ class MessagesList extends React.Component {
     //   this.scrollToElement();
     // }
     // this.state.messagesTotal = messagesTotal;
-    const { messageHighlight } = this.props;
-    if (messageHighlight || !prevProps.messageHighlight) {
+    const { messageHighlight, messages } = this.props;
+    if (prevProps.messages.length !== messages.length || (messageHighlight && !prevProps.messageHighlight)) {
       this.scrollToElement();
     }
     const height = document.getElementById('MessagesList').clientHeight;

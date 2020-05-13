@@ -99,13 +99,22 @@
       background-color: #ffffff;
     }
     .reaction {
-      padding: 3px;
+      padding: 2px;
       border-radius: 10px;
-      border: 1px solid #666666;
       background-color: #fafafa;
       font-size: 12px;
       &.user-reaction {
         background-color: #ebf6fb;
+        border: 1px solid #5bb1db;
+      }
+      cursor: pointer;
+    }
+    .reaction:hover {
+      border: 1px solid #666666;
+      background-color: #fff;
+      &.user-reaction {
+        background-color: #ebf6fb;
+        border: 1px solid #5bb1db;
       }
     }
   }

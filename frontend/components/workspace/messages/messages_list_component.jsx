@@ -27,6 +27,19 @@ const MessagesListComponent = (props) => {
     showUserInfo ? 'd-flex flex-row' : 'no-avatar'
   } ${showEdit && 'edit'}`;
 
+  const handleEmoji = async (emoji, message) => {
+    const reaction = {
+      emoji: emoji.colons,
+      message_id: message.id,
+    };
+    const existingReaction = message.reactions.find((r) => r.emoji === emoji.colons && r.has_reacted);
+    if (existingReaction) {
+      await deleteReaction(Object.assign({}, reaction, { id: existingReaction.id }));
+    } else {
+      await createReaction(reaction);
+    }
+  };
+
   if (!showUserInfo) {
     return (
       <div
@@ -48,8 +61,7 @@ const MessagesListComponent = (props) => {
             deleteMessage={deleteMessage}
             currentUser={currentUser}
             messagesListHeight={messagesListHeight}
-            createReaction={createReaction}
-            deleteReaction={deleteReaction}
+            handleEmoji={handleEmoji}
           />
         )}
         {showEdit ? (
@@ -64,15 +76,19 @@ const MessagesListComponent = (props) => {
         ) : (
           <div dangerouslySetInnerHTML={{ __html: message.body }} />
         )}
-        <div className="mt-1">
+        <div className="mt-1 d-flex flex-wrap">
           {message.reactions.map((reaction) => (
             <button
               className={`reaction ${reaction.has_reacted && 'user-reaction'} mr-2 d-flex flex-row align-items-center`}
+              onClick={(e) => {
+                e.preventDefault();
+                handleEmoji({ colons: reaction.emoji }, message);
+              }}
+              key={reaction.id + reaction.emoji}
             >
-              <span className="mr-1">
-                <Emoji emoji={reaction.emoji} size={12} />
-              </span>
-              {reaction.likes}
+              <Emoji emoji={reaction.emoji} size={12} />
+
+              <span className="ml-1">{reaction.likes}</span>
             </button>
           ))}
         </div>
@@ -99,8 +115,7 @@ const MessagesListComponent = (props) => {
           deleteMessage={deleteMessage}
           currentUser={currentUser}
           messagesListHeight={messagesListHeight}
-          createReaction={createReaction}
-          deleteReaction={deleteReaction}
+          handleEmoji={handleEmoji}
         />
       )}
       <img className="message-avatar" src={message.user.avatar_url} />
@@ -130,6 +145,11 @@ const MessagesListComponent = (props) => {
               className={`reaction ${
                 reaction.has_reacted && 'user-reaction'
               } mr-2 mb-1 d-flex flex-row align-items-center`}
+              onClick={(e) => {
+                e.preventDefault();
+                handleEmoji({ colons: reaction.emoji }, message);
+              }}
+              key={reaction.id + reaction.emoji}
             >
               <Emoji emoji={reaction.emoji} size={12} /> <span className="ml-1">{reaction.likes}</span>
             </button>

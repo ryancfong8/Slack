@@ -42,13 +42,23 @@ class Message < ApplicationRecord
   def as_indexed_json(options={})
     body_hash = {
       "body" => Sanitize.fragment(self.body).strip,
-      "channel_members" => self.channel.members.map{|member| member.id}
+      "channel_members" => self.channel.members.map{|member| member.id},
+      # "channel_name" => self.channel.name,
+      # "user_username" => self.user.username
     }
     self.as_json(
       include: {
-        user: { only: :username},
-        channel: { only: :name }
+        user: { only: [:id, :username, :avatar_url] },
+        channel: { only: [:id, :name, :channel_type, :members, :channel_private],
+                    include: {
+                      members: { only: [:id, :username]}
+                    }
+                 }
       }
     ).merge(body_hash)
+  end
+
+  def channel_members
+    self.channel.members.map { |member| member.id }
   end
 end

@@ -3,3 +3,7 @@
     json.partial! 'message', message: message
   end
 end
+
+if (defined? @aggregations)
+  json.aggregations @aggregations
+end

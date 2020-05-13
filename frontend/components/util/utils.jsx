@@ -18,7 +18,7 @@ export function usePrevious(value) {
 export function getChannelName(channel, currentUserId) {
   let channelName = channel.name;
   if (channel.channel_type === 'direct' || !channel.name) {
-    channelName = channel.members.filter(member => member.id !== currentUserId).map(member => member.username);
+    channelName = channel.members.filter((member) => member.id !== currentUserId).map((member) => member.username);
     channelName.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
     channelName = channelName.join(', ');
   }

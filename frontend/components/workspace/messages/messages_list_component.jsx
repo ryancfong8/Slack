@@ -20,8 +20,12 @@ const MessagesListComponent = (props) => {
     messagesListHeight,
     createReaction,
     deleteReaction,
+    messageClassName,
+    refMessage,
   } = props;
-  const className = `messages-list-component ${showUserInfo ? 'd-flex flex-row' : 'no-avatar'} ${showEdit && 'edit'}`;
+  const className = `${messageClassName || ''} messages-list-component ${
+    showUserInfo ? 'd-flex flex-row' : 'no-avatar'
+  } ${showEdit && 'edit'}`;
 
   if (!showUserInfo) {
     return (
@@ -35,6 +39,7 @@ const MessagesListComponent = (props) => {
           e.preventDefault();
           setShowHoverButtons(false);
         }}
+        ref={refMessage}
       >
         {showHoverButtons && !showEdit && (
           <MessageButtons
@@ -85,6 +90,7 @@ const MessagesListComponent = (props) => {
         e.preventDefault();
         setShowHoverButtons(false);
       }}
+      ref={refMessage}
     >
       {showHoverButtons && !showEdit && (
         <MessageButtons

@@ -14,13 +14,17 @@ class MessagesList extends React.Component {
   }
 
   scrollToElement() {
-    // if (this.messageFetched) {
-    //   this.messageFetched.scrollIntoView();
-    //   delete this.messageFetched;
-    //   this.state.skipQueryTest = true;
-    // } else {
-    this.messagesEnd.scrollIntoView();
-    // }
+    const { removeHighlightedMessage } = this.props;
+    if (this.messageHighlight) {
+      this.messageHighlight.scrollIntoView({
+        block: 'center',
+        inline: 'center',
+      });
+      delete this.messageHighlight;
+      setTimeout(() => removeHighlightedMessage(), 3000);
+    } else {
+      this.messagesEnd.scrollIntoView();
+    }
   }
 
   componentDidMount() {
@@ -35,7 +39,10 @@ class MessagesList extends React.Component {
     //   this.scrollToElement();
     // }
     // this.state.messagesTotal = messagesTotal;
-    this.scrollToElement();
+    const { messageHighlight } = this.props;
+    if (messageHighlight || !prevProps.messageHighlight) {
+      this.scrollToElement();
+    }
     const height = document.getElementById('MessagesList').clientHeight;
     if (prevState.messagesListHeight !== height) {
       this.setState({ messagesListHeight: height });
@@ -52,6 +59,7 @@ class MessagesList extends React.Component {
       deleteMessage,
       createReaction,
       deleteReaction,
+      messageHighlight,
     } = this.props;
     const { messagesListHeight } = this.state;
     return (
@@ -68,6 +76,27 @@ class MessagesList extends React.Component {
           if (message) {
             const prevMessage = messages[index - 1];
             const showUserInfo = prevMessage && prevMessage.user_id === message.user_id ? false : true;
+            if (messageHighlight == message.id) {
+              return (
+                <MessagesListComponent
+                  message={message}
+                  key={message.id}
+                  showUserInfo={showUserInfo}
+                  createMessage={createMessage}
+                  updateMessage={updateMessage}
+                  deleteMessage={deleteMessage}
+                  currentChannel={currentChannel}
+                  currentUser={currentUser}
+                  messagesListHeight={messagesListHeight}
+                  createReaction={createReaction}
+                  deleteReaction={deleteReaction}
+                  refMessage={(el) => {
+                    this.messageHighlight = el;
+                  }}
+                  messageClassName="message-highlight"
+                />
+              );
+            }
             return (
               <MessagesListComponent
                 message={message}

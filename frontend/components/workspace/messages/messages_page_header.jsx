@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import MessagesSearch from './messages_search';
 
 const MessagesPageHeader = (props) => {
-  const { channel, currentUser, history, location } = props;
+  const { channel, currentUser, history, location, receiveHighlightedMessage } = props;
   const channelName = getChannelName(channel, currentUser.id);
   const icon =
     channel.channel_type === 'direct' ? (
@@ -40,7 +40,12 @@ const MessagesPageHeader = (props) => {
         </div>
       </div>
       <div className="d-flex flex-row align-items-center">
-        <MessagesSearch currentUser={currentUser} currentChannel={channel} />
+        <MessagesSearch
+          currentUser={currentUser}
+          currentChannel={channel}
+          history={history}
+          receiveHighlightedMessage={receiveHighlightedMessage}
+        />
         <Link className="detail-button d-flex flex-row align-items-center" to={detailLink}>
           <i className="fas fa-info-circle mr-1"></i>
           {!showDetail && <span>Details</span>}

@@ -9,10 +9,13 @@ import {
   deleteMessage,
   createReaction,
   deleteReaction,
+  receiveHighlightedMessage,
+  removeHighlightedMessage,
 } from '../../../actions/message_actions';
 
 const mapStateToProps = (state) => ({
   messages: state.messages,
+  messageHighlight: state.messageHighlight,
   currentChannel: state.channels.currentChannel,
   currentUser: state.session.currentUser,
 });
@@ -25,6 +28,8 @@ const mapDispatchToProps = (dispatch) => ({
   deleteReaction: (reaction) => dispatch(deleteReaction(reaction)),
   getCurrentChannel: (id) => dispatch(getCurrentChannel(id)),
   getMessages: (id) => dispatch(getMessages(id)),
+  receiveHighlightedMessage: (id) => dispatch(receiveHighlightedMessage(id)),
+  removeHighlightedMessage: () => dispatch(removeHighlightedMessage()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessagesPage);

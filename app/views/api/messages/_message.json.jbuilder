@@ -14,6 +14,9 @@ if defined? message.uniq_reactions
     json.id reaction.id
   end
 end
-if defined? message.channel_members
-  json.channel_members message.channel_members
+json.channel_members message.channel_members
+if defined?(message.uniq_reactions) == nil
+  json.body_highlight message.highlight.body[0]
+  json.channel message.channel
 end
+json.channel_private message.channel.channel_private

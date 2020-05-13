@@ -41,9 +41,57 @@ class Api::MessagesController < ApplicationController
             end
           end
         end
+        highlight do
+          field :body do 
+            fragment_size 50
+          end
+        end
+        aggregation :filter_users do 
+          terms do
+            field "user.id"
+          end
+        end
+        aggregation :filter_channels do 
+          terms do
+            field "channel.id"
+          end
+        end
       end
 
-      @messages = Message.search(query).results
+      response = Message.search(query)
+# {
+#        "filter_users" => {
+#         "doc_count_error_upper_bound" => 0,
+#                 "sum_other_doc_count" => 0,
+#                             "buckets" => [
+#             [0] {
+#                       "key" => "Ryan",
+#                 "doc_count" => 5
+#             },
+#             [1] {
+#                       "key" => "Spiderman",
+#                 "doc_count" => 2
+#             }
+#         ]
+#     },
+#     "filter_channels" => {
+#         "doc_count_error_upper_bound" => 0,
+#                 "sum_other_doc_count" => 0,
+#                             "buckets" => [
+#             [0] {
+#                       "key" => "general",
+#                 "doc_count" => 5
+#             },
+#             [1] {
+#                       "key" => "random",
+#                 "doc_count" => 2
+#             }
+#         ]
+#     }
+# }
+      @aggregations = response.aggregations
+      ap response.aggregations
+      @messages = response.results
     else
       @messages = Message.where(channel_id: params[:channel_id])
     end

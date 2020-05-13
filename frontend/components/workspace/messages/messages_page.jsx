@@ -37,11 +37,20 @@ class MessagesPage extends React.Component {
       createReaction,
       deleteReaction,
       location,
+      messageHighlight,
+      receiveHighlightedMessage,
+      removeHighlightedMessage,
     } = this.props;
     if (!currentChannel.id) return <div className="messages-page">Select a Channel</div>;
     return (
       <div className="messages-page">
-        <MessagesPageHeader channel={currentChannel} currentUser={currentUser} history={history} location={location} />
+        <MessagesPageHeader
+          channel={currentChannel}
+          currentUser={currentUser}
+          history={history}
+          location={location}
+          receiveHighlightedMessage={receiveHighlightedMessage}
+        />
         <MessagesList
           messages={messages}
           updateMessage={updateMessage}
@@ -50,6 +59,8 @@ class MessagesPage extends React.Component {
           deleteReaction={deleteReaction}
           currentChannel={currentChannel}
           currentUser={currentUser}
+          messageHighlight={messageHighlight}
+          removeHighlightedMessage={removeHighlightedMessage}
         />
         <MessagesInput createMessage={createMessage} currentChannel={currentChannel} currentUser={currentUser} />
       </div>

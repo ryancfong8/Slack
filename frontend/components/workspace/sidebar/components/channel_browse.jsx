@@ -8,7 +8,7 @@ export default function ChannelBrowse(props) {
 
   useEffect(() => {
     async function fetchData() {
-      const results = await searchChannels({ query: search, is_member: false });
+      const results = await searchChannels({ query: search, is_member: false, channel_type: 'channel' });
       setResults(Object.values(results));
     }
     fetchData();
@@ -62,8 +62,12 @@ const ChannelListResultItem = (props) => {
         <span className="mr-2">
           {channel.members.length} member{channel.members.length !== 1 ? 's' : ''}
         </span>
-        <span className="green mr-1">•</span>
-        <span className="ml-2">{channel.description}</span>
+        {channel.description && (
+          <>
+            <span>•</span>
+            <span className="ml-2">{channel.description}</span>
+          </>
+        )}
       </div>
     </div>
   );

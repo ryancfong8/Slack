@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import Modal from '../../../util/modal';
 import { usePrevious, arraysEqual } from '../../../util/utils';
 import { searchUsers } from '../../../../util/users_api_util';
-import { searchChannels } from '../../../../util/channel_api_util';
 
 export default function ChannelDirect(props) {
   const inputRef = useRef(null);

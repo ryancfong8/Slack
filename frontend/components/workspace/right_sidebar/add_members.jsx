@@ -39,7 +39,10 @@ export default function AddMembers(props) {
     e.preventDefault();
     const member_ids = selected.map((user) => user.id).filter((user) => user.id !== currentUserId);
     // check if existing direct message exists
-    updateChannel(channel, member_ids).then((res) => onClose());
+    updateChannel(channel, member_ids).then((res) => {
+      history.push(`/messages/${channel.id}/details/members`);
+      onClose();
+    });
   };
 
   const renderBody = (

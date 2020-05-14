@@ -27,6 +27,7 @@
   .messages-list {
     height: calc(100% - 145px);
     overflow: auto;
+    padding-bottom: 1rem;
   }
 
   .messages-list-component {

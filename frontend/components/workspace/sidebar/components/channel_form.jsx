@@ -11,11 +11,12 @@ class ChannelForm extends React.Component {
       name: '',
       channel_type: 'channel',
       channel_private: false,
-      description: ''
+      description: '',
+      nameError: '',
     };
   }
 
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
     const { onClose } = this.props;
     const { createChannel, history, channels } = this.props;
@@ -23,27 +24,34 @@ class ChannelForm extends React.Component {
     // translate func
     // lowercase name and remove special characters
     const newName = name.replace(/[^1-9a-zA-Z-]/g, '-').toLowerCase();
-    const existingChannel = channels.find(channel => channel.name === newName);
+    const existingChannel = channels.find((channel) => channel.name === newName);
     if (existingChannel) {
       history.push(`/messages/${existingChannel.id}`);
       onClose();
       return;
     }
     const newChannel = merge({}, this.state, { name: newName });
-    createChannel(newChannel).then(res => {
+    // validate presence of name
+    if (!newChannel.name) {
+      this.setState({
+        nameError: 'Name is required',
+      });
+      return;
+    }
+    createChannel(newChannel).then((res) => {
       history.push(`/messages/${res.channel.id}`);
       onClose();
     });
   };
 
   update(field) {
-    return e => {
+    return (e) => {
       this.setState({ [field]: e.target.value });
     };
   }
 
   body() {
-    const { channel_private } = this.state;
+    const { channel_private, nameError, name } = this.state;
     return (
       <form onSubmit={this.onSubmit} className="create-channel-form" autoComplete="off">
         <div className="optional mb-3">
@@ -54,6 +62,7 @@ class ChannelForm extends React.Component {
           <label htmlFor="name" className="mb-1">
             Name
           </label>
+          {nameError && <div className="text-danger mb-1">{nameError}</div>}
           <div className="channel-input-container">
             <input
               className=""
@@ -102,11 +111,11 @@ class ChannelForm extends React.Component {
             name="channel_private"
             defaultChecked={channel_private}
             icons={false}
-            onChange={e => this.setState({ channel_private: !channel_private })}
+            onChange={(e) => this.setState({ channel_private: !channel_private })}
           />
         </div>
         <div className="d-flex flex-row justify-content-center">
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary" disabled={name ? false : true}>
             Create
           </button>
         </div>

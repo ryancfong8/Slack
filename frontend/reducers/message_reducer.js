@@ -27,7 +27,7 @@ const MessageReducer = (oldState = [], action) => {
     case RECEIVE__DELETED_MESSAGE:
       idx = newState.findIndex((message) => message.id === action.message.id);
       newState.splice(idx, 1);
-      return newState;
+      return removeOneDate(newState);
     default:
       return oldState;
   }
@@ -58,15 +58,23 @@ const addDates = function (messages) {
 
 const addOneDate = function (messages) {
   if (
-    new Date(messages[messages.length - 1]).getTime() >
-    new Date(messages[messages.length - 2].created_at).getTime() + 1000 * 60 * 60 * 24
+    messages.length === 1 ||
+    new Date(messages[messages.length - 1].created_at).getTime() >
+      new Date(messages[messages.length - 2].created_at).getTime() + 1000 * 60 * 60 * 24
   ) {
     let newMessages = messages.slice(0);
-    newMessages.splice(messages.length - 2, 0, {
+    newMessages.splice(messages.length - 1, 0, {
       message_type: 'time',
       created_at: messages[messages.length - 1].created_at,
     });
     return newMessages;
+  }
+  return messages;
+};
+
+const removeOneDate = function (messages) {
+  if (messages[messages.length - 1].message_type === 'time') {
+    return messages.slice(0, messages.length - 1);
   }
   return messages;
 };

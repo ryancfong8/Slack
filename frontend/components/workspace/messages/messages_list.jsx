@@ -62,6 +62,19 @@ class MessagesList extends React.Component {
       messageHighlight,
     } = this.props;
     const { messagesListHeight } = this.state;
+    if (!messages.length)
+      return (
+        <div className="messages-list w-100" id="MessagesList">
+          <div
+            className="subtitle font-italic p-3 d-flex flex-row justify-content-center w-100"
+            id="invisible-div"
+            style={{ float: 'left', clear: 'both' }}
+            ref={(el) => {
+              this.messagesEnd = el;
+            }}
+          >{`Add a message to begin this conversation.`}</div>
+        </div>
+      );
     return (
       <div className="messages-list" id="MessagesList">
         {messages.map((message, index) => {

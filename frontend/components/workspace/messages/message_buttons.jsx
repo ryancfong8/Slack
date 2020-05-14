@@ -14,12 +14,11 @@ const MessageButtons = (props) => {
     setShowEdit(true);
   };
 
-  const onDeleteClick = async function (e) {
+  const onDeleteClick = function (e) {
     e.preventDefault();
     const confirm = window.confirm('Are you sure you want to delete this message?');
     if (confirm) {
-      await deleteMessage(message);
-      setShowEdit(false);
+      deleteMessage(message);
     }
   };
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { withAlert } from 'react-alert';
 import ChannelForm from './channel_form';
 import DirectChannelForm from './channel_direct';
 import BrowseChannelForm from './channel_browse';
@@ -37,7 +38,7 @@ class ChannelList extends React.Component {
   }
 
   addSocket = (channelName) => {
-    const { currentChannel, receiveMessage, match } = this.props;
+    const { alert, match, currentUserId, receiveHighlightedMessage } = this.props;
     window.App.cable.subscriptions.create(
       {
         channel: 'MessagesChannel',
@@ -47,7 +48,45 @@ class ChannelList extends React.Component {
         connected: () => {},
         disconnected: () => {},
         received: (data) => {
-          this.receiveMessage(data);
+          if (data.message.channel_id == match.params.channelId) {
+            this.receiveMessage(data);
+          } else {
+            const icon = data.message.channel_private ? (
+              <i className="fas fa-lock"></i>
+            ) : (
+              <i className="fas fa-hashtag"></i>
+            );
+            const channelName = getChannelName(
+              {
+                name: data.message.channel_name,
+                channel_type: data.message.channel_type,
+                members: data.message.channel_members,
+              },
+              currentUserId
+            );
+            const alertComponent = alert.show(
+              <Link
+                className="alert-link"
+                to={`/messages/${data.message.channel_id}`}
+                onClick={(e) => {
+                  receiveHighlightedMessage(data.message.id);
+                  alert.remove(alertComponent);
+                }}
+              >
+                <span>
+                  {`New message from ${data.message.user.username} in `}
+                  {data.message.channel_type === 'channel' ? (
+                    icon
+                  ) : (
+                    <>
+                      <span className="green mr-1">•</span>
+                    </>
+                  )}
+                  {channelName}
+                </span>
+              </Link>
+            );
+          }
         },
       }
     );
@@ -203,7 +242,7 @@ const ChannelListItem = (props) => {
   const { channel, currentUserId, currentChannel } = props;
   if (!channel) return null;
   const icon = channel.channel_private ? <i className="fas fa-lock mr-1"></i> : <i className="fas fa-hashtag mr-1"></i>;
-  let channelName = getChannelName(channel, currentUserId);
+  const channelName = getChannelName(channel, currentUserId);
   return (
     <Link to={`/messages/${channel.id}`}>
       <div
@@ -224,4 +263,4 @@ const ChannelListItem = (props) => {
   );
 };
 
-export default ChannelList;
+export default withAlert()(ChannelList);

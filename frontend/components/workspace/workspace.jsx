@@ -1,5 +1,6 @@
 import React from 'react';
-import { Sidebar } from './sidebar/sidebar';
+
+import Sidebar from './sidebar/sidebar';
 import MessagesContainer from './messages/messages_container';
 import { Details } from './right_sidebar/details';
 import { Switch, Route } from 'react-router-dom';
@@ -18,14 +19,20 @@ class Workspace extends React.Component {
       getUser,
       getMessages,
       location,
+      receiveHighlightedMessage,
     } = this.props;
     return (
       <div className="main-content-container">
         {/* <h1>Welcome to your workspace</h1>
         <button className="header-button" onClick={logout}>
-          Log Out
-        </button> */}
-        <Sidebar currentChannel={currentChannel} history={history} match={match} />
+        Log Out
+      </button> */}
+        <Sidebar
+          currentChannel={currentChannel}
+          history={history}
+          match={match}
+          receiveHighlightedMessage={receiveHighlightedMessage}
+        />
         <MessagesContainer currentChannel={currentChannel} match={match} history={history} location={location} />
         <Switch>
           <Route

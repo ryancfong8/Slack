@@ -59,3 +59,13 @@ body {
 .flex-1 {
   flex: 1;
 }
+
+.alert-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.alert-link:hover {
+  text-decoration: none;
+  color: inherit;
+}

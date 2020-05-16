@@ -13,10 +13,15 @@ if defined? message.uniq_reactions
     json.likes message.likes(reaction)
     json.id reaction.id
   end
+  json.channel_members message.channel.members.each do |member|
+    json.id member.id
+    json.username member.username
+  end
 end
-json.channel_members message.channel_members
 if defined?(message.uniq_reactions) == nil
   json.body_highlight message.highlight.body[0]
   json.channel message.channel
+  json.channel_members message.channel_members
 end
 json.channel_private message.channel.channel_private
+json.channel_type message.channel.channel_type

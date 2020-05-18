@@ -40,16 +40,23 @@ class MessagesPage extends React.Component {
       messageHighlight,
       receiveHighlightedMessage,
       removeHighlightedMessage,
+      className,
+      showMobile,
+      toggleMobileSidebar,
+      width,
     } = this.props;
     if (!currentChannel.id) return <div className="messages-page">Select a Channel</div>;
     return (
-      <div className="messages-page">
+      <div className={`messages-page ${className}`}>
         <MessagesPageHeader
           channel={currentChannel}
           currentUser={currentUser}
           history={history}
           location={location}
           receiveHighlightedMessage={receiveHighlightedMessage}
+          showMobile={showMobile}
+          toggleMobileSidebar={toggleMobileSidebar}
+          width={width}
         />
         <MessagesList
           messages={messages}

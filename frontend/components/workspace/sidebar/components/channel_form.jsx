@@ -18,7 +18,7 @@ class ChannelForm extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { onClose } = this.props;
+    const { onClose, toggleMobileSidebar } = this.props;
     const { createChannel, history, channels } = this.props;
     const { name } = this.state;
     // translate func
@@ -40,6 +40,7 @@ class ChannelForm extends React.Component {
     }
     createChannel(newChannel).then((res) => {
       history.push(`/messages/${res.channel.id}`);
+      toggleMobileSidebar(false);
       onClose();
     });
   };

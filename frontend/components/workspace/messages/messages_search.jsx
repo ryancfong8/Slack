@@ -6,7 +6,7 @@ import { getChannelName } from '../../util/utils';
 import messages_container from './messages_container';
 
 const MessagesSearch = (props) => {
-  const { currentUser, currentChannel, history, receiveHighlightedMessage } = props;
+  const { currentUser, currentChannel, history, receiveHighlightedMessage, showMobile, width } = props;
   const [showSearch, setShowSearch] = useState(false);
   const [searchInput, setSearchInput] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -29,10 +29,10 @@ const MessagesSearch = (props) => {
   };
 
   return (
-    <div className="search-feature mr-3">
+    <div className="search-feature">
       <button className="search-input-button" onClick={() => setShowSearch(true)}>
-        <i className="fas fa-search mr-2"></i>
-        Search Messages
+        <i className={`fas fa-search ${width > 768 && 'mr-2'}`}></i>
+        {width > 768 && 'Search Messages'}
       </button>
       {showSearch && (
         <Modal

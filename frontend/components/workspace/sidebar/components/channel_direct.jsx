@@ -26,7 +26,7 @@ export default function ChannelDirect(props) {
     setSearch(e.target.value);
   };
 
-  const { onClose, history, currentUserId, createChannel, channels } = props;
+  const { onClose, history, currentUserId, createChannel, channels, toggleMobileSidebar } = props;
 
   const onClick = async (e) => {
     e.preventDefault();
@@ -40,6 +40,7 @@ export default function ChannelDirect(props) {
     });
     if (existingChannel) {
       history.push(`/messages/${existingChannel.id}`);
+      toggleMobileSidebar(false);
       onClose();
       return;
     }
@@ -51,6 +52,7 @@ export default function ChannelDirect(props) {
     };
     createChannel(channel, member_ids).then((res) => {
       history.push(`/messages/${res.channel.id}`);
+      toggleMobileSidebar(false);
       onClose();
     });
   };

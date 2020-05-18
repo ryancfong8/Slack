@@ -139,7 +139,15 @@ class ChannelList extends React.Component {
   };
 
   render() {
-    const { channels, channelType, currentChannel, createChannel, currentUserId, history } = this.props;
+    const {
+      channels,
+      channelType,
+      currentChannel,
+      createChannel,
+      currentUserId,
+      history,
+      toggleMobileSidebar,
+    } = this.props;
     const { showForm } = this.state;
     let currentForm;
     switch (showForm) {
@@ -151,6 +159,7 @@ class ChannelList extends React.Component {
             currentUserId={currentUserId}
             history={history}
             channels={channels}
+            toggleMobileSidebar={toggleMobileSidebar}
           />
         );
         break;
@@ -162,11 +171,14 @@ class ChannelList extends React.Component {
             currentUserId={currentUserId}
             history={history}
             channels={channels}
+            toggleMobileSidebar={toggleMobileSidebar}
           />
         );
         break;
       case CHANNEL__BROWSE:
-        currentForm = <BrowseChannelForm onClose={this.closeModal} history={history} />;
+        currentForm = (
+          <BrowseChannelForm onClose={this.closeModal} history={history} toggleMobileSidebar={toggleMobileSidebar} />
+        );
         break;
       default:
         currentForm = null;
@@ -199,6 +211,7 @@ class ChannelList extends React.Component {
               currentUserId={currentUserId}
               key={channel.id}
               currentChannel={currentChannel}
+              toggleMobileSidebar={toggleMobileSidebar}
             />
           ))}
         {showForm && currentForm}
@@ -239,12 +252,17 @@ const AddChannelButton = (props) => {
 };
 
 const ChannelListItem = (props) => {
-  const { channel, currentUserId, currentChannel } = props;
+  const { channel, currentUserId, currentChannel, toggleMobileSidebar } = props;
   if (!channel) return null;
   const icon = channel.channel_private ? <i className="fas fa-lock mr-1"></i> : <i className="fas fa-hashtag mr-1"></i>;
   const channelName = getChannelName(channel, currentUserId);
   return (
-    <Link to={`/messages/${channel.id}`}>
+    <Link
+      to={`/messages/${channel.id}`}
+      onClick={() => {
+        toggleMobileSidebar(false);
+      }}
+    >
       <div
         className={`channel-list-link d-flex flex-row align-items-center ${
           currentChannel && channel.id === currentChannel.id ? 'active' : ''

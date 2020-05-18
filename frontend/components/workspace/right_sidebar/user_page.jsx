@@ -5,7 +5,17 @@ import Modal from '../../util/modal';
 import UserEditForm from './user_edit_form';
 
 const UserPage = (props) => {
-  const { selectedUser, getUser, match, currentUser, updateUser, history, getMessages, currentChannel } = props;
+  const {
+    selectedUser,
+    getUser,
+    match,
+    currentUser,
+    updateUser,
+    history,
+    getMessages,
+    currentChannel,
+    className,
+  } = props;
   const [loading, setLoading] = useState(true);
   const [showEditModal, setShowEditModal] = useState(false);
   useEffect(() => {
@@ -17,7 +27,7 @@ const UserPage = (props) => {
   }, [match.params.userId]);
   if (loading) return <div className="d-flex flex-row align-items-center">Loading</div>;
   return (
-    <div className="right-sidebar user-page">
+    <div className={`right-sidebar user-page ${className}`}>
       <div className="title d-flex flex-row align-items-center justify-content-between">
         <div className="d-flex flex-column">
           <h6>Profile</h6>

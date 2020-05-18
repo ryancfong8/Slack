@@ -4,7 +4,16 @@ import { Link } from 'react-router-dom';
 import MessagesSearch from './messages_search';
 
 const MessagesPageHeader = (props) => {
-  const { channel, currentUser, history, location, receiveHighlightedMessage } = props;
+  const {
+    channel,
+    currentUser,
+    history,
+    location,
+    receiveHighlightedMessage,
+    showMobile,
+    toggleMobileSidebar,
+    width,
+  } = props;
   const channelName = getChannelName(channel, currentUser.id);
   const icon =
     channel.channel_type === 'direct' ? (
@@ -21,21 +30,35 @@ const MessagesPageHeader = (props) => {
   const detailLink = `/messages/${channel.id}${!showDetail ? '/details' : ''}`;
   return (
     <div className="messages-page-header d-flex flex-row justify-content-between align-items-center">
-      <div className="d-flex flex-column">
-        <h6 className="name">
-          {icon}
-          {channelName}
-        </h6>
-        <div className="members d-flex flex-row align-items-center">
-          <div
-            className="user-icon"
+      <div className="d-flex flex-row">
+        {showMobile && (
+          <button
+            className="mobile-button channel-button mr-3"
+            type="button"
             onClick={(e) => {
               e.preventDefault();
-              history.push(`/messages/${channel.id}/details/members`);
+              toggleMobileSidebar(true);
             }}
           >
-            <i className="fa fa-user-o mr-1" aria-hidden="true"></i>
-            {channel.members.length}
+            <i className="fas fa-bars"></i>
+          </button>
+        )}
+        <div className="d-flex flex-column name-members">
+          <h6 className="name">
+            {icon}
+            {channelName}
+          </h6>
+          <div className="members d-flex flex-row align-items-center">
+            <div
+              className="user-icon"
+              onClick={(e) => {
+                e.preventDefault();
+                history.push(`/messages/${channel.id}/details/members`);
+              }}
+            >
+              <i className="fa fa-user-o mr-1" aria-hidden="true"></i>
+              {channel.members.length}
+            </div>
           </div>
         </div>
       </div>
@@ -45,10 +68,12 @@ const MessagesPageHeader = (props) => {
           currentChannel={channel}
           history={history}
           receiveHighlightedMessage={receiveHighlightedMessage}
+          showMobile={showMobile}
+          width={width}
         />
         <Link className="detail-button d-flex flex-row align-items-center" to={detailLink}>
           <i className="fas fa-info-circle mr-1"></i>
-          {!showDetail && <span>Details</span>}
+          {!showDetail && width > 768 && <span>Details</span>}
         </Link>
       </div>
     </div>

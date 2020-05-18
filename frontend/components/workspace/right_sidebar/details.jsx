@@ -3,7 +3,7 @@ import { getChannelName } from '../../util/utils';
 import AddMembers from '../right_sidebar/add_members';
 
 export const Details = (props) => {
-  const { channel, currentUserId, match, history, updateChannel } = props;
+  const { channel, currentUserId, match, history, updateChannel, className } = props;
   if (!channel || !channel.members) return <h1>Loading...</h1>;
   const modifier = match.params.modifier;
   const [openAddMembers, setOpenAddMembers] = useState(false);
@@ -11,7 +11,7 @@ export const Details = (props) => {
   const icon = channel.channel_private ? <i className="fas fa-lock mr-1"></i> : <i className="fas fa-hashtag mr-1"></i>;
 
   return (
-    <div className="right-sidebar">
+    <div className={`right-sidebar ${className}`}>
       <div className="title d-flex flex-row align-items-center justify-content-between">
         <div className="d-flex flex-column">
           <h6>Details</h6>

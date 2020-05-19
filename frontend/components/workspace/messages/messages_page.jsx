@@ -1,4 +1,5 @@
 import React from 'react';
+import { withAlert } from 'react-alert';
 import MessagesPageHeader from './messages_page_header';
 import MessagesList from './messages_list';
 import MessagesInput from './messages_input';
@@ -9,18 +10,28 @@ class MessagesPage extends React.Component {
   }
 
   componentDidMount() {
-    const { getMessages, match, getCurrentChannel } = this.props;
-    getMessages(match.params.channelId);
+    const { getMessages, match, getCurrentChannel, history, alert } = this.props;
+    getMessages(match.params.channelId).catch((err) => {
+      if (err.status == 401) {
+        alert.show('You do not have permission to view that channel');
+        history.push(`/messages/1`);
+      }
+    });
     getCurrentChannel(match.params.channelId);
   }
 
   componentDidUpdate(prevProps) {
-    const { getMessages, match, currentChannel, getCurrentChannel } = this.props;
+    const { getMessages, match, currentChannel, getCurrentChannel, history, alert } = this.props;
     if (
       match.params.channelId !== prevProps.match.params.channelId ||
       currentChannel.id !== prevProps.currentChannel.id
     ) {
-      getMessages(match.params.channelId);
+      getMessages(match.params.channelId).catch((err) => {
+        if (err.status == 401) {
+          alert.show('You do not have permission to view that channel');
+          history.push(`/messages/1`);
+        }
+      });
       getCurrentChannel(match.params.channelId);
     }
   }
@@ -75,4 +86,4 @@ class MessagesPage extends React.Component {
   }
 }
 
-export default MessagesPage;
+export default withAlert()(MessagesPage);

@@ -93,7 +93,14 @@ class Api::MessagesController < ApplicationController
       ap response.aggregations
       @messages = response.results
     else
+      # check if user has access to channel
+      channel = Channel.find_by_id(params[:channel_id])
+      authorized = channel.members.map{|member| member.id}.include?(current_user.id)
+      if authorized
       @messages = Message.where(channel_id: params[:channel_id])
+      else 
+        render json: "You are not authorized to view this channel", status: 401
+      end
     end
   end
 

@@ -127,6 +127,15 @@ class SessionForm extends React.Component {
           className="login-input mb-2 input-width"
           placeholder="Username"
         />
+        {modalType !== 'Log In' && (
+          <input
+            type="text"
+            value={this.state.full_name}
+            onChange={this.update('name')}
+            className="login-input mb-2 input-width"
+            placeholder="Full Name (optional)"
+          />
+        )}
         <input
           type="password"
           value={this.state.password}

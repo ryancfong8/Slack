@@ -17,6 +17,7 @@
 .input-width {
   padding: 8px 12px;
   width: 75%;
+  max-width: 350px;
   @include media-breakpoint-down(xs) {
     width: 100%;
   }

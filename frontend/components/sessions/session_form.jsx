@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import Modal from 'react-modal';
-import ModalStyle from './modal_style';
+
+import Modal from '../util/modal';
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -75,18 +75,29 @@ class SessionForm extends React.Component {
   }
 
   guestUser() {
-    if (this.state.modalType === 'Sign Up') {
-      return (
-        <div className="guest">
-          <h3 className="or">or</h3>
-          <button className="guestUser" onClick={this.handleLoginGuest}>
-            Log In As Guest User
-          </button>
-        </div>
-      );
-    } else {
-      return <div></div>;
-    }
+    const { modalType } = this.state;
+    return (
+      <div className="guest d-flex flex-column align-items-center mt-3">
+        <span className="mb-3">
+          {modalType === 'Log In' ? 'New to Chathero? ' : 'Already have an account? '}
+          <a
+            href="#"
+            className="login-link mb-3"
+            onClick={(e) => {
+              e.preventDefault();
+              this.setState({
+                modalType: modalType === 'Log In' ? 'Sigh Up' : 'Log In',
+              });
+            }}
+          >
+            Sign {modalType === 'Log In' ? 'Up' : 'In'}
+          </a>
+        </span>
+        <a href="#" className="login-link" onClick={this.handleLoginGuest}>
+          Demo as Guest User
+        </a>
+      </div>
+    );
   }
 
   renderErrors() {
@@ -103,54 +114,49 @@ class SessionForm extends React.Component {
     }
   }
 
+  modalForm() {
+    const { modalType } = this.state;
+    return (
+      <form className="form d-flex flex-column align-items-center">
+        <h4 className="modal-title mb-2">{`Welcome ${modalType === 'Log In' ? 'back' : ''} to ChatHero!`}</h4>
+        {this.renderErrors()}
+        <input
+          type="text"
+          value={this.state.username}
+          onChange={this.update('username')}
+          className="login-input mb-2 input-width"
+          placeholder="Username"
+        />
+        <input
+          type="password"
+          value={this.state.password}
+          onChange={this.update('password')}
+          className="login-input mb-2 input-width"
+          placeholder="Password"
+        />
+        <button className="modal-submit btn btn-primary input-width" type="sumbit" onClick={this.handleSubmit}>
+          {this.state.modalType}
+        </button>
+        {this.guestUser()}
+      </form>
+    );
+  }
+
   render() {
+    const { modalOpen } = this.state;
     return (
       <div className="login">
         <nav className="login-signup">
-          <button onClick={this.openModal.bind(this, 'Log In')} className="login-btn">
+          <button onClick={this.openModal.bind(this, 'Log In')} className="btn login-btn mr-3">
             Log In
           </button>
-          <button onClick={this.openModal.bind(this, 'Sign Up')} className="signup-btn">
+          <button onClick={this.openModal.bind(this, 'Sign Up')} className="btn signup-btn">
             Sign Up
           </button>
         </nav>
-        <Modal
-          contentLabel="Modal"
-          isOpen={this.state.modalOpen}
-          onRequestClose={this.closeModal}
-          style={ModalStyle}
-          overlayClassName="Modal-Overlay"
-        >
-          <form className="form">
-            <text className="modal-title">Welcome to ChatHero!</text>
-            <text className="directions">Enter Your Username and Password</text>
-            {this.renderErrors()}
-            <label className="label">
-              <input
-                type="text"
-                value={this.state.username}
-                onChange={this.update('username')}
-                className="login-input"
-                placeholder="Username"
-              />
-            </label>
-            <br />
-            <label className="label">
-              <input
-                type="password"
-                value={this.state.password}
-                onChange={this.update('password')}
-                className="login-input"
-                placeholder="Password"
-              />
-            </label>
-            <br />
-            <button className="modal-submit" onClick={this.handleSubmit}>
-              {this.state.modalType}
-            </button>
-            {this.guestUser()}
-          </form>
-        </Modal>
+        {modalOpen && (
+          <Modal onClose={this.closeModal} body={this.modalForm()} modalSize="modal-md modal-dialog-centered" />
+        )}
       </div>
     );
   }

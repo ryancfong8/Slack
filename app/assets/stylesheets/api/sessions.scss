@@ -9,3 +9,19 @@
   height: 40px;
   justify-content: space-between;
 }
+
+.login-input {
+  border: 1px solid #333333;
+}
+
+.input-width {
+  padding: 8px 12px;
+  width: 75%;
+  @include media-breakpoint-down(xs) {
+    width: 100%;
+  }
+}
+
+.login-link {
+  font-weight: 700;
+}

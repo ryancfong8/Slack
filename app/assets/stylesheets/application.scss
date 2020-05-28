@@ -13,6 +13,8 @@
  */
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
+// custom variables
+$primary: #007a5a;
 @import 'bootstrap';
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap');
 @import './react-draft-wysiwyg.scss';

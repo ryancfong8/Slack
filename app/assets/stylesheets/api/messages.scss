@@ -183,6 +183,7 @@
     color: #999999;
     text-align: left;
     margin-right: 1rem;
+    background-color: #fff;
     @include media-breakpoint-down(sm) {
       padding: 0;
       border: none;

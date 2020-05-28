@@ -22,12 +22,13 @@ class ChannelList extends React.Component {
   componentDidMount() {
     const { getChannels } = this.props;
     getChannels();
+    this.setSockets();
   }
 
   componentDidUpdate(prevProps) {
     const { getChannels, channelType, currentUserId, channels, currentChannel, match } = this.props;
     // if (channels.length !== prevProps.channels.length || prevProps.match.params.channelId !== match.params.channelId) {
-    if (channels.length !== prevProps.channels.length) {
+    if (channels.length !== prevProps.channels.length || prevProps.match.params.channelId !== match.params.channelId) {
       // getChannels().then(() => this.setSockets());
       this.setSockets();
     }

@@ -44,7 +44,7 @@ export const Details = (props) => {
           <span className="subtitle">Add</span>
         </div>
       </div>
-      <div className="tab">
+      <div className={`tab ${modifier === 'about' ? 'active' : ''}`}>
         <div
           className="title-tab d-flex flex-row justify-content-between align-items-center p-3"
           onClick={(e) => {
@@ -64,7 +64,7 @@ export const Details = (props) => {
           <div className="pr-3 pl-3">{channel.description || <span className="subtitle">No Description</span>}</div>
         )}
       </div>
-      <div className="tab">
+      <div className={`tab ${modifier === 'members' ? 'active' : ''}`}>
         <div
           className="title-tab d-flex flex-row justify-content-between align-items-center p-3"
           onClick={(e) => {
@@ -85,8 +85,8 @@ export const Details = (props) => {
         </div>
         {modifier === 'members' && (
           <>
-            {channel.members.map((member) => (
-              <UserItem user={member} currentUserId={currentUserId} key={member.id} />
+            {channel.members.map((member, index) => (
+              <UserItem user={member} currentUserId={currentUserId} key={`${member.id}${index}${member.created_at}`} />
             ))}
           </>
         )}

@@ -11,6 +11,8 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
+  after_create_commit :add_channel_memberships
+
   attr_reader :password
 
   def reset_session_token
@@ -42,4 +44,37 @@ class User < ApplicationRecord
   def self.find_by_query(query = "", excluded_ids)
     User.where('username ILIKE ? OR name ILIKE ?', "%#{query}%", "%#{query}%").where.not(id: excluded_ids)
   end 
+
+  def add_channel_memberships
+    Membership.create!([
+      {
+        user_id: self.id,
+        channel_id: 1
+      },
+      {
+        user_id: self.id,
+        channel_id: 2
+      }
+    ])
+    channel_params = {name: "", channel_type: "direct", "description": "", channel_private: true}
+    channel = Channel.create!(channel_params)
+    Membership.create!([
+      {
+        user_id: self.id,
+        channel_id: channel.id
+      },
+      {
+        user_id: 1,
+        channel_id: channel.id
+      }
+    ])
+    Message.create!([
+    {
+        body: "<p>Hi, I'm Ryan. Welcome to ChatHero!</p>",
+        channel_id: channel.id,
+        user_id: 1,
+        message_type: "message"
+    }
+  ])
+  end
 end

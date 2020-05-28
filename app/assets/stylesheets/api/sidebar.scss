@@ -96,6 +96,8 @@
 }
 
 .right-sidebar {
+  display: flex;
+  flex-direction: column;
   width: 392px;
   @include media-breakpoint-only(lg) {
     width: 337px;
@@ -151,6 +153,9 @@
     }
   }
   .tab {
+    &.active {
+      overflow: auto;
+    }
     .fas {
       color: #999999;
       margin-top: 0.25rem;

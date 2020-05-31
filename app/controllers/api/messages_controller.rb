@@ -99,7 +99,11 @@ class Api::MessagesController < ApplicationController
       if authorized
       @messages = Message.where(channel_id: params[:channel_id])
       else 
-        render json: "You are not authorized to view this channel", status: 401
+        if channel.channel_private == true
+          render json: "You are not authorized to view this channel", status: 401
+        else 
+          @messages = Message.where(channel_id: params[:channel_id])
+        end
       end
     end
   end

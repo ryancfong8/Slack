@@ -148,6 +148,7 @@ class ChannelList extends React.Component {
       currentUserId,
       history,
       toggleMobileSidebar,
+      joinChannel,
     } = this.props;
     const { showForm } = this.state;
     let currentForm;
@@ -161,6 +162,7 @@ class ChannelList extends React.Component {
             history={history}
             channels={channels}
             toggleMobileSidebar={toggleMobileSidebar}
+            joinChannel={joinChannel}
           />
         );
         break;
@@ -178,7 +180,13 @@ class ChannelList extends React.Component {
         break;
       case CHANNEL__BROWSE:
         currentForm = (
-          <BrowseChannelForm onClose={this.closeModal} history={history} toggleMobileSidebar={toggleMobileSidebar} />
+          <BrowseChannelForm
+            onClose={this.closeModal}
+            history={history}
+            toggleMobileSidebar={toggleMobileSidebar}
+            currentUserId={currentUserId}
+            joinChannel={joinChannel}
+          />
         );
         break;
       default:

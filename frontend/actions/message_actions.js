@@ -1,5 +1,6 @@
 import * as MessageAPIUtil from '../util/messages_api_util';
 import * as ReactionAPIUtil from '../util/reaction_api_util';
+import { receiveLoadingState } from './loading_actions';
 
 export const RECEIVE__MESSAGES = 'RECEIVE__MESSAGES';
 export const RECEIVE__MESSAGE = 'RECEIVE__MESSAGE';
@@ -38,7 +39,10 @@ export const receiveDeletedMessage = (message) => ({
 });
 
 export const getMessages = (channelId) => (dispatch) => {
-  return MessageAPIUtil.getMessages(channelId).then((messages) => dispatch(receiveMessages(Object.values(messages))));
+  return MessageAPIUtil.getMessages(channelId).then((messages) => {
+    dispatch(receiveMessages(Object.values(messages)));
+    dispatch(receiveLoadingState(false));
+  });
 };
 
 export const createMessage = (message) => (dispatch) => {

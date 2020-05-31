@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from '../../../util/modal';
 import Toggle from 'react-toggle';
 import merge from 'lodash/merge';
+import { Link } from 'react-router-dom';
 
 class ChannelForm extends React.Component {
   constructor(props) {
@@ -13,12 +14,16 @@ class ChannelForm extends React.Component {
       channel_private: false,
       description: '',
       nameError: '',
+      errorMsg: '',
+      showJoin: false,
+      existingChannelId: '',
+      showGoToChannel: false,
     };
   }
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { onClose, toggleMobileSidebar } = this.props;
+    const { onClose, toggleMobileSidebar, currentUserId } = this.props;
     const { createChannel, history, channels } = this.props;
     const { name } = this.state;
     // translate func
@@ -26,8 +31,29 @@ class ChannelForm extends React.Component {
     const newName = name.replace(/[^1-9a-zA-Z-]/g, '-').toLowerCase();
     const existingChannel = channels.find((channel) => channel.name === newName);
     if (existingChannel) {
-      history.push(`/messages/${existingChannel.id}`);
-      onClose();
+      if (existingChannel.members.find((member) => member.id === currentUserId)) {
+        this.setState({
+          existingChannelId: existingChannel.id,
+          errorMsg: 'You are part of a channel with this name that already exists.',
+          showGoToChannel: true,
+          showJoin: false,
+        });
+      } else {
+        if (existingChannel.channel_private) {
+          this.setState({
+            errorMsg: 'A private channel with this name already exists. Please select a new channel name.',
+            showGoToChannel: false,
+            showJoin: false,
+          });
+        } else {
+          this.setState({
+            existingChannelId: existingChannel.id,
+            errorMsg: 'A public channel with this name already exists.',
+            showGoToChannel: false,
+            showJoin: true,
+          });
+        }
+      }
       return;
     }
     const newChannel = merge({}, this.state, { name: newName });
@@ -52,13 +78,45 @@ class ChannelForm extends React.Component {
   }
 
   body() {
-    const { channel_private, nameError, name } = this.state;
+    const { joinChannel, currentUserId, history, onClose } = this.props;
+    const { channel_private, nameError, name, errorMsg, showGoToChannel, showJoin, existingChannelId } = this.state;
     return (
       <form onSubmit={this.onSubmit} className="create-channel-form" autoComplete="off">
         <div className="optional mb-3">
           Channels are where your team communicates. They’re best when organized around a topic — #marketing, for
           example.
         </div>
+        {errorMsg && (
+          <span>
+            <span className="text-danger">{errorMsg}</span>
+            {showGoToChannel && (
+              <Link
+                className="ml-1 create-channel-link"
+                to={`/messages/${existingChannelId}`}
+                onClick={(e) => {
+                  onClose();
+                }}
+              >
+                Go To Channel
+              </Link>
+            )}
+            {showJoin && (
+              <a
+                href="#"
+                className="ml-1 create-channel-link"
+                onClick={(e) => {
+                  e.preventDefault();
+                  joinChannel({ channel_id: existingChannelId, user_id: currentUserId }).then(() => {
+                    onClose();
+                    history.push(`/messages/${existingChannelId}`);
+                  });
+                }}
+              >
+                Join Channel
+              </a>
+            )}
+          </span>
+        )}
         <div className="d-flex flex-column mb-3">
           <label htmlFor="name" className="mb-1">
             Name

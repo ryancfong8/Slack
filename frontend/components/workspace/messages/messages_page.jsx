@@ -3,6 +3,8 @@ import { withAlert } from 'react-alert';
 import MessagesPageHeader from './messages_page_header';
 import MessagesList from './messages_list';
 import MessagesInput from './messages_input';
+import { receiveLoadingState } from '../../../actions/loading_actions';
+import { LoadingPage } from '../../util/loading_page';
 
 class MessagesPage extends React.Component {
   constructor(props) {
@@ -10,29 +12,28 @@ class MessagesPage extends React.Component {
   }
 
   componentDidMount() {
-    const { getMessages, match, getCurrentChannel, history, alert } = this.props;
+    const { getMessages, match, getCurrentChannel, history, alert, receiveLoadingState } = this.props;
+    receiveLoadingState(true);
+    getCurrentChannel(match.params.channelId);
     getMessages(match.params.channelId).catch((err) => {
       if (err.status == 401) {
         alert.show('You do not have permission to view that channel');
         history.push(`/messages/1`);
       }
     });
-    getCurrentChannel(match.params.channelId);
   }
 
   componentDidUpdate(prevProps) {
-    const { getMessages, match, currentChannel, getCurrentChannel, history, alert } = this.props;
-    if (
-      match.params.channelId !== prevProps.match.params.channelId ||
-      currentChannel.id !== prevProps.currentChannel.id
-    ) {
+    const { getMessages, match, getCurrentChannel, history, alert } = this.props;
+    if (match.params.channelId !== prevProps.match.params.channelId) {
+      receiveLoadingState(true);
+      getCurrentChannel(match.params.channelId);
       getMessages(match.params.channelId).catch((err) => {
         if (err.status == 401) {
           alert.show('You do not have permission to view that channel');
           history.push(`/messages/1`);
         }
       });
-      getCurrentChannel(match.params.channelId);
     }
   }
 
@@ -55,8 +56,12 @@ class MessagesPage extends React.Component {
       showMobile,
       toggleMobileSidebar,
       width,
+      loading,
     } = this.props;
-    if (!currentChannel.id) return <div className="messages-page">Select a Channel</div>;
+
+    if (loading || !currentChannel || !currentChannel.id) {
+      return <LoadingPage />;
+    }
     return (
       <div className={`messages-page ${className}`}>
         <MessagesPageHeader

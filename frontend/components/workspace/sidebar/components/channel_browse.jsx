@@ -18,7 +18,7 @@ export default function ChannelBrowse(props) {
     setSearch(e.target.value);
   };
 
-  const { onClose, history, toggleMobileSidebar } = props;
+  const { onClose, history, toggleMobileSidebar, joinChannel, currentUserId } = props;
 
   const renderBody = (
     <>
@@ -35,6 +35,8 @@ export default function ChannelBrowse(props) {
             onClose={onClose}
             history={history}
             toggleMobileSidebar={toggleMobileSidebar}
+            joinChannel={joinChannel}
+            currentUserId={currentUserId}
           />
         ))}
       </div>
@@ -53,15 +55,17 @@ export default function ChannelBrowse(props) {
 }
 
 const ChannelListResultItem = (props) => {
-  const { channel, history, onClose, toggleMobileSidebar } = props;
+  const { channel, history, onClose, toggleMobileSidebar, joinChannel, currentUserId } = props;
   return (
     <div
       className="d-flex flex-column channel-browse-item"
       onClick={(e) => {
         e.preventDefault();
-        history.push(`/messages/${channel.id}`);
-        onClose();
-        toggleMobileSidebar(false);
+        joinChannel({ channel_id: channel.id, user_id: currentUserId }).then(() => {
+          onClose();
+          toggleMobileSidebar(false);
+          history.push(`/messages/${channel.id}`);
+        });
       }}
     >
       <h6 className="list-item-name"># {channel.name}</h6>

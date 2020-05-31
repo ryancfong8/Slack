@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import MessagesPage from './messages_page';
 import { getCurrentChannel } from '../../../actions/channel_actions';
+import { receiveLoadingState } from '../../../actions/loading_actions';
 import {
   createMessage,
   getMessages,
@@ -18,6 +19,7 @@ const mapStateToProps = (state) => ({
   messageHighlight: state.messageHighlight,
   currentChannel: state.channels.currentChannel,
   currentUser: state.session.currentUser,
+  loading: state.loading,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -30,6 +32,7 @@ const mapDispatchToProps = (dispatch) => ({
   getMessages: (id) => dispatch(getMessages(id)),
   receiveHighlightedMessage: (id) => dispatch(receiveHighlightedMessage(id)),
   removeHighlightedMessage: () => dispatch(removeHighlightedMessage()),
+  receiveLoadingState: (loading) => dispatch(receiveLoadingState(loading)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessagesPage);

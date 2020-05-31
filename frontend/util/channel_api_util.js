@@ -1,33 +1,40 @@
-export const getCurrentChannel = id =>
+export const getCurrentChannel = (id) =>
   $.ajax({
     method: 'GET',
-    url: `api/channels/${id}`
+    url: `api/channels/${id}`,
   });
 
 export const createChannel = (channel, member_ids) =>
   $.ajax({
     method: 'POST',
     url: 'api/channels',
-    data: { channel, member_ids }
+    data: { channel, member_ids },
   });
 
 export const updateChannel = (channel, member_ids) =>
   $.ajax({
     method: 'PATCH',
     url: `api/channels/${channel.id}`,
-    data: { channel, member_ids }
+    data: { channel, member_ids },
   });
 
-export const deleteChannel = id =>
+export const deleteChannel = (id) =>
   $.ajax({
     method: 'DELETE',
     url: `api/channels/${id}`,
-    data: { id }
+    data: { id },
   });
 
-export const searchChannels = data =>
+export const searchChannels = (data) =>
   $.ajax({
     method: 'GET',
     url: 'api/channels',
-    data
+    data,
+  });
+
+export const joinChannel = (membership) =>
+  $.ajax({
+    method: 'POST',
+    url: 'api/memberships',
+    data: { membership },
   });

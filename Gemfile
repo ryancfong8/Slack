@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'jquery-rails'
-gem 'bootstrap', '~> 4.1.0'
+gem 'bootstrap', '~> 4.5.0'
 gem 'redis', '~> 3.0'
 gem 'cloudinary'
 gem 'sanitize'

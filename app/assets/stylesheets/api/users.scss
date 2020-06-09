@@ -13,7 +13,7 @@
   .selected-user-avatar {
     height: 353px;
     width: 392px;
-    object-fit: contain;
+    object-fit: scale-down;
   }
   .buttons {
     padding: 1rem 1rem 0 1rem;
@@ -48,7 +48,7 @@
     .user-form-avatar {
       height: 190px;
       width: 190px;
-      object-fit: contain;
+      object-fit: scale-down;
       border-radius: 5px;
     }
     input {

@@ -9,6 +9,7 @@
     border: none;
     cursor: pointer;
     padding: 0;
+    background: transparent;
   }
 
   .messages-page-header {
@@ -81,7 +82,7 @@
       height: 35px;
       width: 35px;
       border-radius: 3px;
-      object-fit: contain;
+      object-fit: scale-down;
       margin-right: 0.5rem;
       margin-top: 4px;
     }
@@ -257,7 +258,7 @@
     .filter-avatar {
       height: 18px;
       width: 18px;
-      object-fit: contain;
+      object-fit: scale-down;
     }
     .column-header {
       margin-bottom: 1rem;

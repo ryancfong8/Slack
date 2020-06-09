@@ -6,8 +6,18 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 40px;
+  height: 70px;
   justify-content: space-between;
+  position: fixed;
+  background-color: #fff;
+  width: 100%;
+  padding: 2.5rem;
+  z-index: 3;
+  top: 0;
+  border-bottom: 1px solid #ebeaeb;
+  .header-logo {
+    width: 100px;
+  }
 }
 
 .login-input {
@@ -25,4 +35,187 @@
 
 .login-link {
   font-weight: 700;
+}
+
+.welcome {
+  padding-top: 55px;
+  position: relative;
+  z-index: 2;
+}
+
+.home-page {
+  h1 {
+    font-weight: 700;
+  }
+  .btn-primary {
+    @include button-variant(
+      $indigo,
+      darken($indigo, 7.5%),
+      darken($indigo, 10%),
+      lighten($indigo, 5%),
+      lighten($indigo, 10%),
+      darken($indigo, 30%)
+    );
+  }
+  .Plx--above {
+    opacity: 0;
+    // transform: scale(2) translateX(12vw);
+    // &.cap {
+    //   opacity: 1;
+    // }
+  }
+  .images {
+    position: fixed;
+    z-index: 1;
+  }
+  .first {
+    position: relative;
+    opacity: 0.4;
+  }
+  .enter-right {
+    position: relative;
+    // transform: translateX(50%);
+  }
+  .enter-left {
+    position: relative;
+    // transform: translateX(-50%);
+  }
+  .enter-top {
+    position: relative;
+    // transform: translateY(-75%);
+  }
+  .home-page-image {
+    width: 200px;
+    &.captain-america {
+      width: 220px;
+    }
+    &.black-widow {
+      transform: translateY(60%);
+    }
+    &.spiderman {
+      width: 180px;
+      transform: translateY(60%);
+    }
+    &.iron-man {
+      width: 210px;
+    }
+    &.hulk {
+      transform: translateY(30%);
+    }
+  }
+
+  .home-page-section {
+    z-index: 2;
+    height: calc(100vh - 300px);
+    // width: 60%;
+    padding: 2rem;
+    align-items: center;
+  }
+
+  .MyAwesomeParallax {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .home-page-div {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    .right-1a {
+      width: 300px;
+      height: 300px;
+      object-fit: scale-down;
+      transform: translateX(15%);
+    }
+    .right-1b {
+      width: 100px;
+      height: 300px;
+      object-fit: scale-down;
+      opacity: 0.5;
+      transform: translateY(-10%) translateX(-15%);
+    }
+    .right-1c {
+      width: 65px;
+      height: 300px;
+      object-fit: scale-down;
+      opacity: 0.3;
+      transform: translateY(-15%) translateX(-30%);
+    }
+    .right-1d {
+      width: 50px;
+      height: 300px;
+      object-fit: scale-down;
+      opacity: 0.2;
+      transform: translateY(-20%) translateX(-40%);
+    }
+    .left-1d {
+      width: 300px;
+      height: 300px;
+      object-fit: scale-down;
+      transform: translateX(-20%);
+    }
+    .left-1c {
+      width: 100px;
+      height: 300px;
+      object-fit: scale-down;
+      opacity: 0.5;
+      transform: translateY(10%) translateX(-15%);
+    }
+    .left-1b {
+      width: 65px;
+      height: 300px;
+      object-fit: scale-down;
+      opacity: 0.3;
+      transform: translateY(15%) translateX(-30%);
+    }
+    .left-1a {
+      width: 50px;
+      height: 300px;
+      object-fit: scale-down;
+      opacity: 0.2;
+      transform: translateY(20%) translateX(-40%);
+    }
+  }
+  .home-page-link {
+    font-weight: 700;
+  }
+  .home-page-text {
+    width: 60%;
+  }
+  .temp-space {
+    height: 40vh;
+  }
+  .footer {
+    height: 300px;
+    background-color: #fafafa;
+    .footer-logo {
+      width: 300px;
+    }
+  }
+  .main-logo {
+    height: 300px;
+  }
+  .app-logo {
+    object-fit: scale-down;
+    height: 100px;
+  }
+  .phone,
+  .laptop,
+  .desktop {
+    object-fit: scale-down;
+  }
+  .phone {
+    width: 200px;
+    height: 350px;
+    transform: translateY(35px) translateX(-30px);
+  }
+  .desktop {
+    width: 500px;
+  }
+  .slogan {
+    font-size: 24px;
+    font-weight: bold;
+  }
 }

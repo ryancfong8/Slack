@@ -11,7 +11,7 @@ gem 'rails', '~> 5.1.6'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 4.3.5'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'jquery-rails'
-gem 'bootstrap', '~> 4.1.0'
+gem 'bootstrap', '~> 4.3.1'
 gem 'redis', '~> 3.0'
 gem 'cloudinary'
 gem 'sanitize'
@@ -36,6 +36,14 @@ gem 'elasticsearch-model', git: 'git://github.com/elastic/elasticsearch-rails.gi
 gem 'elasticsearch-rails', git: 'git://github.com/elastic/elasticsearch-rails.git', branch: '5.x'
 gem 'elasticsearch-dsl'
 gem 'awesome_print'
+gem 'loofah', '~>2.3.1'
+gem 'rack', '~>2.0.8'
+gem 'rubyzip', '~>1.3.0'
+gem 'nokogiri', '~>1.10.9'
+gem 'websocket-extensions', '~>0.1.5'
+
+
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -29,7 +29,7 @@
       width: 1.75rem;
       margin-right: 0.5rem;
       border-radius: 3px;
-      object-fit: contain;
+      object-fit: scale-down;
       margin-bottom: 0.5rem;
     }
     .account-dropdown {
@@ -172,6 +172,6 @@
     height: 20px;
     margin-right: 0.5rem;
     border-radius: 3px;
-    object-fit: contain;
+    object-fit: scale-down;
   }
 }

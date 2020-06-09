@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resource :memberships, only:[:create, :destroy]
       resources :messages, only:[:create, :index, :update, :show, :destroy]
       resources :reactions, only:[:create, :destroy]
+      resources :notifications, only:[:create, :show, :destroy]
     end
 
     root "static_pages#root"

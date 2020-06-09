@@ -39,7 +39,7 @@ class ChannelList extends React.Component {
   }
 
   addSocket = (channelName) => {
-    const { alert, match, currentUserId, receiveHighlightedMessage } = this.props;
+    const { alert, match, currentUserId, receiveHighlightedMessage, createNewNotification } = this.props;
     window.App.cable.subscriptions.create(
       {
         channel: 'MessagesChannel',
@@ -52,6 +52,7 @@ class ChannelList extends React.Component {
           if (data.message.channel_id == match.params.channelId) {
             this.receiveMessage(data);
           } else {
+            createNewNotification(data.message.channel_id);
             const icon = data.message.channel_private ? (
               <i className="fas fa-lock"></i>
             ) : (
@@ -273,18 +274,23 @@ const ChannelListItem = (props) => {
       }}
     >
       <div
-        className={`channel-list-link d-flex flex-row align-items-center ${
+        className={`channel-list-link d-flex flex-row align-items-center justify-content-between w-100 ${
           currentChannel && channel.id === currentChannel.id ? 'active' : ''
         }`}
       >
-        {channel.channel_type === 'channel' ? (
-          icon
-        ) : (
-          <>
-            <span className="green mr-1">•</span>
-          </>
+        <div>
+          {channel.channel_type === 'channel' ? (
+            icon
+          ) : (
+            <>
+              <span className="green mr-1">•</span>
+            </>
+          )}
+          {channelName}
+        </div>
+        {channel.notifications && channel.notifications.length > 0 && (
+          <div className="red-notification">{channel.notifications.length}</div>
         )}
-        {channelName}
       </div>
     </Link>
   );

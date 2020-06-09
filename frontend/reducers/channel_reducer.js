@@ -40,13 +40,17 @@ const ChannelsReducer = (oldState = { channels: [], direct_channels: [], current
         newChannels = oldState.channels.slice(0);
         newChannels.splice(oldIndex, 1, action.channel);
         newChannels.sort(channelSortFunc);
-        return { channels: newChannels, direct_channels: oldState.direct_channels, currentChannel: action.channel };
+        return {
+          channels: newChannels,
+          direct_channels: oldState.direct_channels,
+          currentChannel: oldState.currentChannel,
+        };
       } else {
         oldIndex = oldState.direct_channels.map((channel) => channel.id).indexOf(action.channel.id);
         newChannels = oldState.direct_channels.slice(0);
         newChannels.splice(oldIndex, 1, action.channel);
         newChannels.sort(directChannelSortFunc);
-        return { channels: oldState.channels, direct_channels: newChannels, currentChannel: action.channel };
+        return { channels: oldState.channels, direct_channels: newChannels, currentChannel: oldState.currentChannel };
       }
     case RECEIVE__CHANNEL:
       return Object.assign({}, oldState, { currentChannel: action.channel });

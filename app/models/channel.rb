@@ -6,9 +6,14 @@ class Channel < ApplicationRecord
   has_many :members,
     through: :memberships,
     source: :user
+  has_many :notifications
 
   def direct_channel?
     channel_type === "direct"
+  end
+
+  def user_notifications(current_user)
+    self.notifications.select {|notification| notification.channel_id  == self.id && notification.user_id == current_user.id }
   end
 
   # query: String, 

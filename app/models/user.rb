@@ -7,6 +7,7 @@ class User < ApplicationRecord
     through: :memberships,
     source: :channel
   has_many :reactions
+  has_many :notifications
 
 
   after_initialize :ensure_session_token

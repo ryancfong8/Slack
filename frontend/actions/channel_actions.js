@@ -1,4 +1,5 @@
 import * as ChannelAPIUtil from '../util/channel_api_util.js';
+import { createNotification, deleteNotifications } from '../util/notifications_api_util';
 
 export const RECEIVE__CHANNELS = 'GET__CHANNELS';
 export const RECEIVE__DIRECT_CHANNELS = 'RECEIVE__DIRECT_CHANNELS';
@@ -56,7 +57,16 @@ export const createChannel = (channel, member_ids) => (dispatch) => {
 };
 
 export const getCurrentChannel = (id) => (dispatch) => {
-  return ChannelAPIUtil.getCurrentChannel(id).then((channel) => dispatch(receiveChannel(channel)));
+  return ChannelAPIUtil.getCurrentChannel(id).then((channel) => {
+    if (channel.notifications && channel.notifications.length > 0) {
+      return deleteNotifications(channel.id).then((channel) => {
+        dispatch(receiveUpdatedChannel(channel));
+        dispatch(receiveChannel(channel));
+      });
+    }
+    dispatch(receiveUpdatedChannel(channel));
+    dispatch(receiveChannel(channel));
+  });
 };
 
 export const updateChannel = (channel, member_ids) => (dispatch) => {
@@ -65,4 +75,8 @@ export const updateChannel = (channel, member_ids) => (dispatch) => {
 
 export const joinChannel = (membership) => (dispatch) => {
   return ChannelAPIUtil.joinChannel(membership).then((channel) => dispatch(receiveNewChannel(channel)));
+};
+
+export const createNewNotification = (channel_id) => (dispatch) => {
+  return createNotification(channel_id).then((channel) => dispatch(receiveUpdatedChannel(channel)));
 };

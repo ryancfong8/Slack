@@ -4,6 +4,7 @@ import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import { getChannelName } from '../../util/utils';
+import { UserItem } from '../right_sidebar/details';
 
 const MESSAGE__CREATE = 'Message.create';
 const MESSAGE__UPDATE = 'Message.update';
@@ -107,6 +108,23 @@ class MessagesEditor extends Component {
     }
   }
 
+  createSuggestions = () => {
+    const { currentUser, currentChannel } = this.props;
+    return currentChannel.members
+      .filter((member) => member.id !== currentUser.id)
+      .map((member) => {
+        return {
+          text: <UserItem user={member} currentUserId={currentUser.id} />,
+          value: member.username,
+          url: `#/messages/${currentChannel.id}/users/${member.id}`,
+        };
+      });
+  };
+
+  setEditorReference = (ref) => {
+    this.editorReference = ref;
+  };
+
   render() {
     const { editorState } = this.state;
     const { message, setShowEdit, currentChannel, currentUser } = this.props;
@@ -122,6 +140,12 @@ class MessagesEditor extends Component {
           handleKeyCommand={this.handleKeyCommand}
           toolbar={toolbarOptions}
           placeholder={`Message ${getChannelName(currentChannel, currentUser.id)}`}
+          mention={{
+            separator: ' ',
+            trigger: '@',
+            suggestions: this.createSuggestions(),
+          }}
+          editorRef={this.setEditorReference}
         />
         {message && (
           <div className="d-flex flex-row mt-2 mb-2">

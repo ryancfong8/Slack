@@ -324,3 +324,24 @@
     color: #cccccc;
   }
 }
+
+.rdw-suggestion-dropdown {
+  position: fixed;
+  bottom: 100px;
+  width: 50%;
+  background-color: #f8f8f8;
+  border: 1px solid #deddde;
+  left: 30% !important;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.rdw-suggestion-option {
+  border: none;
+}
+
+.rdw-suggestion-option:hover,
+.rdw-suggestion-option-active {
+  background-color: #1064a2;
+  color: #fff;
+}

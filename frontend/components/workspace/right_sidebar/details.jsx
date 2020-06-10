@@ -86,7 +86,12 @@ export const Details = (props) => {
         {modifier === 'members' && (
           <>
             {channel.members.map((member, index) => (
-              <UserItem user={member} currentUserId={currentUserId} key={`${member.id}${index}${member.created_at}`} />
+              <UserItem
+                user={member}
+                currentUserId={currentUserId}
+                key={`${member.id}${index}${member.created_at}`}
+                className="channel-browse-item"
+              />
             ))}
           </>
         )}
@@ -104,10 +109,10 @@ export const Details = (props) => {
   );
 };
 
-const UserItem = (props) => {
-  const { user, currentUserId } = props;
+export const UserItem = (props) => {
+  const { user, currentUserId, className } = props;
   return (
-    <div className="d-flex flex-row align-items-center channel-browse-item">
+    <div className={`d-flex flex-row align-items-center ${className}`}>
       <img className="member-avatar" src={user.avatar_url} />
       <h6 className="list-item-name mb-0 mr-2">
         {user.username} {user.id === currentUserId && <span className="subtitle">(you)</span>}

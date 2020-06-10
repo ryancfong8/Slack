@@ -174,11 +174,12 @@
   .title-tab:hover {
     cursor: pointer;
   }
-  .member-avatar {
-    width: 20px;
-    height: 20px;
-    margin-right: 0.5rem;
-    border-radius: 3px;
-    object-fit: scale-down;
-  }
+}
+
+.member-avatar {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+  border-radius: 3px;
+  object-fit: scale-down;
 }

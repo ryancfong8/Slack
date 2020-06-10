@@ -62,6 +62,7 @@ const MessagesListComponent = (props) => {
             currentUser={currentUser}
             messagesListHeight={messagesListHeight}
             handleEmoji={handleEmoji}
+            setShowHoverButtons={setShowHoverButtons}
           />
         )}
         {showEdit ? (
@@ -116,6 +117,7 @@ const MessagesListComponent = (props) => {
           currentUser={currentUser}
           messagesListHeight={messagesListHeight}
           handleEmoji={handleEmoji}
+          setShowHoverButtons={setShowHoverButtons}
         />
       )}
       <img className="message-avatar" src={message.user.avatar_url} />

@@ -37,8 +37,13 @@ const ChannelsReducer = (oldState = { channels: [], direct_channels: [], current
     case RECEIVE__UPDATED_CHANNEL:
       if (action.channel.channel_type === 'channel') {
         oldIndex = oldState.channels.map((channel) => channel.id).indexOf(action.channel.id);
-        newChannels = oldState.channels.slice(0);
-        newChannels.splice(oldIndex, 1, action.channel);
+        if (oldIndex === -1) {
+          newChannels = oldState.channels.slice(0);
+          newChannels.push(action.channel);
+        } else {
+          newChannels = oldState.channels.slice(0);
+          newChannels.splice(oldIndex, 1, action.channel);
+        }
         newChannels.sort(channelSortFunc);
         return {
           channels: newChannels,
@@ -47,8 +52,13 @@ const ChannelsReducer = (oldState = { channels: [], direct_channels: [], current
         };
       } else {
         oldIndex = oldState.direct_channels.map((channel) => channel.id).indexOf(action.channel.id);
-        newChannels = oldState.direct_channels.slice(0);
-        newChannels.splice(oldIndex, 1, action.channel);
+        if (oldIndex === -1) {
+          newChannels = oldState.direct_channels.slice(0);
+          newChannels.push(action.channel);
+        } else {
+          newChannels = oldState.direct_channels.slice(0);
+          newChannels.splice(oldIndex, 1, action.channel);
+        }
         newChannels.sort(directChannelSortFunc);
         return { channels: oldState.channels, direct_channels: newChannels, currentChannel: oldState.currentChannel };
       }

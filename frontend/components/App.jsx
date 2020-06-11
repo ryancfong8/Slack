@@ -1,6 +1,7 @@
 import React from 'react';
 import GreetingContainer from './home/greeting_container';
 import Plx from 'react-plx';
+import SessionFormContainer from './sessions/session_form_container';
 
 const parallaxDataRight1 = [
   {
@@ -189,7 +190,7 @@ const App = ({ children, location }) => (
             With all of your communication and tools in one place, you will be a superhero no matter where you are.
           </div>
           <div className="d-flex flex-row align-items-center">
-            <button className="btn btn-primary mr-3">Demo as Guest User</button>
+            <SessionFormContainer demoButton />
             <a
               className="btn btn-secondary"
               href="https://github.com/ryancfong8/Slack"
@@ -211,7 +212,12 @@ const App = ({ children, location }) => (
             channels, or direct messages.
           </div>
           <div className="d-flex flex-row align-items-center">
-            <a className="home-page-link" href="https://github.com/ryancfong8/Slack" target="_blank" rel="noopener noreferrer">
+            <a
+              className="home-page-link"
+              href="https://github.com/ryancfong8/Slack"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Learn More
             </a>
           </div>
@@ -284,7 +290,12 @@ const App = ({ children, location }) => (
             conversations.
           </div>
           <div className="d-flex flex-row align-items-center">
-            <a className="home-page-link" href="https://github.com/ryancfong8/Slack" target="_blank" rel="noopener noreferrer">
+            <a
+              className="home-page-link"
+              href="https://github.com/ryancfong8/Slack"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Learn More
             </a>
           </div>
@@ -299,7 +310,12 @@ const App = ({ children, location }) => (
             of emojis to select.
           </div>
           <div className="d-flex flex-row align-items-center">
-            <a className="home-page-link" href="https://github.com/ryancfong8/Slack" target="_blank" rel="noopener noreferrer">
+            <a
+              className="home-page-link"
+              href="https://github.com/ryancfong8/Slack"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Learn More
             </a>
           </div>
@@ -370,7 +386,12 @@ const App = ({ children, location }) => (
             are optional, should you want to keep your identity a secret.
           </div>
           <div className="d-flex flex-row align-items-center">
-            <a className="home-page-link" href="https://github.com/ryancfong8/Slack" target="_blank" rel="noopener noreferrer">
+            <a
+              className="home-page-link"
+              href="https://github.com/ryancfong8/Slack"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Learn More
             </a>
           </div>

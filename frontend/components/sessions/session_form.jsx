@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import { uniqueNamesGenerator, names, colors, animals } from 'unique-names-generator';
 
 import Modal from '../util/modal';
 
@@ -8,6 +9,7 @@ class SessionForm extends React.Component {
     super(props);
     this.state = {
       username: '',
+      name: '',
       password: '',
       modalOpen: false,
       modalType: 'Log In',
@@ -36,7 +38,7 @@ class SessionForm extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
+    if (e) e.preventDefault();
     if (this.state.modalType === 'Log In') {
       this.props.login(this.state);
     } else {
@@ -54,13 +56,16 @@ class SessionForm extends React.Component {
   //  	}
   // }
 
-  openModal(modalType) {
-    this.setState({
-      username: '',
-      password: '',
-      modalOpen: true,
-      modalType,
-    });
+  openModal(modalType, cb = () => {}) {
+    this.setState(
+      {
+        username: '',
+        password: '',
+        modalOpen: true,
+        modalType,
+      },
+      cb
+    );
     this.props.clearErrors();
   }
 
@@ -70,8 +75,24 @@ class SessionForm extends React.Component {
   }
 
   handleLoginGuest(e) {
-    e.preventDefault();
-    this.props.loginGuestUser();
+    if (e) e.preventDefault();
+    const name = uniqueNamesGenerator({
+      dictionaries: [names, names],
+      length: 2,
+      separator: ' ',
+      style: 'capital',
+    });
+    const username = name.toLowerCase().split(' ').join('_');
+    const password = makePassword(8);
+    this.setState(
+      {
+        modalType: 'Sign Up',
+        demo: true,
+      },
+      () => {
+        this.demoLogin(username, name, password);
+      }
+    );
   }
 
   guestUser() {
@@ -130,7 +151,7 @@ class SessionForm extends React.Component {
         {modalType !== 'Log In' && (
           <input
             type="text"
-            value={this.state.full_name}
+            value={this.state.name}
             onChange={this.update('name')}
             className="login-input mb-2 input-width"
             placeholder="Full Name (optional)"
@@ -151,18 +172,77 @@ class SessionForm extends React.Component {
     );
   }
 
+  demoLogin = (usernameArg, nameArg, passwordArg) => {
+    const { username, name, password } = this.state;
+    if (usernameArg.length > username.length) {
+      const idx = username.length;
+      window.setTimeout(() => this.setState({ username: username + usernameArg[idx] }), 100);
+      window.setTimeout(() => this.demoLogin(usernameArg, nameArg, passwordArg), 100);
+    }
+
+    if (usernameArg.length === username.length && nameArg.length > name.length) {
+      const idx = name.length;
+      window.setTimeout(() => this.setState({ name: name + nameArg[idx] }), 100);
+      window.setTimeout(() => this.demoLogin(usernameArg, nameArg, passwordArg), 100);
+    }
+
+    if (
+      passwordArg.length > password.length &&
+      usernameArg.length === username.length &&
+      nameArg.length === name.length
+    ) {
+      const idx = password.length;
+      window.setTimeout(() => this.setState({ password: password + passwordArg[idx] }), 100);
+      window.setTimeout(() => this.demoLogin(usernameArg, nameArg, passwordArg), 100);
+    }
+
+    if (
+      passwordArg.length === password.length &&
+      usernameArg.length === username.length &&
+      nameArg.length === name.length
+    ) {
+      this.handleSubmit();
+    }
+  };
+
   render() {
+    const { demoButton } = this.props;
     const { modalOpen } = this.state;
     return (
       <div className="login">
-        <nav className="login-signup">
-          <button onClick={this.openModal.bind(this, 'Log In')} className="btn login-btn mr-3">
-            Log In
+        {demoButton ? (
+          <button
+            className="btn btn-primary mr-3"
+            onClick={(e) => {
+              this.openModal('Sign Up', () => {
+                this.handleLoginGuest();
+              });
+            }}
+          >
+            Demo as Guest User
           </button>
-          <button onClick={this.openModal.bind(this, 'Sign Up')} className="btn signup-btn">
-            Sign Up
-          </button>
-        </nav>
+        ) : (
+          <nav className="login-signup">
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                this.openModal('Log In');
+              }}
+              className="btn login-btn mr-3"
+            >
+              Log In
+            </button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                this.openModal('Sign Up');
+              }}
+              className="btn signup-btn"
+            >
+              Sign Up
+            </button>
+          </nav>
+        )}
         {modalOpen && (
           <Modal onClose={this.closeModal} body={this.modalForm()} modalSize="modal-md modal-dialog-centered" />
         )}
@@ -172,3 +252,13 @@ class SessionForm extends React.Component {
 }
 
 export default withRouter(SessionForm);
+
+function makePassword(length) {
+  var result = '';
+  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for (var i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}

@@ -1,7 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ChannelList from './channel_list';
-import { createChannel, getDirectChannels, getCurrentChannel, joinChannel } from '../../../../actions/channel_actions';
+import {
+  createChannel,
+  getDirectChannels,
+  getCurrentChannel,
+  joinChannel,
+  createNewNotification,
+} from '../../../../actions/channel_actions';
 import { receiveMessage } from '../../../../actions/message_actions';
 import { getUsers } from '../../../../actions/users_actions';
 
@@ -19,6 +25,7 @@ const mapDispatchToProps = (dispatch) => ({
   getUsers: () => dispatch(getUsers()),
   receiveMessage: (message) => dispatch(receiveMessage(message)),
   joinChannel: (membership) => dispatch(joinChannel(membership)),
+  createNewNotification: (channel_id) => dispatch(createNewNotification(channel_id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChannelList);

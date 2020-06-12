@@ -203,13 +203,17 @@
   }
   .phone,
   .laptop,
-  .desktop {
+  .desktop,
+  .home-phone {
     object-fit: scale-down;
   }
   .phone {
     width: 200px;
     height: 350px;
     transform: translateY(35px) translateX(-30px);
+  }
+  .home-phone {
+    width: 400px;
   }
   .desktop {
     width: 500px;

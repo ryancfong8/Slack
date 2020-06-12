@@ -170,16 +170,6 @@ const App = ({ children, location }) => (
     <GreetingContainer />
     <div className="w-100 h-100 pr-4 pl-4 home-page">
       <div className="mb-5 mt-3 d-flex flex-row align-items-center welcome">
-        <div className="d-flex flex-row mr-3">
-          <img
-            className="desktop"
-            src="https://res.cloudinary.com/ryancfong8/image/upload/v1591250406/shotsnapp-1591250387.203_oirheb.png"
-          />
-          <img
-            className="phone"
-            src="https://res.cloudinary.com/ryancfong8/image/upload/c_fill,h_700,w_350/v1591249378/shotsnapp-1591248733.029_x2npji.png"
-          />
-        </div>
         <div className="d-flex flex-column ml-3">
           <img
             className="app-logo"
@@ -201,10 +191,52 @@ const App = ({ children, location }) => (
             </a>
           </div>
         </div>
+        <div className="d-flex flex-row ml-3">
+          <img
+            className="desktop"
+            src="https://res.cloudinary.com/ryancfong8/image/upload/v1591250406/shotsnapp-1591250387.203_oirheb.png"
+          />
+          <img
+            className="phone"
+            src="https://res.cloudinary.com/ryancfong8/image/upload/c_fill,h_700,w_350/v1591249378/shotsnapp-1591248733.029_x2npji.png"
+          />
+        </div>
       </div>
 
       <div className="d-flex flex-row home-page-section section-1">
-        <div className="d-flex flex-column home-page-text mr-5">
+        <div>
+          <img
+            className="home-phone"
+            src="https://res.cloudinary.com/ryancfong8/image/upload/c_crop,h_1700,w_800/v1591936598/shotsnapp-1591936135.997_expvgs.png"
+          />
+          {/* <div className="home-page-div ca">
+            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataRight4}>
+              <img
+                className="captain-america right-1a"
+                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591068462/Captain-America-PNG-Transparent-Image_fo7bt4.png"
+              />
+            </Plx>
+            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataRight3}>
+              <img
+                className="captain-america right-1b"
+                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591068462/Captain-America-PNG-Transparent-Image_fo7bt4.png"
+              />
+            </Plx>
+            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataRight2}>
+              <img
+                className="captain-america right-1c"
+                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591068462/Captain-America-PNG-Transparent-Image_fo7bt4.png"
+              />
+            </Plx>
+            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataRight1}>
+              <img
+                className="captain-america right-1d"
+                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591068462/Captain-America-PNG-Transparent-Image_fo7bt4.png"
+              />
+            </Plx>
+          </div> */}
+        </div>
+        <div className="d-flex flex-column home-page-text ml-5">
           <h1>Break out of the inbox</h1>
           <div className="mb-3">
             Working in channels gives everyone a shared view of progress and purpose. It also provides an easy and
@@ -223,66 +255,10 @@ const App = ({ children, location }) => (
           </div>
           <div className="flex-1"></div>
         </div>
-        <div>
-          <div className="home-page-div ca">
-            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataRight4}>
-              <img
-                className="captain-america right-1a"
-                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591068462/Captain-America-PNG-Transparent-Image_fo7bt4.png"
-              />
-            </Plx>
-            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataRight3}>
-              <img
-                className="captain-america right-1b"
-                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591068462/Captain-America-PNG-Transparent-Image_fo7bt4.png"
-              />
-            </Plx>
-            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataRight2}>
-              <img
-                className="captain-america right-1c"
-                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591068462/Captain-America-PNG-Transparent-Image_fo7bt4.png"
-              />
-            </Plx>
-            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataRight1}>
-              <img
-                className="captain-america right-1d"
-                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591068462/Captain-America-PNG-Transparent-Image_fo7bt4.png"
-              />
-            </Plx>
-          </div>
-        </div>
       </div>
 
       <div className="d-flex flex-row home-page-section section-2">
-        <div>
-          <div className="home-page-div left-1">
-            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataLeft1}>
-              <img
-                className="iron-man left-1a"
-                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591072362/iron_man_png_ji5ybm.png"
-              />
-            </Plx>
-            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataLeft2}>
-              <img
-                className="iron-man left-1b"
-                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591072362/iron_man_png_ji5ybm.png"
-              />
-            </Plx>
-            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataLeft3}>
-              <img
-                className="iron-man left-1c"
-                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591072362/iron_man_png_ji5ybm.png"
-              />
-            </Plx>
-            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataLeft4}>
-              <img
-                className="iron-man left-1d"
-                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591072362/iron_man_png_ji5ybm.png"
-              />
-            </Plx>
-          </div>
-        </div>
-        <div className="d-flex flex-column ml-5">
+        <div className="d-flex flex-column mr-5">
           <h1>Conversations, organized</h1>
           <div className="mb-3">
             ChatHero makes channels easily searchable. Can't find the right channel? Simply create a new one and add
@@ -300,28 +276,47 @@ const App = ({ children, location }) => (
             </a>
           </div>
         </div>
+        <div>
+          <img
+            className="desktop"
+            src="https://res.cloudinary.com/ryancfong8/image/upload/v1591936889/shotsnapp-1591936720.042_c026zr.png"
+          />
+          {/* <div className="home-page-div left-1">
+            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataLeft1}>
+              <img
+                className="iron-man left-1a"
+                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591072362/iron_man_png_ji5ybm.png"
+              />
+            </Plx>
+            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataLeft2}>
+              <img
+                className="iron-man left-1b"
+                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591072362/iron_man_png_ji5ybm.png"
+              />
+            </Plx>
+            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataLeft3}>
+              <img
+                className="iron-man left-1c"
+                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591072362/iron_man_png_ji5ybm.png"
+              />
+            </Plx>
+            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataLeft4}>
+              <img
+                className="iron-man left-1d"
+                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591072362/iron_man_png_ji5ybm.png"
+              />
+            </Plx>
+          </div> */}
+        </div>
       </div>
 
       <div className="d-flex flex-row home-page-section section-3">
-        <div className="d-flex flex-column mr-5">
-          <h1>Power up your communication</h1>
-          <div className="mb-3">
-            Find the right tools you need to properly format your message. React to anyone's message with a wide range
-            of emojis to select.
-          </div>
-          <div className="d-flex flex-row align-items-center">
-            <a
-              className="home-page-link"
-              href="https://github.com/ryancfong8/Slack"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn More
-            </a>
-          </div>
-        </div>
         <div>
-          <div className="home-page-div ca">
+          <img
+            className="desktop"
+            src="https://res.cloudinary.com/ryancfong8/image/upload/v1591936889/shotsnapp-1591936764.308_h7tmzf.png"
+          />
+          {/* <div className="home-page-div ca">
             <Plx className="MyAwesomeParallax" parallaxData={parallaxDataRight4}>
               <img
                 className="captain-america right-1a"
@@ -346,13 +341,51 @@ const App = ({ children, location }) => (
                 src="https://res.cloudinary.com/ryancfong8/image/upload/v1591079074/spider_man_PNG90_pllizj.png"
               />
             </Plx>
+          </div> */}
+        </div>
+        <div className="d-flex flex-column ml-5">
+          <h1>Power up your communication</h1>
+          <div className="mb-3">
+            Find the right tools you need to properly format your message. React to anyone's message with a wide range
+            of emojis to select.
+          </div>
+          <div className="d-flex flex-row align-items-center">
+            <a
+              className="home-page-link"
+              href="https://github.com/ryancfong8/Slack"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Learn More
+            </a>
           </div>
         </div>
       </div>
 
       <div className="d-flex flex-row home-page-section section-4">
+        <div className="d-flex flex-column mr-5">
+          <h1>Customize your superhero appearance</h1>
+          <div className="mb-3">
+            Choose a superhero username and upload your profile picture to make you stand out from the rest. Full names
+            are optional, should you want to keep your identity a secret.
+          </div>
+          <div className="d-flex flex-row align-items-center">
+            <a
+              className="home-page-link"
+              href="https://github.com/ryancfong8/Slack"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Learn More
+            </a>
+          </div>
+        </div>
         <div>
-          <div className="home-page-div left-1">
+          <img
+            className="home-phone"
+            src="https://res.cloudinary.com/ryancfong8/image/upload/v1591936598/shotsnapp-1591936109.481_p0ptf1.png"
+          />
+          {/* <div className="home-page-div left-1">
             <Plx className="MyAwesomeParallax" parallaxData={parallaxDataLeft1}>
               <img
                 className="iron-man left-1a"
@@ -377,24 +410,7 @@ const App = ({ children, location }) => (
                 src="https://res.cloudinary.com/ryancfong8/image/upload/v1591072362/captain_marvel_png_vsirqo.png"
               />
             </Plx>
-          </div>
-        </div>
-        <div className="d-flex flex-column ml-5">
-          <h1>Customize your superhero appearance</h1>
-          <div className="mb-3">
-            Choose a superhero username and upload your profile picture to make you stand out from the rest. Full names
-            are optional, should you want to keep your identity a secret.
-          </div>
-          <div className="d-flex flex-row align-items-center">
-            <a
-              className="home-page-link"
-              href="https://github.com/ryancfong8/Slack"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn More
-            </a>
-          </div>
+          </div> */}
         </div>
       </div>
       {/* <div className="d-flex flex-row home-page-section section-5">

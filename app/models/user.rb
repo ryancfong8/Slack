@@ -13,6 +13,13 @@ class User < ApplicationRecord
   after_initialize :ensure_session_token
 
   after_create_commit :add_channel_memberships
+ 
+  after_save :reindex
+
+  def reindex
+    messages = Message.where(user_id: self.id)
+    messages.each { |message| message.__elasticsearch__.index_document } 
+  end
 
   attr_reader :password
 

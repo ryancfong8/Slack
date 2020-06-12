@@ -1,6 +1,8 @@
 class Message < ApplicationRecord
   validates :user_id, :channel_id, presence: true
   after_commit { MessageRelayJob.perform_later(self, self.channel) }
+  after_save :reindex
+
 #   after_create_commit { MessageBroadcastJob.perform_later(self, self.channel) }
 
 #   validate :ensure_body
@@ -61,4 +63,8 @@ class Message < ApplicationRecord
   def channel_members
     self.channel.members.map { |member| member.id }
   end
+
+  def reindex
+    __elasticsearch__.index_document
+  end 
 end

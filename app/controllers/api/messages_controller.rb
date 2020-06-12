@@ -90,7 +90,6 @@ class Api::MessagesController < ApplicationController
 #     }
 # }
       @aggregations = response.aggregations
-      ap response.aggregations
       @messages = response.results
     else
       # check if user has access to channel

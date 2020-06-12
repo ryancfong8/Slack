@@ -106,7 +106,8 @@
 
   .home-page-section {
     z-index: 2;
-    height: calc(100vh - 300px);
+    // height: calc(100vh - 300px);
+    height: 600px;
     // width: 60%;
     padding: 2rem;
     align-items: center;
@@ -120,59 +121,67 @@
   }
 
   .home-page-div {
-    position: relative;
+    position: absolute;
     display: flex;
     flex-direction: row;
-    .right-1a {
-      width: 300px;
-      height: 300px;
-      object-fit: scale-down;
-      transform: translateX(15%);
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 5rem;
+    &.parallax-top {
+      bottom: 110%;
     }
-    .right-1b {
-      width: 100px;
-      height: 300px;
+    &.parallax-bottom {
+      top: 110%;
+    }
+    .right-4 {
+      width: 200px;
+      height: 200px;
+      object-fit: scale-down;
+    }
+    .right-3 {
+      width: 88px;
+      height: 200px;
       object-fit: scale-down;
       opacity: 0.5;
-      transform: translateY(-10%) translateX(-15%);
+      transform: translateY(-10%) translateX(-10%);
     }
-    .right-1c {
+    .right-2 {
       width: 65px;
-      height: 300px;
+      height: 200px;
       object-fit: scale-down;
       opacity: 0.3;
-      transform: translateY(-15%) translateX(-30%);
+      transform: translateY(-15%) translateX(-20%);
     }
-    .right-1d {
+    .right-1 {
       width: 50px;
-      height: 300px;
+      height: 200px;
       object-fit: scale-down;
       opacity: 0.2;
-      transform: translateY(-20%) translateX(-40%);
+      transform: translateY(-20%) translateX(-30%);
     }
-    .left-1d {
-      width: 300px;
-      height: 300px;
+    .left-4 {
+      width: 200px;
+      height: 200px;
       object-fit: scale-down;
       transform: translateX(-20%);
     }
-    .left-1c {
-      width: 100px;
-      height: 300px;
+    .left-3 {
+      width: 88px;
+      height: 200px;
       object-fit: scale-down;
       opacity: 0.5;
       transform: translateY(10%) translateX(-15%);
     }
-    .left-1b {
+    .left-2 {
       width: 65px;
-      height: 300px;
+      height: 200px;
       object-fit: scale-down;
       opacity: 0.3;
       transform: translateY(15%) translateX(-30%);
     }
-    .left-1a {
+    .left-1 {
       width: 50px;
-      height: 300px;
+      height: 200px;
       object-fit: scale-down;
       opacity: 0.2;
       transform: translateY(20%) translateX(-40%);
@@ -221,5 +230,8 @@
   .slogan {
     font-size: 24px;
     font-weight: bold;
+  }
+  .home-page-text {
+    position: relative;
   }
 }

@@ -1,174 +1,19 @@
 import React from 'react';
-import GreetingContainer from './home/greeting_container';
 import Plx from 'react-plx';
+import GreetingContainer from './home/greeting_container';
 import SessionFormContainer from './sessions/session_form_container';
-
-const parallaxDataRight1 = [
-  {
-    start: 'self',
-    startOffset: 100,
-    duration: 50,
-    properties: [
-      {
-        startValue: 50,
-        endValue: 0,
-        property: 'translateX',
-        unit: '%',
-      },
-      {
-        startValue: 0,
-        endValue: 0.2,
-        property: 'opacity',
-      },
-    ],
-  },
-];
-const parallaxDataRight2 = [
-  {
-    start: 'self',
-    startOffset: 200,
-    duration: 50,
-    properties: [
-      {
-        startValue: 50,
-        endValue: 0,
-        property: 'translateX',
-        unit: '%',
-      },
-      {
-        startValue: 0,
-        endValue: 0.3,
-        property: 'opacity',
-      },
-    ],
-  },
-];
-const parallaxDataRight3 = [
-  {
-    start: 'self',
-    startOffset: 300,
-    duration: 50,
-    properties: [
-      {
-        startValue: 50,
-        endValue: 0,
-        property: 'translateX',
-        unit: '%',
-      },
-      {
-        startValue: 0,
-        endValue: 0.5,
-        property: 'opacity',
-      },
-    ],
-  },
-];
-const parallaxDataRight4 = [
-  {
-    start: 'self',
-    startOffset: 400,
-    duration: 50,
-    properties: [
-      {
-        startValue: 50,
-        endValue: 0,
-        property: 'translateX',
-        unit: '%',
-      },
-      {
-        startValue: 0,
-        endValue: 1,
-        property: 'opacity',
-      },
-    ],
-  },
-];
-
-const parallaxDataLeft1 = [
-  {
-    start: 'self',
-    startOffset: 100,
-    duration: 50,
-    properties: [
-      {
-        startValue: -50,
-        endValue: 0,
-        property: 'translateX',
-        unit: '%',
-      },
-      {
-        startValue: 0,
-        endValue: 0.2,
-        property: 'opacity',
-      },
-    ],
-  },
-];
-const parallaxDataLeft2 = [
-  {
-    start: 'self',
-    startOffset: 200,
-    duration: 50,
-    properties: [
-      {
-        startValue: -50,
-        endValue: 0,
-        property: 'translateX',
-        unit: '%',
-      },
-      {
-        startValue: 0,
-        endValue: 0.3,
-        property: 'opacity',
-      },
-    ],
-  },
-];
-const parallaxDataLeft3 = [
-  {
-    start: 'self',
-    startOffset: 300,
-    duration: 50,
-    properties: [
-      {
-        startValue: -50,
-        endValue: 0,
-        property: 'translateX',
-        unit: '%',
-      },
-      {
-        startValue: 0,
-        endValue: 0.5,
-        property: 'opacity',
-      },
-    ],
-  },
-];
-const parallaxDataLeft4 = [
-  {
-    start: 'self',
-    startOffset: 400,
-    duration: 50,
-    properties: [
-      {
-        startValue: -50,
-        endValue: 0,
-        property: 'translateX',
-        unit: '%',
-      },
-      {
-        startValue: 0,
-        endValue: 1,
-        property: 'opacity',
-      },
-    ],
-  },
-];
+import {
+  makeParallaxHomeSection,
+  parallaxDataRight1,
+  parallaxDataRight2,
+  parallaxDataRight3,
+  parallaxDataRight4,
+} from '../util/parallax_util.jsx';
 
 const App = ({ children, location }) => (
   <>
     <GreetingContainer />
-    <div className="w-100 h-100 pr-4 pl-4 home-page">
+    <div className="w-100 h-100 pr-5 pl-5 home-page">
       <div className="mb-5 mt-3 d-flex flex-row align-items-center welcome">
         <div className="d-flex flex-column ml-3">
           <img
@@ -209,34 +54,35 @@ const App = ({ children, location }) => (
             className="home-phone"
             src="https://res.cloudinary.com/ryancfong8/image/upload/c_crop,h_1700,w_800/v1591936598/shotsnapp-1591936135.997_expvgs.png"
           />
-          {/* <div className="home-page-div ca">
+        </div>
+        <div className="d-flex flex-column home-page-text ml-5">
+          <div className="home-page-div parallax-top">
             <Plx className="MyAwesomeParallax" parallaxData={parallaxDataRight4}>
               <img
-                className="captain-america right-1a"
+                className="captain-america right-4"
                 src="https://res.cloudinary.com/ryancfong8/image/upload/v1591068462/Captain-America-PNG-Transparent-Image_fo7bt4.png"
               />
             </Plx>
             <Plx className="MyAwesomeParallax" parallaxData={parallaxDataRight3}>
               <img
-                className="captain-america right-1b"
+                className="captain-america right-3"
                 src="https://res.cloudinary.com/ryancfong8/image/upload/v1591068462/Captain-America-PNG-Transparent-Image_fo7bt4.png"
               />
             </Plx>
             <Plx className="MyAwesomeParallax" parallaxData={parallaxDataRight2}>
               <img
-                className="captain-america right-1c"
+                className="captain-america right-2"
                 src="https://res.cloudinary.com/ryancfong8/image/upload/v1591068462/Captain-America-PNG-Transparent-Image_fo7bt4.png"
               />
             </Plx>
             <Plx className="MyAwesomeParallax" parallaxData={parallaxDataRight1}>
               <img
-                className="captain-america right-1d"
+                className="captain-america right-1"
                 src="https://res.cloudinary.com/ryancfong8/image/upload/v1591068462/Captain-America-PNG-Transparent-Image_fo7bt4.png"
               />
             </Plx>
-          </div> */}
-        </div>
-        <div className="d-flex flex-column home-page-text ml-5">
+          </div>
+
           <h1>Break out of the inbox</h1>
           <div className="mb-3">
             Working in channels gives everyone a shared view of progress and purpose. It also provides an easy and
@@ -253,12 +99,21 @@ const App = ({ children, location }) => (
               Learn More
             </a>
           </div>
-          <div className="flex-1"></div>
+          {makeParallaxHomeSection({
+            direction: 'left',
+            level: 'bottom',
+            imgUrl: 'https://res.cloudinary.com/ryancfong8/image/upload/v1591072362/iron_man_png_ji5ybm.png',
+          })}
         </div>
       </div>
 
       <div className="d-flex flex-row home-page-section section-2">
-        <div className="d-flex flex-column mr-5">
+        <div className="d-flex flex-column home-page-text mr-5">
+          {makeParallaxHomeSection({
+            direction: 'left',
+            level: 'top',
+            imgUrl: 'https://res.cloudinary.com/ryancfong8/image/upload/v1591946048/clipart1695912_zv07mn.png',
+          })}
           <h1>Conversations, organized</h1>
           <div className="mb-3">
             ChatHero makes channels easily searchable. Can't find the right channel? Simply create a new one and add
@@ -275,38 +130,17 @@ const App = ({ children, location }) => (
               Learn More
             </a>
           </div>
+          {makeParallaxHomeSection({
+            direction: 'right',
+            level: 'bottom',
+            imgUrl: 'https://res.cloudinary.com/ryancfong8/image/upload/v1591946048/pngwave_dglnpi.png',
+          })}
         </div>
         <div>
           <img
             className="desktop"
             src="https://res.cloudinary.com/ryancfong8/image/upload/v1591936889/shotsnapp-1591936720.042_c026zr.png"
           />
-          {/* <div className="home-page-div left-1">
-            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataLeft1}>
-              <img
-                className="iron-man left-1a"
-                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591072362/iron_man_png_ji5ybm.png"
-              />
-            </Plx>
-            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataLeft2}>
-              <img
-                className="iron-man left-1b"
-                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591072362/iron_man_png_ji5ybm.png"
-              />
-            </Plx>
-            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataLeft3}>
-              <img
-                className="iron-man left-1c"
-                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591072362/iron_man_png_ji5ybm.png"
-              />
-            </Plx>
-            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataLeft4}>
-              <img
-                className="iron-man left-1d"
-                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591072362/iron_man_png_ji5ybm.png"
-              />
-            </Plx>
-          </div> */}
         </div>
       </div>
 
@@ -316,34 +150,13 @@ const App = ({ children, location }) => (
             className="desktop"
             src="https://res.cloudinary.com/ryancfong8/image/upload/v1591936889/shotsnapp-1591936764.308_h7tmzf.png"
           />
-          {/* <div className="home-page-div ca">
-            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataRight4}>
-              <img
-                className="captain-america right-1a"
-                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591079074/spider_man_PNG90_pllizj.png"
-              />
-            </Plx>
-            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataRight3}>
-              <img
-                className="captain-america right-1b"
-                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591079074/spider_man_PNG90_pllizj.png"
-              />
-            </Plx>
-            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataRight2}>
-              <img
-                className="captain-america right-1c"
-                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591079074/spider_man_PNG90_pllizj.png"
-              />
-            </Plx>
-            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataRight1}>
-              <img
-                className="captain-america right-1d"
-                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591079074/spider_man_PNG90_pllizj.png"
-              />
-            </Plx>
-          </div> */}
         </div>
-        <div className="d-flex flex-column ml-5">
+        <div className="d-flex flex-column home-page-text ml-5">
+          {makeParallaxHomeSection({
+            direction: 'right',
+            level: 'top',
+            imgUrl: 'https://res.cloudinary.com/ryancfong8/image/upload/v1591079074/spider_man_PNG90_pllizj.png',
+          })}
           <h1>Power up your communication</h1>
           <div className="mb-3">
             Find the right tools you need to properly format your message. React to anyone's message with a wide range
@@ -359,11 +172,21 @@ const App = ({ children, location }) => (
               Learn More
             </a>
           </div>
+          {makeParallaxHomeSection({
+            direction: 'left',
+            level: 'bottom',
+            imgUrl: 'https://res.cloudinary.com/ryancfong8/image/upload/v1591948027/clipart1695108_rczenl.png',
+          })}
         </div>
       </div>
 
-      <div className="d-flex flex-row home-page-section section-4">
-        <div className="d-flex flex-column mr-5">
+      <div className="d-flex flex-row home-page-section section-4 mb-5">
+        <div className="d-flex flex-column home-page-text mr-5">
+          {makeParallaxHomeSection({
+            direction: 'left',
+            level: 'top',
+            imgUrl: 'https://res.cloudinary.com/ryancfong8/image/upload/v1591072362/captain_marvel_png_vsirqo.png',
+          })}
           <h1>Customize your superhero appearance</h1>
           <div className="mb-3">
             Choose a superhero username and upload your profile picture to make you stand out from the rest. Full names
@@ -379,86 +202,19 @@ const App = ({ children, location }) => (
               Learn More
             </a>
           </div>
+          {makeParallaxHomeSection({
+            direction: 'right',
+            level: 'bottom',
+            imgUrl: 'https://res.cloudinary.com/ryancfong8/image/upload/v1591948767/Hulk_png_vzmhlh.png',
+          })}
         </div>
         <div>
           <img
             className="home-phone"
             src="https://res.cloudinary.com/ryancfong8/image/upload/v1591936598/shotsnapp-1591936109.481_p0ptf1.png"
           />
-          {/* <div className="home-page-div left-1">
-            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataLeft1}>
-              <img
-                className="iron-man left-1a"
-                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591072362/captain_marvel_png_vsirqo.png"
-              />
-            </Plx>
-            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataLeft2}>
-              <img
-                className="iron-man left-1b"
-                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591072362/captain_marvel_png_vsirqo.png"
-              />
-            </Plx>
-            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataLeft3}>
-              <img
-                className="iron-man left-1c"
-                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591072362/captain_marvel_png_vsirqo.png"
-              />
-            </Plx>
-            <Plx className="MyAwesomeParallax" parallaxData={parallaxDataLeft4}>
-              <img
-                className="iron-man left-1d"
-                src="https://res.cloudinary.com/ryancfong8/image/upload/v1591072362/captain_marvel_png_vsirqo.png"
-              />
-            </Plx>
-          </div> */}
         </div>
       </div>
-      {/* <div className="d-flex flex-row home-page-section section-5">
-      <div className="section-5-header" />
-      <div className="d-flex flex-column">
-        <h3>ChatHero brings your team of heroes together, wherever you are</h3>
-        <div className="mb-3">
-          With all of your communication and tools in one place, remote teams will stay productive no matter where
-          you're working from.
-        </div>
-        <div className="d-flex flex-row align-items-center">
-          <button className="btn btn-primary mr-1">Demo as Guest User</button>
-          <button className="btn btn-secondary">Learn More</button>
-        </div>
-      </div>
-      <div className="section-5-footer" />
-    </div>
-    <div className="d-flex flex-row home-page-section section-6">
-      <div className="section-6-header" />
-      <div className="d-flex flex-column">
-        <h3>ChatHero brings your team of heroes together, wherever you are</h3>
-        <div className="mb-3">
-          With all of your communication and tools in one place, remote teams will stay productive no matter where
-          you're working from.
-        </div>
-        <div className="d-flex flex-row align-items-center">
-          <button className="btn btn-primary mr-1">Demo as Guest User</button>
-          <button className="btn btn-secondary">Learn More</button>
-        </div>
-      </div>
-      <div className="section-6-footer" />
-    </div>
-    <div className="d-flex flex-row home-page-section section-7">
-      <div className="section-7-header" />
-      <div className="d-flex flex-column">
-        <h3>ChatHero brings your team of heroes together, wherever you are</h3>
-        <div className="mb-3">
-          With all of your communication and tools in one place, remote teams will stay productive no matter where
-          you're working from.
-        </div>
-        <div className="d-flex flex-row align-items-center">
-          <button className="btn btn-primary mr-1">Demo as Guest User</button>
-          <button className="btn btn-secondary">Learn More</button>
-        </div>
-      </div>
-      <div className="section-7-footer" />
-    </div>
-    <div className="footer"></div> */}
       <div className="footer w-100 d-flex flex-column align-items-center justify-content-center">
         <img
           className="footer-logo"

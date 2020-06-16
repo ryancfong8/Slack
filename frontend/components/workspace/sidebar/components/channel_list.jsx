@@ -150,6 +150,7 @@ class ChannelList extends React.Component {
       history,
       toggleMobileSidebar,
       joinChannel,
+      width,
     } = this.props;
     const { showForm } = this.state;
     let currentForm;
@@ -199,7 +200,7 @@ class ChannelList extends React.Component {
         <div className="heading d-flex flex-row justify-content-between">
           <span>{channelType === 'channel' ? 'Channels' : 'Direct Messages'}</span>
           {channelType === 'channel' ? (
-            <AddChannelButton channelType={channelType} setModal={this.setModal} />
+            <AddChannelButton channelType={channelType} setModal={this.setModal} width={width} />
           ) : (
             <div>
               <i
@@ -231,9 +232,9 @@ class ChannelList extends React.Component {
 }
 
 const AddChannelButton = (props) => {
-  const { setModal } = props;
+  const { setModal, width } = props;
   return (
-    <div className="dropdown">
+    <div className={`dropdown ${width < 576 && 'dropleft'}`}>
       <i className="fa fa-plus-circle add-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
       <div className="dropdown-menu">
         <a

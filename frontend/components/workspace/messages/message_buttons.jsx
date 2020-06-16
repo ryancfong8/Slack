@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { EmojiModal } from './emoji_modal';
 
 const MessageButtons = (props) => {
-  const { setShowEdit, message, deleteMessage, currentUser, handleEmoji, setShowHoverButtons } = props;
+  const { setShowEdit, message, deleteMessage, currentUser, handleEmoji, setShowHoverButtons, width } = props;
 
   const [openEmojiMenu, setOpenEmojiMenu] = useState(false);
   const [bounding, setBounding] = useState({});
@@ -68,6 +68,7 @@ const MessageButtons = (props) => {
         openEmojiMenu={openEmojiMenu}
         closeEmojiMenu={closeEmojiMenu}
         onEmojiSelect={onEmojiSelect}
+        width={width}
       />
       {currentUser.id === message.user.id && (
         <button className="btn btn-sm" onClick={onEditClick}>

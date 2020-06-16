@@ -114,6 +114,7 @@ class Workspace extends React.Component {
             match={match}
             receiveHighlightedMessage={receiveHighlightedMessage}
             toggleMobileSidebar={this.toggleMobileSidebar}
+            width={width}
           />
           <MessagesContainer
             className={`${showMobile ? (showComponent === 'messages' ? '' : 'd-none') : ''}`}

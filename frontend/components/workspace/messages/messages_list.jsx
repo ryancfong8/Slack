@@ -60,6 +60,7 @@ class MessagesList extends React.Component {
       createReaction,
       deleteReaction,
       messageHighlight,
+      width,
     } = this.props;
     const { messagesListHeight } = this.state;
     if (!messages.length)
@@ -107,6 +108,7 @@ class MessagesList extends React.Component {
                     this.messageHighlight = el;
                   }}
                   messageClassName="message-highlight"
+                  width={width}
                 />
               );
             }
@@ -123,6 +125,7 @@ class MessagesList extends React.Component {
                 messagesListHeight={messagesListHeight}
                 createReaction={createReaction}
                 deleteReaction={deleteReaction}
+                width={width}
               />
             );
           }

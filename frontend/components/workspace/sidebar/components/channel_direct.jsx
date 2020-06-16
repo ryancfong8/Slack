@@ -121,6 +121,7 @@ const UsersListResultItem = (props) => {
         setSelected(selected.concat([user]));
       }}
     >
+      <img className="member-avatar" src={user.avatar_url} />
       <h6 className="list-item-name mb-0 mr-2">
         {user.username} {user.id === currentUserId && <span className="subtitle">(you)</span>}
       </h6>

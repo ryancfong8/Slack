@@ -4,7 +4,7 @@ import ChannelListContainer from './components/channel_list_container';
 import DirectListContainer from './components/direct_list_container';
 
 const Sidebar = (props) => {
-  const { currentChannel, history, match, receiveHighlightedMessage, className, toggleMobileSidebar } = props;
+  const { currentChannel, history, match, receiveHighlightedMessage, className, toggleMobileSidebar, width } = props;
   return (
     <div className={`sidebar ${className}`}>
       <AccountContainer />
@@ -14,6 +14,7 @@ const Sidebar = (props) => {
         match={match}
         receiveHighlightedMessage={receiveHighlightedMessage}
         toggleMobileSidebar={toggleMobileSidebar}
+        width={width}
       />
       <DirectListContainer
         currentChannel={currentChannel}
@@ -21,6 +22,7 @@ const Sidebar = (props) => {
         match={match}
         receiveHighlightedMessage={receiveHighlightedMessage}
         toggleMobileSidebar={toggleMobileSidebar}
+        width={width}
       />
     </div>
   );

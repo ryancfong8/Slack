@@ -84,6 +84,7 @@ class MessagesPage extends React.Component {
           currentUser={currentUser}
           messageHighlight={messageHighlight}
           removeHighlightedMessage={removeHighlightedMessage}
+          width={width}
         />
         <MessagesInput createMessage={createMessage} currentChannel={currentChannel} currentUser={currentUser} />
       </div>

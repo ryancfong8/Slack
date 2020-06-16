@@ -22,6 +22,7 @@ const MessagesListComponent = (props) => {
     deleteReaction,
     messageClassName,
     refMessage,
+    width,
   } = props;
   const className = `${messageClassName || ''} messages-list-component ${
     showUserInfo ? 'd-flex flex-row' : 'no-avatar'
@@ -63,6 +64,7 @@ const MessagesListComponent = (props) => {
             messagesListHeight={messagesListHeight}
             handleEmoji={handleEmoji}
             setShowHoverButtons={setShowHoverButtons}
+            width={width}
           />
         )}
         {showEdit ? (
@@ -118,6 +120,7 @@ const MessagesListComponent = (props) => {
           messagesListHeight={messagesListHeight}
           handleEmoji={handleEmoji}
           setShowHoverButtons={setShowHoverButtons}
+          width={width}
         />
       )}
       <img className="message-avatar" src={message.user.avatar_url} />

@@ -1,13 +1,13 @@
 GIT
-  remote: git://github.com/elastic/elasticsearch-rails.git
-  revision: bfdd2243f0de298547b2dc199e9a671cf72ccde6
-  branch: 5.x
+  remote: https://github.com/elastic/elasticsearch-rails.git
+  revision: e0d46a864db2d1287afee1d88280a838df261bcb
+  branch: master
   specs:
-    elasticsearch-model (5.1.0)
+    elasticsearch-model (7.1.0)
       activesupport (> 3)
-      elasticsearch (~> 5)
+      elasticsearch (> 1)
       hashie
-    elasticsearch-rails (5.1.0)
+    elasticsearch-rails (7.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -67,9 +67,9 @@ GEM
     bindex (0.8.1)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
-    bonsai-elasticsearch-rails (5.0.0)
-      elasticsearch-model (~> 5)
-      elasticsearch-rails (~> 5)
+    bonsai-elasticsearch-rails (7.0.1)
+      elasticsearch-model (< 8)
+      elasticsearch-rails (< 8)
     bootstrap (4.0.0)
       autoprefixer-rails (>= 6.0.3)
       popper_js (>= 1.12.9, < 2)
@@ -101,14 +101,14 @@ GEM
     debug_inspector (0.0.3)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    elasticsearch (5.0.5)
-      elasticsearch-api (= 5.0.5)
-      elasticsearch-transport (= 5.0.5)
-    elasticsearch-api (5.0.5)
+    elasticsearch (7.7.0)
+      elasticsearch-api (= 7.7.0)
+      elasticsearch-transport (= 7.7.0)
+    elasticsearch-api (7.7.0)
       multi_json
     elasticsearch-dsl (0.1.9)
-    elasticsearch-transport (5.0.5)
-      faraday
+    elasticsearch-transport (7.7.0)
+      faraday (~> 1)
       multi_json
     erubi (1.9.0)
     execjs (2.7.0)
@@ -260,7 +260,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   better_errors
   binding_of_caller
-  bonsai-elasticsearch-rails (~> 5)
+  bonsai-elasticsearch-rails (~> 7)
   bootstrap (~> 4.0.0)
   byebug
   capybara (~> 2.13)

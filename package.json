@@ -44,7 +44,7 @@
     "yup": "^0.28.3"
   },
   "scripts": {
-    "postinstall": "webpack --watch --mode=development",
+    "postinstall": "webpack",
     "webpack": "webpack --watch --mode=development"
   },
   "devDependencies": {

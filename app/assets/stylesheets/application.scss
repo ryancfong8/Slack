@@ -38,6 +38,10 @@ $indigo: #611f69;
 @import './api/messages.scss';
 @import './api/forms.scss';
 
+@-ms-viewport {
+  width: device-width;
+}
+
 html {
   height: 100%;
 }

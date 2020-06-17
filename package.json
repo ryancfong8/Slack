@@ -19,7 +19,7 @@
     "immutable": "^4.0.0-rc.12",
     "jquery": "^3.5.0",
     "lodash": "^4.17.11",
-    "minimist": "0.2.1",
+    "minimist": "1.2.3",
     "moment": "^2.24.0",
     "react": "^16.8.1",
     "react-alert": "^7.0.1",

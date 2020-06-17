@@ -41,7 +41,7 @@ gem 'rack', '~>2.0.8'
 gem 'rubyzip', '~>1.3.0'
 gem 'nokogiri', '~>1.10.9'
 gem 'websocket-extensions', '~>0.1.5'
-gem 'bonsai-elasticsearch-rails'
+gem 'bonsai-elasticsearch-rails', '~> 5'
 
 
 

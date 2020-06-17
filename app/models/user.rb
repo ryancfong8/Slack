@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
-  after_create_commit :add_channel_memberships
+  # after_create_commit :add_channel_memberships
  
   after_save :reindex
 

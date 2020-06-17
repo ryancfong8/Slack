@@ -8,6 +8,11 @@
 
 Message.__elasticsearch__.create_index!(force: true)
 
+Channel.create!([
+  {name: "general", channel_type: "channel", "description": "The #general channel is for team-wide communication and announcements. All team members are in this channel.", channel_private: false},
+  {name: "random", channel_type: "channel", "description": "A place for non-work banter, links, articles of interest, humor or anything else which you'd like concentrated in some place other than work-related channels.", channel_private: false}
+])
+
 User.create!([
     {
         name: "Ryan Fong",
@@ -139,11 +144,6 @@ User.create!([
     },
 ])
 
-Channel.create!([
-  {name: "general", channel_type: "channel", "description": "The #general channel is for team-wide communication and announcements. All team members are in this channel.", channel_private: false},
-  {name: "random", channel_type: "channel", "description": "A place for non-work banter, links, articles of interest, humor or anything else which you'd like concentrated in some place other than work-related channels.", channel_private: false} ,
-])
-
 Membership.create!([
     {
         user_id: 1,
@@ -155,11 +155,11 @@ Membership.create!([
     },
     {
         user_id: 1,
-        channel_id: 3
+        channel_id: 1
     },
     {
         user_id: 2,
-        channel_id: 3
+        channel_id: 1
     },
     {
         user_id: 3,

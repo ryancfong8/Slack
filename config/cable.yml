@@ -6,5 +6,4 @@ test:
 
 production:
   adapter: redis
-  url: redis://localhost:6379/1
-  channel_prefix: Slack_production
+  url: redis://redistogo:f9a4c4e24997954b4247101aca07a53b@pike.redistogo.com:11368/

@@ -22,15 +22,17 @@ class ChannelList extends React.Component {
   componentDidMount() {
     const { getChannels } = this.props;
     getChannels();
-    this.setSockets();
   }
 
   componentDidUpdate(prevProps) {
     const { getChannels, channelType, currentUserId, channels, currentChannel, match } = this.props;
-    // if (channels.length !== prevProps.channels.length || prevProps.match.params.channelId !== match.params.channelId) {
-    if (channels.length !== prevProps.channels.length || prevProps.match.params.channelId !== match.params.channelId) {
-      // getChannels().then(() => this.setSockets());
+    if (prevProps.channels.length === 0 && channels.length > 0) {
       this.setSockets();
+    }
+    // if (channels.length !== prevProps.channels.length || prevProps.match.params.channelId !== match.params.channelId) {
+    if (prevProps.match.params.channelId !== match.params.channelId) {
+      // getChannels().then(() => this.setSockets());
+      this.updateSockets(prevProps.match.params.channelId, match.params.channelId);
     }
   }
 
@@ -99,7 +101,7 @@ class ChannelList extends React.Component {
   };
 
   setSockets = () => {
-    const { channels, channelType } = this.props;
+    let { channels, channelType } = this.props;
     if (channels.length > 0) {
       window.App.cable.subscriptions.subscriptions.forEach((sub) => {
         // only remove subs that are channels from props
@@ -117,6 +119,26 @@ class ChannelList extends React.Component {
         this.addSocket(`${channel.channel_type}_${channel.id}`);
       });
     }
+  };
+
+  updateSockets = async (prevChannelId, currentChannelId) => {
+    const { channelType, channels } = this.props;
+    await window.App.cable.subscriptions.subscriptions.forEach(async (sub) => {
+      // only remove subs that are channels from props
+      const channel_name = JSON.parse(sub.identifier).channel_name;
+      const prevSub = channel_name === `${channelType}_${prevChannelId}` ? sub : null;
+      const currentSub = channel_name === `${channelType}_${currentChannelId}` ? sub : null;
+      if (prevSub) {
+        await this.removeSocket(sub);
+      } else if (currentSub) {
+        await this.removeSocket(sub);
+      }
+    });
+    channels.forEach((channel) => {
+      if ([prevChannelId, currentChannelId].includes(channel.id.toString())) {
+        this.addSocket(`${channel.channel_type}_${channel.id}`);
+      }
+    });
   };
 
   receiveMessage = (data) => {

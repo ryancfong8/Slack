@@ -12,7 +12,9 @@ import { receiveMessage } from '../../../../actions/message_actions';
 import { getUsers } from '../../../../actions/users_actions';
 
 const mapStateToProps = (state) => ({
-  channels: state.channels.direct_channels,
+  channels: state.channels.direct_channels.filter((channel) =>
+    channel.members.find((member) => member.id === state.session.currentUser.id)
+  ),
   channelType: 'direct',
   currentUserId: state.session.currentUser && state.session.currentUser.id,
   users: state.users,

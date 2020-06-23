@@ -1,11 +1,40 @@
 import React from 'react';
 import { transitions, positions, Provider as AlertProvider, useAlert } from 'react-alert';
-import AlertTemplate from 'react-alert-template-basic';
+// import AlertTemplate from 'react-alert-template-basic';
 import Sidebar from './sidebar/sidebar';
 import MessagesContainer from './messages/messages_container';
 import { Details } from './right_sidebar/details';
 import { Switch, Route } from 'react-router-dom';
 import UserPage from './right_sidebar/user_page';
+
+const AlertTemplate = ({ style, options, message, close }) => (
+  <div style={style} className="alert-template">
+    {options.type === 'info' && (
+      <img
+        className="img-alert"
+        src="https://res.cloudinary.com/ryancfong8/image/upload/v1591162347/profile_mxbbxt.png"
+      />
+    )}
+    {message}
+    <button className="close-btn" onClick={close}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#666666"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{ 'margin-right': 0, 'min-width': '24px' }}
+      >
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+);
 
 class Workspace extends React.Component {
   constructor(props) {
@@ -93,7 +122,7 @@ class Workspace extends React.Component {
     const { width, showMobile, showComponent } = this.state;
     const options = {
       position: 'top right',
-      timeout: 30000,
+      timeout: 10000,
       offset: '10px',
       transition: transitions.SCALE,
       containerStyle: {

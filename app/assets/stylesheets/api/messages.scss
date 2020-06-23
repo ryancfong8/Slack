@@ -345,3 +345,27 @@
   background-color: #1064a2;
   color: #fff;
 }
+
+.alert-template {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #dddddd;
+  border: 1px solid #999999;
+  border-radius: 10px;
+  width: 300px;
+  padding: 1rem;
+  .img-alert {
+    width: 24px;
+    height: 24px;
+    object-fit: scale-down;
+    margin-right: 1rem;
+  }
+  .close-btn {
+    margin-left: 1rem;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    color: #666666;
+  }
+}

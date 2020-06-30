@@ -74,7 +74,7 @@ export const updateChannel = (channel, member_ids) => (dispatch) => {
 };
 
 export const joinChannel = (membership) => (dispatch) => {
-  return ChannelAPIUtil.joinChannel(membership).then((channel) => dispatch(receiveNewChannel(channel)));
+  return ChannelAPIUtil.joinChannel(membership);
 };
 
 export const createNewNotification = (channel_id) => (dispatch) => {

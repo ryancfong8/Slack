@@ -82,22 +82,23 @@ const App = ({ children, location }) => (
               />
             </Plx>
           </div>
-
-          <h1>Break out of the inbox</h1>
-          <div className="mb-3">
-            Working in channels gives everyone a shared view of progress and purpose. It also provides an easy and
-            convenient way to organize your communications. Conversations can happen in public channels, private
-            channels, or direct messages.
-          </div>
-          <div className="d-flex flex-row align-items-center">
-            <a
-              className="home-page-link"
-              href="https://github.com/ryancfong8/Slack"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn More
-            </a>
+          <div className="text-section">
+            <h1>Break out of the inbox</h1>
+            <div className="mb-3">
+              Working in channels gives everyone a shared view of progress and purpose. It also provides an easy and
+              convenient way to organize your communications. Conversations can happen in public channels, private
+              channels, or direct messages.
+            </div>
+            <div className="d-flex flex-row align-items-center">
+              <a
+                className="home-page-link"
+                href="https://github.com/ryancfong8/Slack"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Learn More
+              </a>
+            </div>
           </div>
           {makeParallaxHomeSection({
             direction: 'left',
@@ -114,21 +115,23 @@ const App = ({ children, location }) => (
             level: 'top',
             imgUrl: 'https://res.cloudinary.com/ryancfong8/image/upload/v1591946048/clipart1695912_zv07mn.png',
           })}
-          <h1>Conversations, organized</h1>
-          <div className="mb-3">
-            ChatHero makes channels easily searchable. Can't find the right channel? Simply create a new one and add
-            your team. Powered by Elasticsearch, ChatHero also allows you to search for any message in any of your
-            conversations.
-          </div>
-          <div className="d-flex flex-row align-items-center">
-            <a
-              className="home-page-link"
-              href="https://github.com/ryancfong8/Slack"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn More
-            </a>
+          <div className="text-section">
+            \<h1>Conversations, organized</h1>
+            <div className="mb-3">
+              ChatHero makes channels easily searchable. Can't find the right channel? Simply create a new one and add
+              your team. Powered by Elasticsearch, ChatHero also allows you to search for any message in any of your
+              conversations.
+            </div>
+            <div className="d-flex flex-row align-items-center">
+              <a
+                className="home-page-link"
+                href="https://github.com/ryancfong8/Slack"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Learn More
+              </a>
+            </div>
           </div>
           {makeParallaxHomeSection({
             direction: 'right',
@@ -157,20 +160,22 @@ const App = ({ children, location }) => (
             level: 'top',
             imgUrl: 'https://res.cloudinary.com/ryancfong8/image/upload/v1591079074/spider_man_PNG90_pllizj.png',
           })}
-          <h1>Power up your communication</h1>
-          <div className="mb-3">
-            Find the right tools you need to properly format your message. React to anyone's message with a wide range
-            of emojis to select.
-          </div>
-          <div className="d-flex flex-row align-items-center">
-            <a
-              className="home-page-link"
-              href="https://github.com/ryancfong8/Slack"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn More
-            </a>
+          <div className="text-section">
+            <h1>Power up your communication</h1>
+            <div className="mb-3">
+              Find the right tools you need to properly format your message. React to anyone's message with a wide range
+              of emojis to select.
+            </div>
+            <div className="d-flex flex-row align-items-center">
+              <a
+                className="home-page-link"
+                href="https://github.com/ryancfong8/Slack"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Learn More
+              </a>
+            </div>
           </div>
           {makeParallaxHomeSection({
             direction: 'left',
@@ -187,20 +192,22 @@ const App = ({ children, location }) => (
             level: 'top',
             imgUrl: 'https://res.cloudinary.com/ryancfong8/image/upload/v1591072362/captain_marvel_png_vsirqo.png',
           })}
-          <h1>Customize your superhero appearance</h1>
-          <div className="mb-3">
-            Choose a superhero username and upload your profile picture to make you stand out from the rest. Full names
-            are optional, should you want to keep your identity a secret.
-          </div>
-          <div className="d-flex flex-row align-items-center">
-            <a
-              className="home-page-link"
-              href="https://github.com/ryancfong8/Slack"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn More
-            </a>
+          <div className="text-section">
+            <h1>Customize your superhero appearance</h1>
+            <div className="mb-3">
+              Choose a superhero username and upload your profile picture to make you stand out from the rest. Full
+              names are optional, should you want to keep your identity a secret.
+            </div>
+            <div className="d-flex flex-row align-items-center">
+              <a
+                className="home-page-link"
+                href="https://github.com/ryancfong8/Slack"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Learn More
+              </a>
+            </div>
           </div>
           {makeParallaxHomeSection({
             direction: 'right',

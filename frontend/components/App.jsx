@@ -228,7 +228,7 @@ const App = ({ children, location }) => (
           src="https://res.cloudinary.com/ryancfong8/image/upload/c_crop,w_2400/v1591162347/cover_whvh78.png"
         />
         <div className="d-flex flex-row align-items-center">
-          <button className="btn btn-primary mr-3">Demo as Guest User</button>
+          <SessionFormContainer demoButton />
           <a
             className="btn btn-secondary"
             href="https://github.com/ryancfong8/Slack"

@@ -15,6 +15,7 @@ class MessagesEditor extends Component {
     this.state = {
       editorState: EditorState.createEmpty(),
       hasError: false,
+      errMsg: false,
       disabled: false,
     };
 
@@ -82,6 +83,19 @@ class MessagesEditor extends Component {
     const { createMessage, updateMessage, currentUser, currentChannel, message, setShowEdit } = this.props;
     const rawContentState = convertToRaw(editorState.getCurrentContent());
     let htmlString = draftToHtml(rawContentState);
+    // check html string
+    // check length
+    const text = getText(htmlString).trim();
+    if (text.length === 0) {
+      this.setState({ errMsg: "Message can't be blank" });
+      return;
+    }
+    if (text.length > 5000) {
+      this.setState({
+        errMsg: `Message exceeds character limit of 5000 characters by ${text.length - 5000} characters`,
+      });
+      return;
+    }
     // remove the extra paragraph from the enter
     if (htmlString.slice(htmlString.length - 7, htmlString.length) === '<p></p>') {
       htmlString = htmlString.slice(0, htmlString.length - 7);
@@ -103,6 +117,7 @@ class MessagesEditor extends Component {
       this.setState({
         editorState: EditorState.moveFocusToEnd(EditorState.createEmpty()),
         hasError: false,
+        errMsg: false,
         disabled: false,
       });
     }
@@ -126,7 +141,7 @@ class MessagesEditor extends Component {
   };
 
   render() {
-    const { editorState } = this.state;
+    const { editorState, errMsg } = this.state;
     const { message, setShowEdit, currentChannel, currentUser } = this.props;
     return (
       <div>
@@ -147,6 +162,7 @@ class MessagesEditor extends Component {
           }}
           editorRef={this.setEditorReference}
         />
+        {errMsg && <div className="text-danger err-msg">{errMsg}</div>}
         {message && (
           <div className="d-flex flex-row mt-2 mb-2">
             <button
@@ -175,6 +191,17 @@ class MessagesEditor extends Component {
 }
 
 export default MessagesEditor;
+
+const getText = (message) => {
+  // strip html tags from html string
+  const strippedHtmlString = message.replace(/<[^>]+>/g, '');
+  // decode any html entities from the string
+  // put strippedHtmlString in textarea (instead of div to prevent security risk)
+  const txt = document.createElement('textarea');
+  txt.innerHTML = strippedHtmlString;
+  const text = txt.value;
+  return text;
+};
 
 const toolbarOptions = {
   options: [

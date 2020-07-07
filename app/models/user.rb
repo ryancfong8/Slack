@@ -110,7 +110,7 @@ class User < ApplicationRecord
       Message.create!([
         {
           body: "<p>Hi, I'm Ryan. Welcome to ChatHero! Feel free to create new channels, write new messages, and browse around! 
-          You may even get a message from your superhero. 
+          You may even get a message from your favorite superhero. 
           You can respond here with any questions, comments, or feedback and I will get back to you as soon as I can.  Make sure to also leave your contact info if you are on a demo account.
           Hope you enjoy ChatHero!</p>",
           channel_id: channel1.id,
@@ -125,9 +125,9 @@ class User < ApplicationRecord
       sleep(30)
       Message.create!([
         {
-          body: "<p>Hey, Spiderman here. Just wanted to drop in and point out some cool features in ChatHero! Did you know you can make channels public or private? 
-          Private channels will only be seen by the users that you add to the channel. Direct messages are also private so no one outside of this channel will be able to see this conversation.
-          To add a user to your channel, click on the Details button and a button to add members will appear on the top right. You can then search for and add any member of ChatHero.
+          body: "<p>Hey, your friendly neighborhood Spiderman here. Just wanted to drop in and point out some cool features in ChatHero! <ul><li> Did you know you can make channels public or private? 
+          Private channels will only be seen by the users that you add to the channel.</li><li>Direct messages are also private so no one outside of this channel will be able to see this conversation.</li>
+          <li>To add a user to your channel, click on the Details button and a button to add members will appear on the top right. You can then search for and add any member of ChatHero.</li></ul>
           If you have questions or feedback, be sure to leave Ryan a message!
           </p>",
           channel_id: channel2.id,
@@ -142,10 +142,10 @@ class User < ApplicationRecord
       sleep(60)
       Message.create!([
         {
-          body: "<p>Hey there recruit, it's Cap.  I know you must be excited to start your journey.  Sometimes all the information in each channel can be overwhelming. 
-          If you need to search for a specific message, try out the search functionality at the top.  You can search for the contents of any message in any channel that you are a part of.
-          You can refine your search with the filters on the right side of the page. Hope that helps you along in your journey.
-          If you have questions or feedback, just let Ryan know in your direct channel with him.</p>",
+          body: `<p>Hey there recruit, it's Cap.  I know you must be excited to start your journey.  Sometimes all the information in each channel can be overwhelming. I want to introduce you to the search feature.
+          <ul><li>If you need to search for a specific message, try out the search functionality at the top.</li><li>You can search for the contents of any message in any channel that you are a part of.</li>
+          <li>For example, try searching the term "ChatHero"</li><li>You can refine your search with the filters on the right side of the page.</li></ul> Hope that helps you along in your journey.
+          If you have questions or feedback, just let Ryan know in your direct channel with him.</p>`,
           channel_id: channel3.id,
           user_id: 3,
           message_type: "message"
@@ -158,9 +158,9 @@ class User < ApplicationRecord
       sleep(90)
       Message.create!([
         {
-          body: "<p>Hello, I am Iron Man. I wanted to point some cool messaging features set up in ChatHero. You can format your text with bold or italics, as well as
-          make lists, and include emojis. Speaking of emojis, you can react to any message with a wide range of emojis. Just hover over the message you would like to react to
-          and click on the smiley face button that appears on the right. Let Ryan know if you have any requests for features, and he will respond as soon as he can.</p>",
+          body: "<p>Hello, I am Iron Man. I wanted to point out some cool messaging features set up in ChatHero.<ul><li>You can format your text with bold or italics, as well as
+          make lists, and include emojis.</li><li>Speaking of emojis, you can react to any message with a wide range of emojis.</li><li>Just hover over the message you would like to react to
+          and click on the smiley face button that appears on the right.</li></ul>Let Ryan know if you have any requests for features, and he will respond as soon as he can.</p>",
           channel_id: channel4.id,
           user_id: 4,
           message_type: "message"

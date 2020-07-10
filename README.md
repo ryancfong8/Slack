@@ -1,8 +1,6 @@
 # ChatHero
 
-[ChatHero Live](heroku)
-
-[heroku]: https://chathero.herokuapp.com/
+[ChatHero Live](https://chathero.herokuapp.com/)
 
 ChatHero is a full stack web application inspired Slack. It is built using React with Redux architectural framework on the frontend, Ruby on Rails on the backend, and a PostgreSQL database. ChatHero has been upgraded to use React Hooks. ChatHero also uses Elasticsearch to search through messages. ChatHero aims to connect users together through organized communication.
 

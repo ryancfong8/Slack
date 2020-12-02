@@ -28,7 +28,7 @@ const App = ({ children, location }) => (
             <SessionFormContainer demoButton />
             <a
               className="btn btn-secondary"
-              href="https://github.com/ryancfong8/Slack"
+              href="https://github.com/ryancfong8/ChatHero#chathero"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -92,7 +92,7 @@ const App = ({ children, location }) => (
             <div className="d-flex flex-row align-items-center">
               <a
                 className="home-page-link"
-                href="https://github.com/ryancfong8/Slack"
+                href="https://github.com/ryancfong8/ChatHero#chathero"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -125,7 +125,7 @@ const App = ({ children, location }) => (
             <div className="d-flex flex-row align-items-center">
               <a
                 className="home-page-link"
-                href="https://github.com/ryancfong8/Slack"
+                href="https://github.com/ryancfong8/ChatHero#chathero"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -169,7 +169,7 @@ const App = ({ children, location }) => (
             <div className="d-flex flex-row align-items-center">
               <a
                 className="home-page-link"
-                href="https://github.com/ryancfong8/Slack"
+                href="https://github.com/ryancfong8/ChatHero#chathero"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -201,7 +201,7 @@ const App = ({ children, location }) => (
             <div className="d-flex flex-row align-items-center">
               <a
                 className="home-page-link"
-                href="https://github.com/ryancfong8/Slack"
+                href="https://github.com/ryancfong8/ChatHero#chathero"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -231,7 +231,7 @@ const App = ({ children, location }) => (
           <SessionFormContainer demoButton />
           <a
             className="btn btn-secondary"
-            href="https://github.com/ryancfong8/Slack"
+            href="https://github.com/ryancfong8/ChatHero#chathero"
             target="_blank"
             rel="noopener noreferrer"
           >

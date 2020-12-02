@@ -34,8 +34,7 @@
       margin-bottom: 0.5rem;
     }
     .account-dropdown {
-      position: absolute;
-      top: 100%;
+      position: fixed;
       background-color: #f8f8f8;
       color: #333333;
       width: 300px;
@@ -43,6 +42,12 @@
       border-radius: 0.25rem;
       z-index: 10;
       cursor: default;
+    }
+    .account-name {
+      color: #111111;
+    }
+    .account-name:hover {
+      text-decoration: underline;
     }
     .header-button {
       color: #333333;

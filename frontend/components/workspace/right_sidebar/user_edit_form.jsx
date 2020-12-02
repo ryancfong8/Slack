@@ -86,7 +86,7 @@ class UserEditForm extends React.Component {
                 autoComplete="off"
               />
               <div className="subtitle">
-                This could be your first name, or a nickname — however you’d like people to refer to you in Slack.
+                This could be your first name, or a nickname — however you’d like people to refer to you in Chathero.
               </div>
             </div>
             <div className="user-form-field">

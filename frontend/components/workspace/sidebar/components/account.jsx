@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import ClickOutsideWrapper from '../../../util/click_outsider_wrapper';
 
-export const Account = (props) => {
-  const { logout, currentUser } = props;
+export const Account = ({ logout, currentUser, currentChannel }) => {
   const [showDropdown, toggleDropdown] = useState(false);
   return (
     <ClickOutsideWrapper
@@ -24,7 +24,9 @@ export const Account = (props) => {
             <div className="p-3">
               <div className="d-flex flex-row align-items-center">
                 <img className="account-avatar" src={currentUser.avatar_url} />
-                <h3>{currentUser.username}</h3>
+                <Link className="account-name" to={`/messages/${currentChannel.id}/users/${currentUser.id}`}>
+                  <h3>{currentUser.username}</h3>
+                </Link>
               </div>
               <div>{currentUser.email}</div>
             </div>

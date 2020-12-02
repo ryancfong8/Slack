@@ -7,7 +7,7 @@ const Sidebar = (props) => {
   const { currentChannel, history, match, receiveHighlightedMessage, className, toggleMobileSidebar, width } = props;
   return (
     <div className={`sidebar ${className}`}>
-      <AccountContainer />
+      <AccountContainer currentChannel={currentChannel} />
       <ChannelListContainer
         currentChannel={currentChannel}
         history={history}

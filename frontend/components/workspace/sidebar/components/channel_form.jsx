@@ -124,6 +124,7 @@ class ChannelForm extends React.Component {
           {nameError && <div className="text-danger mb-1">{nameError}</div>}
           <div className="channel-input-container">
             <input
+              id="name"
               className=""
               name="name"
               placeholder="e.g. marketing"
@@ -143,6 +144,7 @@ class ChannelForm extends React.Component {
             Description <span className="optional">(optional)</span>
           </label>
           <input
+            id="description"
             className=""
             name="description"
             placeholder=""

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { render, screen, fireEvent, waitForElementToBeRemoved } from '@testing-library/react';
 
 import UserPage from '../user_page.jsx';
 import MockProviders from '../../../../util/utilTest/mock_providers';
@@ -74,5 +74,34 @@ describe('App', () => {
     expect(screen.queryByText('Edit Profile')).toBeNull();
     expect(screen.getByText(user2.username)).toBeInTheDocument();
     expect(screen.getByText(user2.name)).toBeInTheDocument();
+  });
+
+  test('opens Edit Form', async () => {
+    const getUser = jest.fn();
+    getUser.mockReturnValue(user1);
+    render(
+      <MockProviders store={{ session: { currentUser: user1 } }}>
+        <UserPage
+          currentUserId={1}
+          currentChannel={1}
+          channel={channels[0]}
+          match={{ params: {} }}
+          selectedUser={user1}
+          getUser={getUser}
+          currentUser={user1}
+        />
+      </MockProviders>
+    );
+
+    await waitForElementToBeRemoved(() => screen.getByText(/loading/i));
+
+    expect(screen.getByText('Edit Profile')).toBeInTheDocument();
+    fireEvent.click(screen.getByText('Edit Profile'));
+    expect(
+      screen.getByText(
+        'This could be your first name, or a nickname — however you’d like people to refer to you in Chathero.'
+      )
+    ).toBeInTheDocument();
+    expect(screen.getByText('Profile Photo')).toBeInTheDocument();
   });
 });

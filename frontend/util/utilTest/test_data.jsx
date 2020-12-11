@@ -1,10 +1,12 @@
 export const user1 = {
   id: 1,
-  username: 'Bob Smith',
+  username: 'bob_smith',
+  name: 'Bob Smith',
 };
 export const user2 = {
   id: 2,
-  username: 'Roseanne Jones',
+  username: 'roseanne_jones',
+  name: 'Roseanne Jones',
 };
 export const channels = [
   {

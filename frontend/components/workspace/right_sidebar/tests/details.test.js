@@ -25,7 +25,7 @@ describe('App', () => {
 
     expect(screen.getByText('About')).toBeInTheDocument();
     expect(screen.getByText('A channel for marketing')).toBeInTheDocument();
-    expect(screen.queryByText('Bob Smith')).toBeNull();
+    expect(screen.queryByText(user1.username)).toBeNull();
   });
 
   test('renders Details Members component', () => {
@@ -41,7 +41,7 @@ describe('App', () => {
     );
 
     expect(screen.getByText('Members')).toBeInTheDocument();
-    expect(screen.getByText('Bob Smith')).toBeInTheDocument();
+    expect(screen.getByText(user1.username)).toBeInTheDocument();
     expect(screen.queryByText('A channel for marketing')).toBeNull();
   });
 });

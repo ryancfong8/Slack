@@ -1,0 +1,22 @@
+user1:
+  id: 1
+  username: guest1
+  password_digest: rShyVu5LADUsgdgjL
+  session_token: pRAiAncSr3XUy3j4w
+
+user2:
+  id: 2
+  username: guest2
+  password_digest: DQHrGKWdHhnB1X1gq
+  session_token: cr7gjwp6sYv5OK4xS
+
+user3:
+  id: 3
+  username: guest3
+  password_digest: fdmzOFU5GwpIf8owa
+  session_token: nxeBUfAPtOzROD1TH
+user4:
+  id: 4
+  username: guest4
+  password_digest: pLpyblpPKxStUwhUj
+  session_token: fzvknxyh4b8aJfOui

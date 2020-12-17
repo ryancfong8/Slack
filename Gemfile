@@ -11,7 +11,7 @@ gem 'rails', '~> 5.1.6'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
-gem 'puma', '~> 4.3.5'
+gem 'puma', '~> 4.3.6'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -41,10 +41,12 @@ gem 'rack', '~>2.0.8'
 gem 'rubyzip', '~>1.3.0'
 gem 'nokogiri', '~>1.10.9'
 gem 'websocket-extensions', '~>0.1.5'
+# gem 'bonsai-elasticsearch-rails', '~> 6'
 gem 'bonsai-elasticsearch-rails', '~> 7'
+# gem 'elasticsearch-model', git: 'git://github.com/elastic/elasticsearch-rails.git', branch: '6.x'
 gem 'elasticsearch-model', github: 'elastic/elasticsearch-rails', branch: 'master'
+# gem 'elasticsearch-rails', git: 'git://github.com/elastic/elasticsearch-rails.git', branch: '6.x'
 gem 'elasticsearch-rails', github: 'elastic/elasticsearch-rails', branch: 'master'
-
 
 
 
@@ -57,6 +59,9 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'database_cleaner-active_record'
 end
 
 group :development do

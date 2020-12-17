@@ -1,0 +1,10 @@
+channel1:
+  id: 1
+  channel_type: channel
+  name: general
+  channel_private: false
+channel2:
+  id: 2
+  channel_type: channel
+  name: random
+  channel_private: false

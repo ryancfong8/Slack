@@ -22,6 +22,10 @@ jobs:
         image: postgres:11.6
         ports: ['5432:5432']
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+      elasticsearch:
+        image: elasticsearch:6.8.8
+        ports: ['9200:9200']
+        options: -e="discovery.type=single-node" --health-cmd="curl http://localhost:9200/_cluster/health" --health-interval=10s --health-timeout=5s --health-retries=10
 
     steps:
       - uses: actions/checkout@v2

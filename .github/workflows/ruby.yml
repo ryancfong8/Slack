@@ -19,9 +19,9 @@ jobs:
 
     services:
       postgres:
-        image: postgres:latest
-        ports:
-          - 5432:5432
+        image: postgres:11.6
+        ports: ['5432:5432']
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
       - uses: actions/checkout@v2
@@ -33,14 +33,20 @@ jobs:
         with:
           ruby-version: 2.6
       - name: Install PostgreSQL
-        run: sudo apt-get install libpq-dev
+        run: sudo apt-get -yqq install libpq-dev
       - name: Install dependencies
         run: |
-          gem install bundle
-          bundle install
+          gem install bundler
+          bundle install --jobs 4 --retry 3
       - name: Setup Database
-        run: |
-          bundle exec rails db:create RAILS_ENV=test
-          bundle exec rails db:migrate RAILS_ENV=test
+        env:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: postgres
+        run: bin/rails db:create db:schema:load
       - name: Run tests
+        env:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: postgres
         run: bundle exec rspec

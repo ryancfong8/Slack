@@ -1,6 +1,7 @@
 # ChatHero
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ryancfong8/ChatHero/Node.js%20Package)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ryancfong8/ChatHero/Node.js%20Package?label=jest%20tests)
+![Github Workflow Status](https://img.shields.io/github/workflow/status/ryancfong8/Slack/Ruby?label=rspec%20tests)
 
 [ChatHero Live](https://chatheroapp.herokuapp.com/)
 

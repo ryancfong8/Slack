@@ -7,7 +7,6 @@ import { Picker } from 'emoji-mart';
 
 export function EmojiModal(props) {
   const { openEmojiMenu, closeEmojiMenu, onEmojiSelect, position, width } = props;
-  console.log('POSITION', position);
   const customStyles = {
     overlay: {
       position: 'fixed',

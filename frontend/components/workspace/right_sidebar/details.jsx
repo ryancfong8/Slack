@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { getChannelName } from '../../util/utils';
 import AddMembers from '../right_sidebar/add_members';
 
@@ -91,6 +91,8 @@ export const Details = (props) => {
                 currentUserId={currentUserId}
                 key={`${member.id}${index}${member.created_at}`}
                 className="channel-browse-item"
+                channel={channel}
+                history={history}
               />
             ))}
           </>
@@ -110,9 +112,12 @@ export const Details = (props) => {
 };
 
 export const UserItem = (props) => {
-  const { user, currentUserId, className } = props;
+  const { user, currentUserId, className, channel, history } = props;
+  const goToUser = () => {
+    history.push(`/messages/${channel.id}/users/${user.id}`);
+  };
   return (
-    <div className={`d-flex flex-row align-items-center ${className}`}>
+    <div className={`d-flex flex-row align-items-center ${className}`} onClick={(e) => goToUser()}>
       <img className="member-avatar" src={user.avatar_url} />
       <h6 className="list-item-name mb-0 mr-2">
         {user.username} {user.id === currentUserId && <span className="subtitle">(you)</span>}

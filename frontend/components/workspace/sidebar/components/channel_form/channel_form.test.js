@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import ChannelForm from '../channel_form.jsx';
+import ChannelForm from './channel_form.jsx';
 import MockProviders from '../../../../../util/utilTest/mock_providers';
 import { user1 } from '../../../../../util/utilTest/test_data';
 

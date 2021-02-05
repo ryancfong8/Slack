@@ -17,7 +17,11 @@
 $green: #007a5a;
 $purple: #3f0e40;
 $indigo: #611f69;
-@import 'bootstrap';
+$color-dark: #eeeeee;
+$background-dark: #222222;
+$secondary-dark: #555555;
+// @import 'bootstrap';
+@import '../../../node_modules/bootstrap/scss/bootstrap';
 .btn-primary {
   @include button-variant(
     $green,
@@ -191,4 +195,136 @@ body {
 
 .text-section {
   padding: 1rem 0;
+}
+
+.dark-mode > * {
+  color: $color-dark !important;
+  background-color: $background-dark !important;
+}
+
+.dark-mode {
+  .sidebar {
+    border-right: 1px solid $color-dark;
+  }
+  .rdw-editor-toolbar {
+    border: none !important;
+    background-color: $secondary-dark !important;
+  }
+  .username {
+    color: $color-dark !important;
+  }
+  .reaction {
+    background-color: $color-dark !important;
+    border: none !important;
+  }
+  .channel-list > * {
+    color: $color-dark !important;
+  }
+  .channel-list-link {
+    color: $color-dark !important;
+    &.active {
+      background-color: $secondary-dark !important;
+    }
+  }
+  .modal-content > * {
+    color: $color-dark !important;
+    background-color: $secondary-dark !important;
+  }
+  .messages-list-component:hover {
+    &.edit:hover {
+      background-color: #333333 !important;
+    }
+    background-color: #333333 !important;
+  }
+  .create-channel-form {
+    color: $color-dark !important;
+  }
+  .search-input-button {
+    background-color: $background-dark;
+  }
+  .detail-button {
+    color: #999999 !important;
+  }
+  .detail-button:hover {
+    background-color: inherit !important;
+    color: $secondary-dark !important;
+  }
+  .channel-browse-item:hover {
+    background-color: inherit !important;
+  }
+  .mobile-button {
+    color: $color-dark !important;
+  }
+  .channel-direct-input {
+    background-color: $secondary-dark;
+    ::placeholder {
+      color: #dddddd;
+    }
+    color: $color-dark;
+  }
+  .selected-item {
+    background-color: $background-dark;
+    .delete-selected:hover {
+      background-color: inherit !important;
+    }
+  }
+  .search-result,
+  .search-input {
+    color: $color-dark;
+    background-color: inherit !important;
+    em {
+      background-color: $background-dark !important;
+    }
+  }
+  .search-query-dropdown {
+    .search-button {
+      background-color: #999999 !important;
+    }
+    .search-button:hover {
+      color: #000 !important;
+      background-color: #999999 !important;
+    }
+  }
+  .result-text {
+    color: $color-dark;
+  }
+  .close {
+    color: $color-dark;
+  }
+  .messages-page .messages-list-component .editor-wrapper {
+    background-color: $background-dark;
+  }
+  .messages-page .messages-list-component.edit {
+    background-color: $background-dark;
+  }
+  .messages-page .messages-list-component .cancel-btn {
+    background-color: $color-dark;
+  }
+}
+
+.react-toggle-track-check,
+.react-toggle-track-x {
+  display: flex;
+  align-items: center;
+}
+
+.messages-page-header {
+  .react-toggle {
+    .fas {
+      color: #ffffff;
+    }
+    .fa-sun {
+      margin: -2px;
+    }
+    .react-toggle-track {
+      background-color: $background-dark;
+      border: 1px solid $color-dark;
+    }
+  }
+  .react-toggle:hover:not(.react-toggle--disabled) {
+    .react-toggle-track {
+      background-color: $background-dark;
+      border: 1px solid $color-dark;
+    }
+  }
 }

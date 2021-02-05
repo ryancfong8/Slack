@@ -57,6 +57,8 @@ class MessagesPage extends React.Component {
       toggleMobileSidebar,
       width,
       loading,
+      darkMode,
+      toggleDarkMode,
     } = this.props;
 
     if (loading || !currentChannel || !currentChannel.id) {
@@ -73,6 +75,8 @@ class MessagesPage extends React.Component {
           showMobile={showMobile}
           toggleMobileSidebar={toggleMobileSidebar}
           width={width}
+          darkMode={darkMode}
+          toggleDarkMode={toggleDarkMode}
         />
         <MessagesList
           messages={messages}

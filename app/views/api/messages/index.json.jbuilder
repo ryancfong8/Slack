@@ -4,6 +4,4 @@
   end
 end
 
-if (defined? @aggregations)
-  json.aggregations @aggregations
-end
+json.aggregations @aggregations if defined? @aggregations

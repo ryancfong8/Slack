@@ -33,7 +33,8 @@ class Api::ChannelsController < ApplicationController
   end
 
   def index
-    @channels = Channel.find_by_query(params[:query], params[:is_member], params[:channel_type], params[:member_ids], params[:excluded_ids], params[:excluded_member_ids])
+    @channels = Channel.find_by_query(params[:query], params[:is_member], params[:channel_type], params[:member_ids],
+                                      params[:excluded_ids], params[:excluded_member_ids])
   end
 
   def has_member?(channel, id)

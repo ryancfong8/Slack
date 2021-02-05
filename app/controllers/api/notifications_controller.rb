@@ -16,7 +16,7 @@ class Api::NotificationsController < ApplicationController
 
   def destroy
     @notifications = Notification.where(channel_id: params[:channel_id]).where(user_id: current_user.id)
-    print "DESTROYING NOTIFICATIONS"
+    print 'DESTROYING NOTIFICATIONS'
     puts @notifications
     @notifications.destroy_all
     @channel = Channel.find(params[:channel_id])

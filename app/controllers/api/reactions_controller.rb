@@ -18,6 +18,7 @@ class Api::ReactionsController < ApplicationController
   end
 
   private
+
   def reaction_params
     params.require(:reaction).permit(:message_id, :emoji)
   end

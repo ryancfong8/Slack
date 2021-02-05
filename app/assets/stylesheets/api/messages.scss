@@ -113,10 +113,11 @@
       background-color: #ffffff;
     }
     .reaction {
-      padding: 2px;
+      padding: 1px 5px;
       border-radius: 10px;
-      background-color: #fafafa;
+      background-color: #eeeeee;
       font-size: 12px;
+      border: 1px solid #eeeeee;
       &.user-reaction {
         background-color: #ebf6fb;
         border: 1px solid #5bb1db;
@@ -127,9 +128,14 @@
       border: 1px solid #666666;
       background-color: #fff;
       &.user-reaction {
-        background-color: #ebf6fb;
         border: 1px solid #5bb1db;
       }
+    }
+    .reaction:focus {
+      outline: none;
+    }
+    &.d-none + .right-sidebar {
+      border: none;
     }
   }
   .messages-list-component:hover {
@@ -167,7 +173,10 @@
   }
   .detail-button {
     color: #666666;
-    padding: 0.5rem;
+    padding: 1rem;
+    @include media-breakpoint-only(xs) {
+      padding: 0.5rem;
+    }
     border-radius: 5px;
   }
   .detail-button:hover {

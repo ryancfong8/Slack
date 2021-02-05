@@ -1,6 +1,6 @@
 class MessageRelayJob < ApplicationJob
   queue_as :default
-  
+
   def perform(message, channel)
     message = Api::MessagesController.render(
       partial: 'api/messages/message',

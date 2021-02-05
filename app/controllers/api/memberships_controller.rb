@@ -9,9 +9,7 @@ class Api::MembershipsController < ApplicationController
     end
   end
 
-  def destroy
-
-  end
+  def destroy; end
 
   def membership_params
     params.require(:membership).permit(:user_id, :channel_id)

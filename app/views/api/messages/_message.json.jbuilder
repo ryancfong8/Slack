@@ -18,7 +18,7 @@ if defined? message.uniq_reactions
     json.username member.username
   end
 end
-if defined?(message.uniq_reactions) == nil
+if defined?(message.uniq_reactions).nil?
   json.body_highlight message.highlight.body[0]
   json.channel message.channel
   json.channel_members message.channel_members

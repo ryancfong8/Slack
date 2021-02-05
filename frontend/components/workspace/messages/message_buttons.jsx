@@ -59,10 +59,22 @@ const MessageButtons = (props) => {
   };
 
   return (
-    <div className="message-buttons btn-group">
-      <button onClick={onEmojiButtonClick} className="btn btn-sm" ref={buttonsRef}>
-        <i className="far fa-laugh"></i>
-      </button>
+    <>
+      <div className={`message-buttons ${currentUser.id === message.user.id && 'btn-group'}`}>
+        <button onClick={onEmojiButtonClick} className="btn btn-sm" ref={buttonsRef}>
+          <i className="far fa-laugh"></i>
+        </button>
+        {currentUser.id === message.user.id && (
+          <button className="btn btn-sm" onClick={onEditClick}>
+            <i className="fas fa-pencil-alt"></i>
+          </button>
+        )}
+        {currentUser.id === message.user.id && (
+          <button className="btn btn-sm" onClick={onDeleteClick}>
+            <i className="fas fa-trash"></i>
+          </button>
+        )}
+      </div>
       <EmojiModal
         position={position}
         openEmojiMenu={openEmojiMenu}
@@ -70,17 +82,7 @@ const MessageButtons = (props) => {
         onEmojiSelect={onEmojiSelect}
         width={width}
       />
-      {currentUser.id === message.user.id && (
-        <button className="btn btn-sm" onClick={onEditClick}>
-          <i className="fas fa-pencil-alt"></i>
-        </button>
-      )}
-      {currentUser.id === message.user.id && (
-        <button className="btn btn-sm" onClick={onDeleteClick}>
-          <i className="fas fa-trash"></i>
-        </button>
-      )}
-    </div>
+    </>
   );
 };
 

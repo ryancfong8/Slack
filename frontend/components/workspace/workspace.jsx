@@ -44,6 +44,7 @@ class Workspace extends React.Component {
       width: 768,
       showMobile: false,
       showComponent: 'messages', // messages, sidebar, right-sidebar
+      darkMode: false,
     };
 
     this.workSpaceRef = React.createRef();
@@ -105,6 +106,10 @@ class Workspace extends React.Component {
     }
   };
 
+  toggleDarkMode = () => {
+    this.setState({ darkMode: !this.state.darkMode });
+  };
+
   render() {
     const {
       currentChannel,
@@ -119,7 +124,7 @@ class Workspace extends React.Component {
       location,
       receiveHighlightedMessage,
     } = this.props;
-    const { width, showMobile, showComponent } = this.state;
+    const { width, showMobile, showComponent, darkMode } = this.state;
     const options = {
       position: 'top right',
       timeout: 10000,
@@ -131,7 +136,10 @@ class Workspace extends React.Component {
     };
     return (
       <AlertProvider template={AlertTemplate} {...options}>
-        <div className={`main-content-container ${showMobile && 'mobile'}`} ref={this.workSpaceRef}>
+        <div
+          className={`main-content-container ${showMobile && 'mobile'} ${darkMode && 'dark-mode'}`}
+          ref={this.workSpaceRef}
+        >
           {/* <h1>Welcome to your workspace</h1>
         <button className="header-button" onClick={logout}>
         Log Out
@@ -144,6 +152,8 @@ class Workspace extends React.Component {
             receiveHighlightedMessage={receiveHighlightedMessage}
             toggleMobileSidebar={this.toggleMobileSidebar}
             width={width}
+            toggleDarkMode={this.toggleDarkMode}
+            darkMode={darkMode}
           />
           <MessagesContainer
             className={`${showMobile ? (showComponent === 'messages' ? '' : 'd-none') : ''}`}
@@ -155,6 +165,8 @@ class Workspace extends React.Component {
             toggleMobileRightSidebar={this.toggleMobileRightSidebar}
             showMobile={showMobile}
             width={width}
+            darkMode={darkMode}
+            toggleDarkMode={this.toggleDarkMode}
           />
           <Switch>
             <Route

@@ -1,7 +1,7 @@
 class Api::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
-    @user.avatar_url = "https://res.cloudinary.com/ryancfong8/image/upload/v1590641456/staff-avatar-man_mk5ql4.png"
+    @user.avatar_url = 'https://res.cloudinary.com/ryancfong8/image/upload/v1590641456/staff-avatar-man_mk5ql4.png'
     if @user.save
       login_user(@user)
       render 'api/users/show'
@@ -19,12 +19,12 @@ class Api::UsersController < ApplicationController
     end
   end
 
-  def index 
+  def index
     @users = User.find_by_query(params[:query], params[:excluded_ids])
     render :index
   end
 
-  def show 
+  def show
     @user = User.find(params[:id])
   end
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getChannelName } from '../../util/utils';
 import { Link } from 'react-router-dom';
+import Toggle from 'react-toggle';
 import MessagesSearch from './messages_search';
 
 const MessagesPageHeader = (props) => {
@@ -13,6 +14,8 @@ const MessagesPageHeader = (props) => {
     showMobile,
     toggleMobileSidebar,
     width,
+    toggleDarkMode,
+    darkMode,
   } = props;
   const channelName = getChannelName(channel, currentUser.id);
   const icon =
@@ -70,6 +73,13 @@ const MessagesPageHeader = (props) => {
           receiveHighlightedMessage={receiveHighlightedMessage}
           showMobile={showMobile}
           width={width}
+        />
+        <Toggle
+          onChange={() => toggleDarkMode()}
+          id="DarkMode"
+          name="DarkMode"
+          defaultChecked={darkMode}
+          icons={{ unchecked: <i class="fas fa-sun" />, checked: <i class="fas fa-moon"></i> }}
         />
         <Link className="detail-button d-flex flex-row align-items-center" to={detailLink}>
           <i className="fas fa-info-circle mr-1"></i>

@@ -138,12 +138,13 @@ class User < ApplicationRecord
 
     Thread.new do
       sleep(30)
+      chathero = '"Chathero"'
       Message.create!([
                         {
-                          body: `<p>Hey there recruit, it's Cap.  I know you must be excited to start your journey.  Sometimes all the information in each channel can be overwhelming. I want to introduce you to the search feature.
+                          body: "<p>Hey there recruit, it's Cap.  I know you must be excited to start your journey.  Sometimes all the information in each channel can be overwhelming. I want to introduce you to the search feature.
           <ul><li>If you need to search for a specific message, try out the search functionality at the top.</li><li>You can search for the contents of any message in any channel that you are a part of.</li>
-          <li>For example, try searching the term "ChatHero"</li><li>You can refine your search with the filters on the right side of the page.</li></ul> Hope that helps you along in your journey.
-          If you have questions or feedback, just let Ryan know in your direct channel with him.</p>`,
+          <li>For example, try searching the term #{chathero}</li><li>You can refine your search with the filters on the right side of the page.</li></ul> Hope that helps you along in your journey.
+          If you have questions or feedback, just let Ryan know in your direct channel with him.</p>",
                           channel_id: channel3.id,
                           user_id: 3,
                           message_type: 'message'

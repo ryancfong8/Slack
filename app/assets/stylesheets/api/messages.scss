@@ -340,9 +340,16 @@
   width: 50%;
   background-color: #f8f8f8;
   border: 1px solid #deddde;
-  left: 30% !important;
+  left: 266px !important;
   cursor: pointer;
   border-radius: 5px;
+}
+
+.mobile {
+  .rdw-suggestion-dropdown {
+    left: 35px !important;
+    width: 80%;
+  }
 }
 
 .rdw-suggestion-option {

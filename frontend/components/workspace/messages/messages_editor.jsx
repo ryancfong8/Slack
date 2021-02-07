@@ -129,7 +129,7 @@ class MessagesEditor extends Component {
       .filter((member) => member.id !== currentUser.id)
       .map((member) => {
         return {
-          text: <UserItem user={member} currentUserId={currentUser.id} />,
+          text: <UserItem user={member} currentUserId={currentUser.id} noLink />,
           value: member.username,
           url: `#/messages/${currentChannel.id}/users/${member.id}`,
         };

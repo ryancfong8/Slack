@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
-  # after_create_commit :add_channel_memberships
+  after_create_commit :add_channel_memberships
 
   after_save :reindex
 
@@ -121,7 +121,7 @@ class User < ApplicationRecord
     end
 
     Thread.new do
-      sleep(30)
+      sleep(15)
       Message.create!([
                         {
                           body: "<p>Hey, your friendly neighborhood Spiderman here. Just wanted to drop in and point out some cool features in ChatHero! <ul><li> Did you know you can make channels public or private?
@@ -137,7 +137,7 @@ class User < ApplicationRecord
     end
 
     Thread.new do
-      sleep(60)
+      sleep(30)
       Message.create!([
                         {
                           body: `<p>Hey there recruit, it's Cap.  I know you must be excited to start your journey.  Sometimes all the information in each channel can be overwhelming. I want to introduce you to the search feature.
@@ -152,7 +152,7 @@ class User < ApplicationRecord
     end
 
     Thread.new do
-      sleep(90)
+      sleep(45)
       Message.create!([
                         {
                           body: "<p>Hello, I am Iron Man. I wanted to point out some cool messaging features set up in ChatHero.<ul><li>You can format your text with bold or italics, as well as

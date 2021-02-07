@@ -112,9 +112,9 @@ export const Details = (props) => {
 };
 
 export const UserItem = (props) => {
-  const { user, currentUserId, className, channel, history } = props;
+  const { user, currentUserId, className, channel, history, noLink } = props;
   const goToUser = () => {
-    history.push(`/messages/${channel.id}/users/${user.id}`);
+    if (!noLink) history.push(`/messages/${channel.id}/users/${user.id}`);
   };
   return (
     <div className={`d-flex flex-row align-items-center ${className}`} onClick={(e) => goToUser()}>

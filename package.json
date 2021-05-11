@@ -17,7 +17,7 @@
     "html-to-draftjs": "^1.5.0",
     "immutable": "^4.0.0-rc.12",
     "jquery": "^3.5.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "minimist": "1.2.3",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
